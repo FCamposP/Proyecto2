@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="lib/coreui/icons/css/coreui-icons.min.css"/>
+        <h:outputStylesheet name="lib/flag-icon-css/css/flag-icon.min.css"/>
+        <h:outputStylesheet name="lib/font-awesome/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="lib/simple-line-icons/css/simple-line-icons.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="vendors/pace-progress/css/pace.min.css"/>  
+        <title>Proyecto2</title>
+    </h:head>
+
+    <h:body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+
+        <header class="app-header navbar">
+            <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <h:graphicImage value="resources/images/brand/logo.svg" width="89" height="25" alt="CoreUI Logo" />
+                <h:graphicImage value="resources/images/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo" />
+            </a>
+            <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="nav navbar-nav d-md-down-none">
+
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#"> <i class="nav-icon icon-layers"></i>Empresas</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#"><i class="nav-icon icon-reload"></i> Historial</a>
+                </li>
+
+
+            </ul>
+
+            <ul class="nav navbar-nav ml-auto">
+                <!--
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#">
+                    <i class="icon-bell"></i>
+                    <span class="badge badge-pill badge-danger">5</span>
+                </a>
+            </li>
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#">
+                    <i class="icon-list"></i>
+                </a>
+            </li>
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#">
+                    <i class="icon-location-pin"></i>
+                </a>
+            </li>-->
+                <li>
+                    UsuarioX
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <h:graphicImage value="resources/images/avatars/1.jpg" width="30" height="30" alt="user" />
+                     
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <!--
+                    <div class="dropdown-header text-center">
+                        <strong>Account</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-bell-o"></i> Updates
+                        <span class="badge badge-info">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-envelope-o"></i> Messages
+                        <span class="badge badge-success">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-tasks"></i> Tasks
+                        <span class="badge badge-danger">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-comments"></i> Comments
+                        <span class="badge badge-warning">42</span>
+                    </a>
+                    <div class="dropdown-header text-center">
+                        <strong>Settings</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-wrench"></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-usd"></i> Payments
+                        <span class="badge badge-secondary">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-file"></i> Projects
+                        <span class="badge badge-primary">42</span>
+                    </a>-->
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-shield"></i>Login
+                        </a>
+                        <a class="dropdown-item" href="/login">
+                            <i class="fa fa-lock"></i> Logout
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+            <!--<button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            -->
+        </header>
+        <div class="app-body">
+
+            <div class="sidebar">
+                <nav class="sidebar-nav">
+                    <ul class="nav">
+
+                        <li class="nav-title">Configuraciones</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reportdesigner">
+                                <i class="nav-icon icon-user"></i>Usuarios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> <i class="nav-icon icon-layers"></i>Empresas</a>
+                        </li>
+
+                        <li class="nav-title">Análisis</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reportdesigner">
+                                <i class="nav-icon icon-book-open"></i>Catálogo
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="documentviewer">
+                                <i class="nav-icon icon-chart"></i> An. Vertical
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reportdesigner">
+                                <i class="nav-icon icon-chart"></i>An. Horizontal
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="documentviewer">
+                                <i class="nav-icon icon-chart"></i> Ratios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="documentviewer">
+                                <i class="nav-icon icon-reload"></i> Historial
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+            </div>
+            <main class="main">
+
+                <!-- Breadcrumb-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Admin</a>
+                    </li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                    <!-- Breadcrumb Menu
+                    <li class="breadcrumb-menu d-md-down-none">
+                        <div class="btn-group" role="group" aria-label="Button group">
+                            <a class="btn" href="#">
+                                <i class="icon-speech"></i>
+                            </a>
+                            <a class="btn" asp-area="" asp-controller="CoreUI" asp-action="Index" asp-route-view="">
+                                <i class="icon-graph"></i>  Dashboard
+                            </a>
+                            <a class="btn" href="#">
+                                <i class="icon-settings"></i>  Settings
+                            </a>
+                        </div>
+                    </li>-->
+                </ol>
+                <!-- /Breadcrumb-->
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div id="content">
+
+                            <ui:insert name="content" />
+
+                        </div>
+                    </div>
+                </div>
+            </main> 
+            <aside class="aside-menu">
+
+            </aside>
+        </div>
+        <footer class="app-footer">
+            <div>
+                <a href="#">IGF115-PRN315</a>
+                <span>&copy; 2020 SYSTEM</span>
+            </div>
+            <div class="ml-auto">
+
+            </div>
+        </footer>
+
+        <h:outputScript name="lib/jquery/dist/jquery.min.js" />
+        <h:outputScript name="lib/popper.js/dist/umd/popper.min.js" />
+        <h:outputScript name="lib/bootstrap/dist/js/bootstrap.min.js" />
+        <h:outputScript name="lib/pace-progress/pace.min.js" />
+        <h:outputScript name="lib/perfect-scrollbar/dist/perfect-scrollbar.min.js" />
+        <h:outputScript name="lib/coreui/coreui/dist/js/coreui.min.js" />
+        <!-- Bootstrap and necessary plugins-->
+
+    </h:body>
+
+</html>
