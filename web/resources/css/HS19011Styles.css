@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-08-2020, 10:45:56 PM
+    Author     : HS19011-Edwin Alexander Hernandez Sanchez
+*/
+
+/* Cajas con contenido de color */
+
+.box-blue,
+.box-gray,
+.box-green,
+.box-grey,
+.box-red,
+.box-yellow {
+	margin:0 0 0px;
+	overflow:hidden;
+	padding:20px;
+	-webkit-border-radius: 10px;
+        border-radius: 10px;
+}
+
+.box-blue {
+	background-color:#d8ecf7;
+	border:1px solid #afcde3;
+}
+
+.box-gray {
+	background-color:#e2e2e2;
+	border:1px solid #bdbdbd;
+}
+
+.box-green {
+	background-color:#d9edc2;
+	border:1px solid #b2ce96;
+}
+
+.box-grey {
+	background-color:#F5F5F5;
+	border:2px solid #DDDDDD;
+}
+
+.box-red {
+	background-color:#f9dbdb;
+	border:1px solid #e9b3b3;
+}
+
+.box-yellow {
+	background-color:#fef5c4;
+	border:1px solid #fadf98;
+}
