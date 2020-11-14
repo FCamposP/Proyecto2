@@ -1,43 +1,143 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
 
             <ui:define name="content">
-                Instrucciones para usar el sistema :)
-                <button class="btn btn-success" data-toggle="modal" data-target="#ventanaModal">
-	            Abrir ventana modal
-               </button>
 
-<div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="tituloVentana">Mi primer ventana</h5>
-        <button class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="alert alert-success">
-          <h6><strong>Tus datos se han guardado</strong></h6>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-warning" type="button" data-dismiss="modal">
-          Cerrar
-        </button>
-        <button class="btn btn.success" type="button">
-          Aceptar
-        </button>
-      </div> 
-    </div> 
-  </div> 
-</div> 
+
+                <div class="container">
+                    <div class="modal" tabindex="-1" id="modalForm">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Database Connection Properties</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form>
+                                        <label>Specify following to connect to MySQL server: </label>
+                                        <div class="form-group row">
+                                            <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+                                            <div class="col-sm-10">
+                                                <select id="inputType" class="form-control">
+                                                    <option>TCP/IP</option>
+                                                </select>        
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputHost" class="col-sm-2 col-form-label">Host:</label>
+                                            <div class="col-sm-10">
+                                                <select id="inputHost" class="form-control">
+                                                    <option selected=""></option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPort" class="col-sm-2 col-form-label">Port:</label>
+                                            <div class="col-sm-10">
+                                                <select id="inputPort" class="form-control">
+                                                    <option selected="">3306</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputUser" class="col-sm-2 col-form-label">User:</label>
+                                            <div class="col-sm-10">
+                                                <select id="inputUser" class="form-control">
+                                                    <option> </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" id="inputPassword" class="form-control" value="" required=""></input>
+                                                <div class="invalid-feedback">
+                                                    No puede dejar este campo vacío
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-10">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck1"></input>
+                                                    <label class="form-check-label" for="gridCheck1">Allow saving password</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="dataBase" class="col-sm-2 col-form-label">Database:</label>
+                                            <div class="col-sm-10">
+                                                <select id="dataBase" class="form-control">
+                                                    <option>Choose a database</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <fieldset disabled="">
+                                            <div class="form-group row">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-10">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="gridCheck2"></input>
+                                                        <label class="form-check-label" for="gridCheck2" disabled="">Show all databases</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>    
+
+                                        <div class="form-group">
+                                            <label for="connectionName">Connection Name:</label>
+                                            <div class="col-sm-12">
+                                                <input type="text" id="connectionName" class="form-control" placeholder="localhost1"></input>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="documentCategory">Document Category:</label>
+                                            <div class="col-sm-12">
+                                                <select id="documentCategory" class="form-control">
+                                                    <option> None</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary sm-3">Test Connection</button>
+                                            <label class="col-sm-4 col-form-label"></label>
+                                            <button type="submit" class="btn btn-primary col-sm-2">Ok</button>
+                                            <button type="submit" class="btn btn-primary col-sm-2">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-toggle='modal' data-target='#modalForm'>
+                        Abrir MODAL
+                    </button>
+                </div>
+
+
             </ui:define>
 
         </ui:composition>
