@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <body>
-
+    <body> 
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
-            
             <ui:define name="content">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -16,16 +17,22 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <br></br>
-                    
+
                     <div class="row justify-content-start">
                         <div class="col-md-2">
                             <div class="box-grey">
-                                <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up"> Subir.xmi</button>
+                                <button type="button" 
+                                    class="btn btn-dark btn btn-block fa fa-arrow-up"> 
+                                    
+                                    Subir.xmi
+                                </button>
 
                                 <br></br>
+                                
                                 Clases a generar
+                                
                                 <br></br>
                                 * xClase1
                                 <br></br>
@@ -34,45 +41,65 @@
                                 * xClase3
                                 <br></br>
                                 * xClase4
-                            </div>         
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="row justify-content-center">
+                                    <button type="button" class="btn btn-dark fa fa-check"> Generar clases</button>
+                            </div>
                         </div>
-                        
+
                         <div class="col-10">
-                            
-                            <div class="row justify-content-center">
-                                <button type="button" class="btn btn-dark fa fa-check"> Generar codigo</button>
-                            </div>
-                            
-                            <br></br>
-                            
                             <div class="box-grey">
-                                control
+                                <div class="text-center">
+                                    Control
+                                    
+                                    <br></br>
+                                </div>
+
                                 <br></br>
                                 <br></br>
                                 <br></br>
-                                .
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
-                                codigo
+                                <div class="text-center">
+                                    Codigo
+                                    
+                                    <br></br>
+                                </div>
+                             
                                 <br></br>
-                                <br></br>
-                                <br></br>
-                                .
+                                
+                                <h:form id="myFrm">
+                                        <h:inputTextarea class="codemirror-textarea" value="#{beanUML.archivo}"/>
+                                        
+                                        <br></br>
+                                        
+                                        <div class="row justify-content-center">
+                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}"/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                                        </div>
+                                </h:form>   
                             </div>
-                            
+
+                            <br></br>                                                      
                             <br></br>
-                            
-                            <div class="row justify-content-center">
-                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                            </div>
-                            
-                            <br></br>
-                            
+
                             <div class="box-grey">
-                                salida
+                                <div class="text-center">
+                                    Salida(temporal)
+                                    
+                                    <br></br>
+                                    
+                                    <h:outputText value="#{beanUML.archivo}" />
+                                    
+                                    <br></br>
+                                </div>
                                 <br></br>
                                 <br></br>
                                 <br></br>
@@ -81,10 +108,9 @@
                         </div>
                     </div>    
                 </div>
+               
                 <br></br>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

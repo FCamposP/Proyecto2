@@ -12,8 +12,9 @@
         <h:outputStylesheet name="lib/simple-line-icons/css/simple-line-icons.css"/>
         <h:outputStylesheet name="css/style.css"/>
         <h:outputStylesheet name="vendors/pace-progress/css/pace.min.css"/>  
-        <h:outputStylesheet name="css/HS19011Styles.css"/>  
-        <title>Proyecto2</title>
+        <h:outputStylesheet name="css/HS19011Styles.css"/>
+        <h:outputStylesheet name ="lib/codemirror/codemirror.css"/>
+	<title>Proyecto2</title>
     </h:head>
 
     <h:body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -161,8 +162,12 @@
 
             </div>
         </footer>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <h:outputScript name="lib/jquery/dist/sweetAlert.js"/>
         <h:outputScript name="lib/jquery/dist/jquery.min.js" />
+        <h:outputScript name="lib/jquery/dist/default.js" />
+        <h:outputScript name="lib/codemirror/codemirror.js" />
+        <h:outputScript name="lib/jquery/dist/noti.js" />
         <h:outputScript name="lib/popper.js/dist/umd/popper.min.js" />
         <h:outputScript name="lib/bootstrap/dist/js/bootstrap.min.js" />
         <h:outputScript name="lib/pace-progress/pace.min.js" />
