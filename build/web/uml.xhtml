@@ -1,12 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <body> 
+    <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
+	metadata antes del body:
+        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" /
+    -->
+    
+    <f:metadata>
+        <f:viewAction action="#{archivoBean.InitCode()}" />
+    </f:metadata>
+    
+    <body>
+
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
             <ui:define name="content">
                 <div class="container">
@@ -48,43 +58,48 @@
                             <div class="row justify-content-center">
                                     <button type="button" class="btn btn-dark fa fa-check"> Generar clases</button>
                             </div>
-                        </div>
-
-                        <div class="col-10">
+                            
+                            <br></br>
+                            
                             <div class="box-grey">
-                                <div class="text-center">
-                                    Control
-                                    
-                                    <br></br>
-                                </div>
+                                
+                                <h:outputLabel
+                                    rendered="#{archivoBean.getClases().size()==0}"
+                                    value="Aquí aparecerán los archivos generados.">
+                                </h:outputLabel>
 
-                                <br></br>
-                                <br></br>
-                                <br></br>
+                                <p:dataTable id="tbFiles" var="num"
+                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
+                                             rendered="#{archivoBean.getClases().size()!=0}">
+                                    <p:column headerText="Archivos">
+                                        <h:form>
+                                                <p:commandLink 
+                                                value="#{num.nombre}" 
+                                                actionListener="#{archivoBean.actualizaCode}"
+                                                update="@(.FCode)">
+                                            </p:commandLink>
+                                        </h:form>
+                                    </p:column>
+                                </p:dataTable>
+                                
                             </div>
 
                             <br></br>
 
                             <div class="box-grey">
-                                <div class="text-center">
-                                    Codigo
-                                    
-                                    <br></br>
-                                </div>
-                             
-                                <br></br>
-                                
-                                <h:form id="myFrm">
-                                        <h:inputTextarea class="codemirror-textarea" value="#{beanUML.archivo}"/>
-                                        
-                                        <br></br>
-                                        
-                                        <div class="row justify-content-center">
-                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}"/>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                                        </div>
-                                </h:form>   
+                                <form id="fCode">
+                                        <p:inputTextarea styleClass="FCode"
+                                        rows="15" cols="100"
+                                        id="txtCodigo" value="#{archivoBean.getCode()}"
+                                        valueChangeListener="#{archivoBean.code}">
+                                    </p:inputTextarea>
+                                </form>
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="row justify-content-center">
+                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
                             </div>
 
                             <br></br>                                                      
