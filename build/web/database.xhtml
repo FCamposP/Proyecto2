@@ -70,8 +70,7 @@
                                         <h:form>
                                                 <p:commandLink 
                                                 value="#{num.nombre}" 
-                                                actionListener="#{archivoBean.actualizaCode}"
-                                                update="@(.FCode)">
+                                                actionListener="#{archivoBean.actualizaCode}">
                                             </p:commandLink>
                                         </h:form>
                                     </p:column>
@@ -81,13 +80,7 @@
                             <br></br>
                             
                             <div class="box-grey">
-                                <form id="fCode">
-                                        <p:inputTextarea styleClass="FCode"
-                                        rows="15" cols="100"
-                                        id="txtCodigo" value="#{archivoBean.getCode()}"
-                                        valueChangeListener="#{archivoBean.code}">
-                                    </p:inputTextarea>
-                                </form>
+                                codigo
                             </div>
                             
                             <br></br>

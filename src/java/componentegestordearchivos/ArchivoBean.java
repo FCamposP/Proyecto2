@@ -1,10 +1,12 @@
 package componentegestordearchivos;
 
+import beans.BeanUML;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 /**
@@ -74,7 +76,11 @@ public class ArchivoBean
         
         if(index != -1)
             setCode(clases.get(index).getCodigo());
-        else setCode("No se ha encontrado el archivo.");        
+        else setCode("No se ha encontrado el archivo.");
+
+        BeanUML.setArchivo(code);
+        //Actualiza el componente de id=txtCode
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("myFrm:txtCode");
     }
 
 
