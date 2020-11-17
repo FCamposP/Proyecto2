@@ -16,21 +16,21 @@ import java.io.Serializable;
 @Named(value = "beanUML")
 @SessionScoped
 public class BeanUML implements Serializable {
-    public static String archivo = "";
+    private static final long serialVersionUID = 1L;
+    private String archivo;
 
     public BeanUML() {
     }
     
-    public static String getArchivo() {
+    public String getArchivo() {
         return archivo;
     }
 
-    public static void setArchivo(String archivo) {
-        BeanUML.archivo = archivo;
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
     
     void obtenerCodigoDeEditor(){
         String prueba2=archivo;
-    }
-    
+    } 
 }

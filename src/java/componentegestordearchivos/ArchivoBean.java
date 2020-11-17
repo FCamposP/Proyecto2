@@ -44,7 +44,7 @@ public class ArchivoBean
     public static void limpiarLista()
     {	clases.clear();		}
 
-    public static String getCode()
+public static String getCode()
     {	return code;    }
 
     public static void setCode(String code)
@@ -80,7 +80,7 @@ public class ArchivoBean
 
         BeanUML.setArchivo(code);
         //Actualiza el componente de id=txtCode
-        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("myFrm:txtCode");
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("myFrm:txtCode"); 
     }
 
 

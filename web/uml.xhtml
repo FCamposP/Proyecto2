@@ -76,6 +76,7 @@
                                                 <p:commandLink 
                                                     value="#{num.nombre}" 
                                                     actionListener="#{archivoBean.actualizaCode}">
+                                                    
                                                 </p:commandLink>
                                             </h:form>
                                         </p:column>
@@ -97,13 +98,14 @@
                                 
                                 <h:form id="myFrm">
                                     <h:inputTextarea id="txtCode"
-                                                     class="codemirror-textarea"
-                                                     value="#{beanUML.getArchivo()}" />
-                                        
+                                                     styleClass="codemirror-textarea"
+                                                     value="#{beanUML.archivo}"/>
                                         <br></br>
                                         
                                         <div class="row justify-content-center">
-                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}"/>
+                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}">
+                                                <f:ajax render="salida"/>
+                                            </h:commandButton>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
                                         </div>
@@ -118,7 +120,7 @@
                                     
                                     <br></br>
                                     
-                                    <h:outputText value="#{beanUML.getArchivo()}" />
+                                    <h:outputText id="salida" value="#{beanUML.archivo}" />
                                     
                                     <br></br>
                                 </div>
