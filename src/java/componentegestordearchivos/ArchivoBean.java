@@ -78,7 +78,6 @@ public static String getCode()
             setCode(clases.get(index).getCodigo());
         else setCode("No se ha encontrado el archivo.");
 
-        BeanUML.setArchivo(code);
         //Actualiza el componente de id=txtCode
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("myFrm:txtCode"); 
     }

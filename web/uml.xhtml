@@ -13,7 +13,6 @@
     
     <f:metadata>
         <f:viewAction action="#{archivoBean.InitCode()}" />
-        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
     </f:metadata>
     
     <body> 
@@ -76,7 +75,6 @@
                                                 <p:commandLink 
                                                     value="#{num.nombre}" 
                                                     actionListener="#{archivoBean.actualizaCode}">
-                                                    
                                                 </p:commandLink>
                                             </h:form>
                                         </p:column>
@@ -97,9 +95,11 @@
                                 <br></br>
                                 
                                 <h:form id="myFrm">
-                                    <h:inputTextarea id="txtCode"
-                                                     styleClass="codemirror-textarea"
-                                                     value="#{beanUML.archivo}"/>
+                                    <h:inputTextarea
+                                        id="txtCode" class="codemirror-textarea" value="#{archivoBean.getCode()}"
+                                            valueChangeListener="#{archivoBean.code}">
+                                    </h:inputTextarea>
+                                    
                                         <br></br>
                                         
                                         <div class="row justify-content-center">
