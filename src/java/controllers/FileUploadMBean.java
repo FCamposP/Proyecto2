@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import subirXmi.FileValidator;
 import subirXmi.Utils;
 
 
@@ -32,16 +33,26 @@ public class FileUploadMBean implements Serializable
      private static final long serialVersionUID = 1L;
     private Part file;
     private String message;
-    
+    private static Part archivoSubido;
     
      public static final int BUFFER_SIZE = 1024;
 
+    public static Part getArchivoSubido() {
+        return archivoSubido;
+    }
+
+    public static void setArchivoSubido(Part archivoSubido) {
+        FileUploadMBean.archivoSubido = archivoSubido;
+    }
+
+     
     public Part getFile() {
         return file;
     }
 
     public void setFile(Part file) {
         this.file = file;
+        archivoSubido=this.file;
     }
    
     public String getMessage() {
@@ -55,52 +66,61 @@ public class FileUploadMBean implements Serializable
     
     public void uploadFile() throws IOException 
     {
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-        FacesContext context = FacesContext.getCurrentInstance();
-        ServletContext servletContext = (ServletContext) context.getExternalContext().getContext();
-        String path;
-         path = servletContext.getRealPath("");
-        boolean fileSuccess = false;
-        
-        if (file.getSize() > 0) 
-        {
-            String fileName = Utils.getFileNameFromPart(file);
-            
-            //destino 
-            File outputFile = new File(path + File.separator + "WEB-INF" + File.separator + fileName);
-            inputStream = file.getInputStream();
-            outputStream = new FileOutputStream(outputFile);
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int bytesRead = 0;
-            
-            while ((bytesRead = inputStream.read(buffer)) != -1)
-            {
-                outputStream.write(buffer, 0, bytesRead);
+        try{
+            FileValidator validador= new FileValidator();
+            if(validador.ValidarEstenxion()){
+                
             }
+//                 InputStream inputStream = null;
+//        OutputStream outputStream = null;
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        ServletContext servletContext = (ServletContext) context.getExternalContext().getContext();
+//        String path;
+//         path = servletContext.getRealPath("");
+//        boolean fileSuccess = false;
+//        
+//        if (archivoSubido.getSize() > 0) 
+//        {
+//            String fileName = Utils.getFileNameFromPart(archivoSubido);
+//            
+//            //destino 
+//            File outputFile = new File(path + File.separator + "WEB-INF" + File.separator + fileName);
+//            inputStream = archivoSubido.getInputStream();
+//            outputStream = new FileOutputStream(outputFile);
+//            byte[] buffer = new byte[BUFFER_SIZE];
+//            int bytesRead = 0;
+//            
+//            while ((bytesRead = inputStream.read(buffer)) != -1)
+//            {
+//                outputStream.write(buffer, 0, bytesRead);
+//            }
+//            
+//            if (outputStream != null) 
+//            {
+//                outputStream.close();
+//            }
+//            
+//            if (inputStream != null) 
+//            {
+//                inputStream.close();
+//            }
+//            
+//            fileSuccess = true;
+//        }
+//        
+//        
+//        if (fileSuccess)
+//        {
+//            System.out.println("File uploaded to : " + path);
+//      
+//        } 
+//        else
+//        { }
+  
+        }catch(Exception ex){
             
-            if (outputStream != null) 
-            {
-                outputStream.close();
-            }
-            
-            if (inputStream != null) 
-            {
-                inputStream.close();
-            }
-            
-            fileSuccess = true;
         }
-        
-        
-        if (fileSuccess)
-        {
-            System.out.println("File uploaded to : " + path);
-      
-        } 
-        else
-        { }
-
+ 
        
     }
     

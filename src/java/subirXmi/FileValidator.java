@@ -5,6 +5,7 @@
  */
 package subirXmi;
 
+import controllers.FileUploadMBean;
 import java.io.InputStream;
 import java.util.Scanner;
 import javax.faces.application.FacesMessage;
@@ -19,6 +20,27 @@ import javax.servlet.http.Part;
 @FacesValidator(value="FileValidator")
 public class FileValidator implements Validator 
 {
+    
+    public boolean ValidarEstenxion() throws ValidatorException{
+         Part file = (Part) FileUploadMBean.getArchivoSubido();
+        String text = "";
+
+        try {
+            InputStream is = file.getInputStream();
+            text = new Scanner(is).useDelimiter("\\A").next();
+            // Do not accept an upload unless it contains the string
+        
+        } catch (Exception ex) 
+        {
+            throw new ValidatorException(new FacesMessage("file invalido"), ex);
+        }
+        if (!text.contains("xmi"))
+        {
+            throw new ValidatorException(new FacesMessage("Invalid file.  File must contain special string"));
+        }
+        return false;
+    }
+    
         @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException 
     {

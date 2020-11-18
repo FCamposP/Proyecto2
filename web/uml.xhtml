@@ -9,7 +9,7 @@
     <body>
 
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
-            
+
             <ui:define name="content">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -19,31 +19,35 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <br></br>
-                    
+
                     <div class="row justify-content-start">
                         <div class="col-md-2">
                             <div class="box-grey">
-                                
-                                 <!-- Shows the error or success message -->
-                                 <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}" ></h:outputText>
-        
-        <!-- notice the enctype for file upload -->
-        <h:form prependId="false" enctype="multipart/form-data"  > 
-                                <h:inputFile style="" value="#{fileUploadMBean.file}" >
-                   <!-- validar --> 
-                    <f:validator validatorId="FileValidator"/>       
-                               </h:inputFile>
-            
-            <h:commandButton value="Subir .xmi" actionListener="#{fileUploadMBean.uploadFile()}" class="btn btn-dark fa fa-check">
-                                    <f:ajax execute="@form" render="@form" />
-                                </h:commandButton>
-                                <p:growl id="messages" showDetail="true"/>  
-          
-        </h:form>
-                                
-                                
+
+                                <!-- Shows the error or success message -->
+                                <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}" ></h:outputText>
+
+                                <!-- notice the enctype for file upload -->
+                                <div class="row">
+                                    <h:form prependId="false" enctype="multipart/form-data"  > 
+                                        <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
+                                            <f:ajax execute="#{fileUploadMBean.uploadFile()}" render="@form" />
+                                            <!-- validar --> 
+                                            <!--                                        <f:validator validatorId="FileValidator"/>       -->
+                                        </h:inputFile>
+
+<!--                                    <h:commandButton value="Subir .xmi" actionListener="#{fileUploadMBean.uploadFile()}" class="btn btn-dark fa fa-check">
+                                        <f:ajax execute="@form" render="@form" />
+                                    </h:commandButton>-->
+                                        <p:growl id="messages" showDetail="true"/>  
+
+                                    </h:form>
+
+                                </div>
+
+
                                 <br></br>
                                 Clases a generar
                                 <br></br>
@@ -56,20 +60,20 @@
                                 * xClase4
                             </div>   
                         </div>
-                        
+
                         <div class="col-10">
-                            
+
                             <div class="row justify-content-center">
                                 <h:form prependId="false" enctype="multipart/form-data"  > 
                                     <h:commandButton value="Generar codigo" actionListener="#{cMB.generar()}" class="btn btn-dark fa fa-check">
-                                    <f:ajax execute="@form" render="@form" />
-                                </h:commandButton>
-                                        </h:form>
+                                        <f:ajax execute="@form" render="@form" />
+                                    </h:commandButton>
+                                </h:form>
                             </div>
-                                
-                      
+
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 control
                                 <br></br>
@@ -77,9 +81,9 @@
                                 <br></br>
                                 .
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 codigo
                                 <br></br>
@@ -87,15 +91,15 @@
                                 <br></br>
                                 .
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="row justify-content-center">
-                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                                <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 salida
                                 <br></br>
