@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
+	metadata antes del body:
+        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
+    -->
+    
+    <f:metadata>
+        <f:viewAction action="#{archivoBean.InitCode()}" />
+        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
+    </f:metadata>
+    
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
+
+            <ui:define name="content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="center_content">
+                            <div class="box-grey">
+                                Generacion de codigo por MySql
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br></br>
+                    
+                    <div class="row justify-content-start">
+                        <div class="col-md-2">
+                            <div class="box-grey">
+                                <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up">  Elegir DB</button>
+
+                                <br></br>
+                                Tablas a generar
+                                <br></br>
+                                * xTabla1
+                                <br></br>
+                                * xTabla2
+                                <br></br>
+                                * xTabla3
+                                <br></br>
+                                * xTabla4
+                            </div>         
+                        </div>
+                        
+                        <div class="col-10">
+                            
+                            <div class="row justify-content-center">
+                                <button type="button" class="btn btn-dark fa fa-check"> Generar codigo</button>
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="box-grey">
+                                <h:outputLabel
+                                    rendered="#{archivoBean.getClases().size()==0}"
+                                    value="Aquí aparecerán los archivos generados.">
+                                </h:outputLabel>
+
+                                <p:dataTable id="tbFiles" var="num"
+                                    value="#{archivoBean.getClases()}" styleClass="sCFiles"
+                                    rendered="#{archivoBean.getClases().size()!=0}">
+                                    <p:column headerText="Archivos">
+                                        <h:form>
+                                                <p:commandLink 
+                                                value="#{num.nombre}" 
+                                                actionListener="#{archivoBean.actualizaCode}">
+                                            </p:commandLink>
+                                        </h:form>
+                                    </p:column>
+                                </p:dataTable>
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="box-grey">
+                                codigo
+                            </div>
+                            
+                            <br></br>
+
+                            <div class="row justify-content-center">
+                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="box-grey">
+                                salida
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                .
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <br></br>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
