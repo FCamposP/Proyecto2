@@ -28,7 +28,7 @@
                                 <div class="col-md-6">
                                     <h:form prependId="false" enctype="multipart/form-data">
                                     <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
-                                        <f:ajax execute="#{fileUploadMBean.uploadFile()}" render="@form" />
+                                        <f:ajax listener="#{principalMBean.saveArchivo()}" render="@form" />
                                                    </h:inputFile>
 
                                     <p:growl id="messages" showDetail="true" />
@@ -38,9 +38,9 @@
                                 <div class="col-md-6">
                                     <div class="row justify-content-center">
                                         <h:form prependId="false" enctype="multipart/form-data">
-                                            <h:commandButton value="Generar codigo" actionListener="#{cMB.generar()}"
+                                            <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
                                                 class="btn btn-dark fa fa-check">
-                                                <f:ajax execute="@form" render="@form" />
+                                                <f:ajax execute="@form" render="result" />
                                             </h:commandButton>
                                         </h:form>
                                     </div>
@@ -52,7 +52,8 @@
 
 
                         </div>
-<hr/>
+<hr/>    
+<h:panelGroup id="result"> 
                         <div class="box-grey">
                             control
                             <br></br>
@@ -68,8 +69,10 @@
                             <br></br>
                             <br></br>
                             <br></br>
-                            .
+                            
                         </div>
+</h:panelGroup>
+
 
                         <br></br>
 

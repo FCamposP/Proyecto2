@@ -5,6 +5,7 @@
  */
 package generadorJava;
 
+import controllers.FileUploadMBean;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,9 +27,9 @@ public class Convertidor {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         SAXParser saxParser = saxParserFactory.newSAXParser();
         
-        File file = new File("C:\\Users\\Irs\\Desktop\\archivo\\prueba1.xmi");
+       // File file = new File("C:\\Users\\Irs\\Desktop\\archivo\\prueba1.xmi");
         LectorXmiHandler handler = new LectorXmiHandler();
-        saxParser.parse(file, handler);
+        saxParser.parse(FileUploadMBean.getContenidoArchivo(), handler);
         CrearArchivos(handler.getListaClases());
     }
 

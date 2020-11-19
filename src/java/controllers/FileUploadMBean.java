@@ -24,7 +24,7 @@ import subirXmi.Utils;
 
 
 @Named(value = "fileUploadMBean")
-@Dependent
+@ViewScoped
 public class FileUploadMBean implements Serializable
 {
 
@@ -34,6 +34,16 @@ public class FileUploadMBean implements Serializable
     private Part file;
     private String message;
     private static Part archivoSubido;
+    private static InputStream contenidoArchivo;
+
+    public static InputStream getContenidoArchivo() {
+        return contenidoArchivo;
+    }
+
+    public static void setContenidoArchivo(InputStream contenidoArchivo) {
+        FileUploadMBean.contenidoArchivo = contenidoArchivo;
+    }
+    
     
      public static final int BUFFER_SIZE = 1024;
 
