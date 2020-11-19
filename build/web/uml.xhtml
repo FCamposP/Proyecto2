@@ -1,119 +1,99 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
-    <body>
+<body>
 
-        <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
+    <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
 
-            <ui:define name="content">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="center_content">
-                            <div class="box-grey">
-                                Generacion de codigo por UML
-                            </div>
+        <ui:define name="content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="center_content">
+                        <div class="box-grey">
+                            Generacion de codigo por UML
                         </div>
                     </div>
-
-                    <br></br>
-
-                    <div class="row justify-content-start">
-                        <div class="col-md-2">
-                            <div class="box-grey">
-
-                                <!-- Shows the error or success message -->
-                                <h:outputText value="#{fileUploadMBean.message}" rendered="#{!empty fileUploadMBean.message}" ></h:outputText>
-
-                                <!-- notice the enctype for file upload -->
-                                <div class="row">
-                                    <h:form prependId="false" enctype="multipart/form-data"  > 
-                                        <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
-                                            <f:ajax execute="#{fileUploadMBean.uploadFile()}" render="@form" />
-                                            <!-- validar --> 
-                                            <!--                                        <f:validator validatorId="FileValidator"/>       -->
-                                        </h:inputFile>
-
-<!--                                    <h:commandButton value="Subir .xmi" actionListener="#{fileUploadMBean.uploadFile()}" class="btn btn-dark fa fa-check">
-                                        <f:ajax execute="@form" render="@form" />
-                                    </h:commandButton>-->
-                                        <p:growl id="messages" showDetail="true"/>  
-
-                                    </h:form>
-
-                                </div>
-
-
-                                <br></br>
-                                Clases a generar
-                                <br></br>
-                                * xClase1
-                                <br></br>
-                                * xClase2
-                                <br></br>
-                                * xClase3
-                                <br></br>
-                                * xClase4
-                            </div>   
-                        </div>
-
-                        <div class="col-10">
-
-                            <div class="row justify-content-center">
-                                <h:form prependId="false" enctype="multipart/form-data"  > 
-                                    <h:commandButton value="Generar codigo" actionListener="#{cMB.generar()}" class="btn btn-dark fa fa-check">
-                                        <f:ajax execute="@form" render="@form" />
-                                    </h:commandButton>
-                                </h:form>
-                            </div>
-
-
-                            <br></br>
-
-                            <div class="box-grey">
-                                control
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                .
-                            </div>
-
-                            <br></br>
-
-                            <div class="box-grey">
-                                codigo
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                .
-                            </div>
-
-                            <br></br>
-
-                            <div class="row justify-content-center">
-                                <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                            </div>
-
-                            <br></br>
-
-                            <div class="box-grey">
-                                salida
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                .
-                            </div>
-                        </div>
-                    </div>    
                 </div>
+
                 <br></br>
-            </ui:define>
 
-        </ui:composition>
+                <div class="row justify-content-start">
 
-    </body>
+                    <div class="col-12">
+                        <div class="box-grey">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h:form prependId="false" enctype="multipart/form-data">
+                                    <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
+                                        <f:ajax execute="#{fileUploadMBean.uploadFile()}" render="@form" />
+                                                   </h:inputFile>
+
+                                    <p:growl id="messages" showDetail="true" />
+
+                                </h:form>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row justify-content-center">
+                                        <h:form prependId="false" enctype="multipart/form-data">
+                                            <h:commandButton value="Generar codigo" actionListener="#{cMB.generar()}"
+                                                class="btn btn-dark fa fa-check">
+                                                <f:ajax execute="@form" render="@form" />
+                                            </h:commandButton>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Shows the error or success message -->
+                            <h:outputText value="#{fileUploadMBean.message}"
+                                rendered="#{!empty fileUploadMBean.message}"></h:outputText>
+
+
+                        </div>
+<hr/>
+                        <div class="box-grey">
+                            control
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            .
+                        </div>
+
+                        <br></br>
+
+                        <div class="box-grey">
+                            codigo
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            .
+                        </div>
+
+                        <br></br>
+
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                        </div>
+
+                        <br></br>
+
+                        <div class="box-grey">
+                            salida
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            .
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br></br>
+        </ui:define>
+
+    </ui:composition>
+
+</body>
+
 </html>
