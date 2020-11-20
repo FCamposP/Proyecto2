@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_2KqKYCItEeujo8oWYoElGA" name="prueba1">
+  <eAnnotations xmi:id="_2KqKYSItEeujo8oWYoElGA" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_2KqKYiItEeujo8oWYoElGA" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_2KqKYyItEeujo8oWYoElGA" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2KqKZCItEeujo8oWYoElGA" name="Computadora" visibility="private">
+    <ownedAttribute xmi:id="_2KqKZSItEeujo8oWYoElGA" name="perifericos" visibility="public" type="_2KqKcSItEeujo8oWYoElGA" isUnique="false" aggregation="composite" association="_2KqKbCItEeujo8oWYoElGA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2KqKZiItEeujo8oWYoElGA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2KqKZyItEeujo8oWYoElGA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2KqKaCItEeujo8oWYoElGA" name="usuario" visibility="public" type="_2KqKdCItEeujo8oWYoElGA" isUnique="false" association="_2KqKbiItEeujo8oWYoElGA">
+      <ownedComment xmi:id="_2KqKaSItEeujo8oWYoElGA">
+        <body>&lt;Enter note text here></body>
+      </ownedComment>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2KqKaiItEeujo8oWYoElGA" name="Id" visibility="private" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2KqKayItEeujo8oWYoElGA" name="Nombre" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_2KqKbCItEeujo8oWYoElGA" memberEnd="_2KqKZSItEeujo8oWYoElGA _2KqKbSItEeujo8oWYoElGA">
+    <ownedEnd xmi:id="_2KqKbSItEeujo8oWYoElGA" visibility="public" type="_2KqKZCItEeujo8oWYoElGA" isUnique="false" association="_2KqKbCItEeujo8oWYoElGA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_2KqKbiItEeujo8oWYoElGA" memberEnd="_2KqKaCItEeujo8oWYoElGA _2KqKbyItEeujo8oWYoElGA">
+    <ownedEnd xmi:id="_2KqKbyItEeujo8oWYoElGA" visibility="public" type="_2KqKZCItEeujo8oWYoElGA" isUnique="false" association="_2KqKbiItEeujo8oWYoElGA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2KqKcCItEeujo8oWYoElGA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2KqKcSItEeujo8oWYoElGA" name="Perifericos">
+    <ownedAttribute xmi:id="_2KqKciItEeujo8oWYoElGA" name="Id" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2KqKcyItEeujo8oWYoElGA" name="NombrePeriferico" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2KqKdCItEeujo8oWYoElGA" name="Usuario">
+    <generalization xmi:id="_2KqKdSItEeujo8oWYoElGA" general="_2KqKeCItEeujo8oWYoElGA"/>
+    <ownedAttribute xmi:id="_2KqKdiItEeujo8oWYoElGA" name="IdUser" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2KqKdyItEeujo8oWYoElGA" name="UserName" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2KqKeCItEeujo8oWYoElGA" name="Padre">
+    <ownedAttribute xmi:id="_2KqKeSItEeujo8oWYoElGA" name="IdPadre" visibility="private" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_2KqKeiItEeujo8oWYoElGA" name="NombrePadre" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Model>
