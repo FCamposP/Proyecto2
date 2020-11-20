@@ -29,13 +29,383 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <br></br>
+
                     
+                    <div class="container">
+                    <form>
+                        <div class="modal" tabindex="-1" id="modalForm2">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">Select tables and columns to include to the model</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <div class ="form-group-row">
+                                            <div class="form-check form-check-inline col-sm-7">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1"></input>
+                                                <label class="form-check-label" for="gridCheck1">
+                                                    Table
+                                                </label>
+                                            </div>
+
+
+                                            <div class="form-check form-check-inline col-sm-4">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1"></input>
+                                                <label class="form-check-label" for="gridCheck1">
+                                                    Columns
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row"> 
+                                        <div class="form-check col-sm-7">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1"></input>
+                                                <label class="form-check-label" for="gridCheck1">
+                                                    ActivoClasificacion
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck2"></input>
+                                                <label class="form-check-label" for="gridCheck2">
+                                                    ActivoDepreciacion
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck3"></input>
+                                                <label class="form-check-label" for="gridCheck3">
+                                                    ActivoDepreciacionDeta
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck4"></input>
+                                                <label class="form-check-label" for="gridCheck4">
+                                                    ActivoDepreciacionDetaActivo
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck5"></input>
+                                                <label class="form-check-label" for="gridCheck5">
+                                                    ActivoFijo
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck6"></input>
+                                                <label class="form-check-label" for="gridCheck6">
+                                                    ActivoFijo_ActivoDepreciacionDetaActivo
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck7"></input>
+                                                <label class="form-check-label" for="gridCheck7">
+                                                    ActivoParametros
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck8"></input>
+                                                <label class="form-check-label" for="gridCheck8">
+                                                    ActivoTipo
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck9"></input>
+                                                <label class="form-check-label" for="gridCheck9">
+                                                    AuditDataItemPersistent
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck10"></input>
+                                                <label class="form-check-label" for="gridCheck10">
+                                                    AuditedObjectWeakReference
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck11"></input>
+                                                <label class="form-check-label" for="gridCheck11">
+                                                    AutorizacionDeRequisiciones
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck12"></input>
+                                                <label class="form-check-label" for="gridCheck12">
+                                                    ConfigEmpleados
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck13"></input>
+                                                <label class="form-check-label" for="gridCheck13">
+                                                    ConfigTurnos
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck14"></input>
+                                                <label class="form-check-label" for="gridCheck14">
+                                                    ConfigUser
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck15"></input>
+                                                <label class="form-check-label" for="gridCheck15">
+                                                    ContaCatalogoCuentas
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck16"></input>
+                                                <label class="form-check-label" for="gridCheck16">
+                                                    ContaCentroCosto
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck17"></input>
+                                                <label class="form-check-label" for="gridCheck17">
+                                                    ContaConfigPeriodo
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck18"></input>
+                                                <label class="form-check-label" for="gridCheck18">
+                                                    ContaEstructura
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck19"></input>
+                                                <label class="form-check-label" for="gridCheck19">
+                                                    ContaParametros
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck20"></input>
+                                                <label class="form-check-label" for="gridCheck20">
+                                                    ContaPartidaContableDetalle
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck21"></input>
+                                                <label class="form-check-label" for="gridCheck21">
+                                                    ContaPartidaRepetitiva
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck22"></input>
+                                                <label class="form-check-label" for="gridCheck22">
+                                                    ContaPartidasContables
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck1"></input>
+                                                <label class="form-check-label" for="gridCheck1">
+                                                    CID
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck2"></input>
+                                                <label class="form-check-label" for="gridCheck2">
+                                                    Nombre
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck3"></input>
+                                                <label class="form-check-label" for="gridCheck3">
+                                                    Descripción
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck4"></input>
+                                                <label class="form-check-label" for="gridCheck4">
+                                                    VidaUtil
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck5"></input>
+                                                <label class="form-check-label" for="gridCheck5">
+                                                    OptimistClockField
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck6"></input>
+                                                <label class="form-check-label" for="gridCheck6">
+                                                    GCRecord
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                        <label class="col-sm-7 col-form-label"></label>
+                                        <button type="submit" class="btn btn-primary col-sm-2">Finalizar</button>
+                                        <button type="submit" class="btn btn-primary col-sm-2">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                    
+                    <div class="container">
+                        <div class="modal" tabindex="-1" id="modalForm">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Database Connection Properties</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form>
+                                            <label>Specify following to connect to MySQL server: </label>
+                                            <div class="form-group row">
+                                                <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+                                                <div class="col-sm-10">
+                                                    <select id="inputType" class="form-control">
+                                                        <option>TCP/IP</option>
+                                                    </select>        
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="inputHost" class="col-sm-2 col-form-label">Host:</label>
+                                                <div class="col-sm-10">
+                                                    <select id="inputHost" class="form-control">
+                                                        <option selected=""></option>
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="inputPort" class="col-sm-2 col-form-label">Port:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" id="inputPort" class="form-control" value="3306" required=""></input>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="inputUser" class="col-sm-2 col-form-label">User:</label>
+                                                <div class="col-sm-10">
+                                                    <input id="inputUser" class="form-control" required=""></input>
+                                                    <div class="invalid-feedback">
+                                                        No puede dejar este campo vacío
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                                                <div class="col-sm-10">
+                                                    <input type="password" id="inputPassword" class="form-control" value="" required=""></input>
+                                                    <div class="invalid-feedback">
+                                                        No puede dejar este campo vacío
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-10">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="gridCheck1"></input>
+                                                        <label class="form-check-label" for="gridCheck1">Allow saving password</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="dataBase" class="col-sm-2 col-form-label">Database:</label>
+                                                <div class="col-sm-10">
+                                                    <select id="dataBase" class="form-control">
+                                                        <option>Choose a database</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            
+                                                <div class="form-group row">
+                                                    <div class="col-sm-2"></div>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="gridCheck2"></input>
+                                                            <label class="form-check-label" for="gridCheck2">Show all databases</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+
+                                            <div class="form-group">
+                                                <label for="connectionName">Connection Name:</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" id="connectionName" class="form-control" placeholder="localhost1"></input>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="documentCategory">Document Category:</label>
+                                                <div class="col-sm-12">
+                                                    <select id="documentCategory" class="form-control">
+                                                        <option> None</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary sm-3">Test Connection</button>
+                                                <label class="col-sm-4 col-form-label"></label>
+                                                <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>Next</button>
+                                                <button type="submit" class="btn btn-primary col-sm-2">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row justify-content-start">
                         <div class="col-md-2">
                             <div class="box-grey">
-                                <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up">  Elegir DB</button>
+                                <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up" data-toggle='modal' data-target='#modalForm'>  Elegir DB</button>
 
                                 <br></br>
                                 Tablas a generar
@@ -49,15 +419,15 @@
                                 * xTabla4
                             </div>         
                         </div>
-                        
+
                         <div class="col-10">
-                            
+
                             <div class="row justify-content-center">
                                 <button type="button" class="btn btn-dark fa fa-check"> Generar codigo</button>
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 <h:outputLabel
                                     rendered="#{archivoBean.getClases().size()==0}"
@@ -77,21 +447,21 @@
                                     </p:column>
                                 </p:dataTable>
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 codigo
                             </div>
-                            
+
                             <br></br>
 
                             <div class="row justify-content-center">
-                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                                <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 salida
                                 <br></br>
@@ -101,9 +471,10 @@
                             </div>
                         </div>
                     </div>    
+                    <br></br>
                 </div>
-                <br></br>
-            </ui:define>
+
+            </ui:define> 
 
         </ui:composition>
 
