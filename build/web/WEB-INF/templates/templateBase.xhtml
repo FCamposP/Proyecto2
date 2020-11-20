@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -12,10 +12,8 @@
         <h:outputStylesheet name="lib/simple-line-icons/css/simple-line-icons.css"/>
         <h:outputStylesheet name="css/style.css"/>
         <h:outputStylesheet name="vendors/pace-progress/css/pace.min.css"/>  
-        <h:outputStylesheet name="css/HS19011Styles.css"/>
-        <h:outputStylesheet name ="plugin/codemirror/lib/codemirror.css"/>
-        <h:outputStylesheet name ="plugin/codemirror/lib/codemirror.css"/>
-	<title>Proyecto2</title>
+        <h:outputStylesheet name="css/HS19011Styles.css"/>  
+        <title>Proyecto2</title>
     </h:head>
 
     <h:body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -25,13 +23,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="home.xhtml">
-                <h:graphicImage value="resources/images/brand/logo.jpeg" width="130" height="55" alt="CoreUI Logo" />
-
+                <h:graphicImage value="resources/images/brand/logo.png" width="145" height="45" alt="CoreUI Logo" />
+                
             </a>
             <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+           
 
             <ul class="nav navbar-nav ml-auto">
                 <!--
@@ -56,8 +54,8 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <h:graphicImage value="resources/images/avatars/1.jpg" width="30" height="30" alt="user" />
-
+                                <h:graphicImage value="resources/images/avatars/1.jpg" width="30" height="30" alt="user" />
+                     
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!--
@@ -101,7 +99,7 @@
                         <a class="dropdown-item" href="#">
                             <i class="fa fa-shield"></i>Login
                         </a>
-                        <a class="dropdown-item" href="login.xhtml">
+                        <a class="dropdown-item" href="/login">
                             <i class="fa fa-lock"></i> Logout
                         </a>
                     </div>
@@ -110,12 +108,12 @@
             </ul>
 
             <!--<button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            -->
         </header>
         <div class="app-body">
 
@@ -134,9 +132,11 @@
                         </li>
                     </ul>
                 </nav>
-
+                
             </div>
             <main class="main">
+
+                <br></br>
 
                 <div class="container-fluid">
                     <div class="animated fadeIn">
@@ -147,8 +147,9 @@
                         </div>
                     </div>
                 </div>
-            </main>
+            </main> 
             <aside class="aside-menu">
+
             </aside>
         </div>
         <footer class="app-footer">
@@ -160,17 +161,13 @@
 
             </div>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <h:outputScript name="lib/jquery/dist/sweetAlert.js" />
-        <h:outputScript name="lib/jquery/dist/noti.js" />
+
+        <h:outputScript name="lib/jquery/dist/jquery.min.js" />
         <h:outputScript name="lib/popper.js/dist/umd/popper.min.js" />
         <h:outputScript name="lib/bootstrap/dist/js/bootstrap.min.js" />
         <h:outputScript name="lib/pace-progress/pace.min.js" />
         <h:outputScript name="lib/perfect-scrollbar/dist/perfect-scrollbar.min.js" />
         <h:outputScript name="lib/coreui/coreui/dist/js/coreui.min.js" />
-        <h:outputScript name="plugin/codemirror/lib/codemirror.js" />
-        <h:outputScript name="lib/jquery/dist/jquery.min.js" />
-        <h:outputScript name="lib/jquery/dist/default.js" />
         <!-- Bootstrap and necessary plugins-->
 
     </h:body>

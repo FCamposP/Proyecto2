@@ -1,144 +1,90 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
-	metadata antes del body:
-    <f:metadata>
-        <f:viewAction action="#{archivoBean.InitCode()}" />
-        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
-    </f:metadata>
-    -->
-    
-    <body> 
+    <body>
+
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
-
+            
             <ui:define name="content">
-                <div class="breadcrumb">
-
-                    <h5> Generacion de codigo por UML</h5>
-
-                </div>
                 <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="center_content">
                             <div class="box-grey">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <h:form prependId="false" enctype="multipart/form-data">
-                                                <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
-                                                    <f:ajax listener="#{principalMBean.saveArchivo()}" render="@form" />
-                                                </h:inputFile>
-
-                                                <p:growl id="messages" showDetail="true" />
-
-                                            </h:form>
-                                        </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <h:form prependId="false" enctype="multipart/form-data">
-                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
-                                                                         class="btn btn-dark fa fa-check">
-                                                            <f:ajax execute="@form" render="result1" />
-                                                        </h:commandButton>
-                                                    </h:form>
-                                                </div>
-                                            </div>
-
-                                        </div>
-     
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <div class="text-center">
-                                            <h:panelGroup id="result1">
-                                                <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
-                                                               value="Aquí aparecerán los archivos generados.">
-                                                </h:outputLabel>
-
-                                                <p:dataTable id="tbFiles" var="num"
-                                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
-                                                             rendered="#{archivoBean.getClases().size()!=0}">
-                                                    <p:column headerText="Archivos">
-                                                        <h:form>
-                                                            <p:commandLink value="#{num.nombre}"
-                                                                           actionListener="#{archivoBean.actualizaCode}">
-                                                                <f:ajax execute="@form" render="result2" />
-                                                            </p:commandLink>
-                                                        </h:form>
-                                                    </p:column>
-                                                </p:dataTable>
-                                            </h:panelGroup>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Shows the error or success message -->
-                                <h:outputText value="#{fileUploadMBean.message}"
-                                              rendered="#{!empty fileUploadMBean.message}"></h:outputText>
-
-
-                            </div>
-                            <hr />
-                            <h:panelGroup id="result2">
-
-
-                                <div class="box-grey">
-                                    <div class="text-center">
-                                        Codigo
-
-                                        <br />
-                                    </div>
-
-                                    <br />
-
-                                    <h:form id="myFrm">
-                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
-                                                         class="codemirror-textarea"
-                                                         value="#{archivoBean.getCode()}"
-                                                         valueChangeListener="#{archivoBean.code}" >
-                                        </h:inputTextarea>
-
-                                        <br />
-
-                                        <div class="row justify-content-center">
-                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}">
-                                                <f:ajax render="salida" />
-                                            </h:commandButton>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                                        </div>
-                                    </h:form>
-                                </div>
-                            </h:panelGroup>
-
-
-                            <div class="box-grey">
-                                <div class="text-center">
-                                    Salida(temporal)
-
-                                    <br />
-
-                                    <h:outputText id="salida" value="#{beanUML.archivo}" />
-
-                                    <br />
-                                </div>
-
-                                .
+                                Generacion de codigo por UML
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <br></br>
+                    
+                    <div class="row justify-content-start">
+                        <div class="col-md-2">
+                            <div class="box-grey">
+                                <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up"> Subir.xmi</button>
 
-                <br />
+                                <br></br>
+                                Clases a generar
+                                <br></br>
+                                * xClase1
+                                <br></br>
+                                * xClase2
+                                <br></br>
+                                * xClase3
+                                <br></br>
+                                * xClase4
+                            </div>         
+                        </div>
+                        
+                        <div class="col-10">
+                            
+                            <div class="row justify-content-center">
+                                <button type="button" class="btn btn-dark fa fa-check"> Generar codigo</button>
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="box-grey">
+                                control
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                .
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="box-grey">
+                                codigo
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                .
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="row justify-content-center">
+                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                            </div>
+                            
+                            <br></br>
+                            
+                            <div class="box-grey">
+                                salida
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                .
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <br></br>
             </ui:define>
+
         </ui:composition>
+
     </body>
 </html>
