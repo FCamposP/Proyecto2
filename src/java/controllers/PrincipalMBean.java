@@ -44,9 +44,10 @@ public class PrincipalMBean implements Serializable {
     }
         public void generar() throws ParserConfigurationException, IOException, SAXException {
 
-       Convertidor converter= new Convertidor();
+           if(FileUploadMBean.getContenidoArchivo()!=null){
+                  Convertidor converter= new Convertidor();
         converter.ConvertidorXmi();
-        
+           }        
 //        Model m = getModel("C:/ExtendedPO2.uml");
 //        System.out.println(m.getName());
     }

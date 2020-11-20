@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dany%20Serrano/Desktop/Ciclo%20II%20-%202020/Programación%20III/Proyecto/Proyecto/Proyecto2/src/java/componentegestordearchivos/Archivo.java</file>
-            <file>file:/C:/Users/Dany%20Serrano/Desktop/Ciclo%20II%20-%202020/Programación%20III/Proyecto/Proyecto/Proyecto2/web/resources/css/style.css</file>
-            <file>file:/C:/Users/Dany%20Serrano/Desktop/Ciclo%20II%20-%202020/Programación%20III/Proyecto/Proyecto/Proyecto2/web/database.xhtml</file>
-            <file>file:/C:/Users/Dany%20Serrano/Desktop/Ciclo%20II%20-%202020/Programación%20III/Proyecto/Proyecto/Proyecto2/src/java/componentegestordearchivos/ArchivoBean.java</file>
-            <file>file:/C:/Users/Dany%20Serrano/Desktop/Ciclo%20II%20-%202020/Programación%20III/Proyecto/Proyecto/Proyecto2/web/uml.xhtml</file>
-            <file>file:/C:/Users/Dany%20Serrano/Desktop/Ciclo%20II%20-%202020/Programación%20III/Proyecto/Proyecto/Proyecto2/src/java/beans/BeanUML.java</file>
-            <file>file:/C:/Users/Marvin/Documents/UES/CICLO%20IV/PRN315/Laboratorios/RG18081_LAB2/Proyecto2/web/home.xhtml</file>
-            <file>file:/C:/Users/Marvin/Documents/UES/CICLO%20IV/PRN315/Laboratorios/RG18081_LAB2/Proyecto2/web/database.xhtml</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/componentegestordearchivos/ArchivoBean.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Disco%20D/Proyecto2/web/WEB-INF/templates/templateBase.xhtml</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/PrincipalMBean.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/web/uml.xhtml</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/FileUploadMBean.java</file>
         </group>
     </open-files>
 </project-private>

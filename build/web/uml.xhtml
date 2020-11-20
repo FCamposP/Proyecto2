@@ -24,38 +24,59 @@
 
                 </div>
                 <div class="container">
-                    <!--<div class="row justify-content-center">
-            <div class="center_content">
-                <div class="box-grey">
-                    Generacion de codigo por UML
-                </div>
-            </div>
-        </div>
-
-        <br /></br>-->
-
                     <div class="row justify-content-start">
                         <div class="col-12">
                             <div class="box-grey">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h:form prependId="false" enctype="multipart/form-data">
-                                            <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
-                                                <f:ajax listener="#{principalMBean.saveArchivo()}" render="@form" />
-                                            </h:inputFile>
+                                        <div class="row">
+                                            <h:form prependId="false" enctype="multipart/form-data">
+                                                <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
+                                                    <f:ajax listener="#{principalMBean.saveArchivo()}" render="@form" />
+                                                </h:inputFile>
 
-                                            <p:growl id="messages" showDetail="true" />
+                                                <p:growl id="messages" showDetail="true" />
 
-                                        </h:form>
+                                            </h:form>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <h:form prependId="false" enctype="multipart/form-data">
+                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
+                                                                         class="btn btn-dark fa fa-check">
+                                                            <f:ajax execute="@form" render="result1" />
+                                                        </h:commandButton>
+                                                    </h:form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+     
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="row justify-content-center">
-                                            <h:form prependId="false" enctype="multipart/form-data">
-                                                <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
-                                                                 class="btn btn-dark fa fa-check">
-                                                    <f:ajax execute="@form" render="result" />
-                                                </h:commandButton>
-                                            </h:form>
+
+                                        <div class="text-center">
+                                            <h:panelGroup id="result1">
+                                                <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
+                                                               value="Aquí aparecerán los archivos generados.">
+                                                </h:outputLabel>
+
+                                                <p:dataTable id="tbFiles" var="num"
+                                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
+                                                             rendered="#{archivoBean.getClases().size()!=0}">
+                                                    <p:column headerText="Archivos">
+                                                        <h:form>
+                                                            <p:commandLink value="#{num.nombre}"
+                                                                           actionListener="#{archivoBean.actualizaCode}">
+                                                                <f:ajax execute="@form" render="result2" />
+                                                            </p:commandLink>
+                                                        </h:form>
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </h:panelGroup>
+
                                         </div>
                                     </div>
                                 </div>
@@ -66,29 +87,8 @@
 
                             </div>
                             <hr />
-                            <h:panelGroup id="result">
-                                <div class="box-grey">
-                                    <div class="text-center">
-                                        <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
-                                                       value="Aquí aparecerán los archivos generados.">
-                                        </h:outputLabel>
+                            <h:panelGroup id="result2">
 
-                                        <p:dataTable id="tbFiles" var="num"
-                                                     value="#{archivoBean.getClases()}" styleClass="sCFiles"
-                                                     rendered="#{archivoBean.getClases().size()!=0}">
-                                            <p:column headerText="Archivos">
-                                                <h:form>
-                                                    <p:commandLink value="#{num.nombre}"
-                                                                   actionListener="#{archivoBean.actualizaCode}">
-                                                    </p:commandLink>
-                                                </h:form>
-                                            </p:column>
-                                        </p:dataTable>
-
-                                    </div>
-                                </div>
-
-                                <br />
 
                                 <div class="box-grey">
                                     <div class="text-center">
@@ -103,7 +103,7 @@
                                         <h:inputTextarea id="txtCode" rows="15" cols="165"
                                                          class="codemirror-textarea"
                                                          value="#{archivoBean.getCode()}"
-                                                         valueChangeListener="#{archivoBean.code}">
+                                                         valueChangeListener="#{archivoBean.code}" >
                                         </h:inputTextarea>
 
                                         <br />

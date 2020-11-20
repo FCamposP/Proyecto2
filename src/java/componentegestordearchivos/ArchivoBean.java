@@ -21,7 +21,7 @@ public class ArchivoBean
     private static final String MESSAGE = "El código aparecerá aquí.";
     private static ArrayList<Archivo> clases = new ArrayList<Archivo>();
     public static String code;
-    
+  
     public static void agregarArchivo(Archivo file)
     {
         clases.add(file);

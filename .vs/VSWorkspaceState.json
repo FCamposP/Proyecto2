@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\web",
+    "\\web\\resources",
+    "\\web\\resources\\enl",
+    "\\web\\resources\\enl\\dist",
+    "\\web\\resources\\lib",
+    "\\web\\resources\\lib\\jquery\\dist",
+    "\\web\\resources\\plugin",
+    "\\web\\resources\\plugin\\codemirror",
+    "\\web\\resources\\plugin\\codemirror\\lib"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\web\\resources\\plugin",
   "PreviewInSolutionExplorer": false
 }
