@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
-            
+
             <ui:define name="content">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -16,61 +18,61 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <br></br>
-                    
-                    <div class="row justify-content-start">
-                        <div class="col-md-2">
-                            <div class="box-grey">
-                                <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up"> Subir.xmi</button>
 
-                                <br></br>
-                                Clases a generar
-                                <br></br>
-                                * xClase1
-                                <br></br>
-                                * xClase2
-                                <br></br>
-                                * xClase3
-                                <br></br>
-                                * xClase4
+                    <br></br>
+
+                    <div class="row justify-content-start">
+                        <div class="col-md-10">
+                            <div class="box-grey">
+                                
+                                  <h:form enctype="multipart/form-data"> 
+                                    <h:inputFile id="subida" value="#{uploadBean.file}" validator="#{uploadBean.validar}"/>
+                                    <br></br>
+                                    <br></br>
+                                    <p:commandButton value="Subir" action="#{uploadBean.upload()}" class="btn-dark"   ajax="false"/> 
+                                    
+                                    <h:message for="subida"/>
+                                </h:form> 
+                              
                             </div>         
                         </div>
-                        
+
                         <div class="col-10">
-                            
+
                             <div class="row justify-content-center">
                                 <button type="button" class="btn btn-dark fa fa-check"> Generar codigo</button>
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 control
                                 <br></br>
-                                <br></br>
+                            
+                                <h:inputTextarea value="#{uploadBean.x}" > </h:inputTextarea> 
                                 <br></br>
                                 .
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 codigo
                                 <br></br>
                                 <br></br>
+                                
                                 <br></br>
                                 .
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="row justify-content-center">
-                            <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                                <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
                             </div>
-                            
+
                             <br></br>
-                            
+
                             <div class="box-grey">
                                 salida
                                 <br></br>
