@@ -19,27 +19,31 @@ public class ArchivoBean
 {
 
     private static final String MESSAGE = "El código aparecerá aquí.";
-    private static List<Archivo> clases = new ArrayList<Archivo>();
+    private static ArrayList<Archivo> clases = new ArrayList<Archivo>();
     public static String code;
     
-
-    /*
-	*Habrá que modificar este método para que reciba una lista con los objetos
-	*del tipo de dato donde se guarden los archivos generados.
-	*/
-    public static void agregaArchivos()
+    public static void agregarArchivo(Archivo file)
+    {
+        clases.add(file);
+    }
+    
+    
+      
+    public static void setClases(ArrayList<Archivo> lista)
     {
         clases.clear();
+        ArchivoBean.clases = lista;
+        //FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("result");
     }
 
-	public static void setClases(List<Archivo> lista)
-	{	ArchivoBean.clases = lista;	}
-
-	public static List<Archivo> getClases()
-	{	return clases;	}
+    public static ArrayList<Archivo> getClases()
+    {	return clases;	}
 
     public static void InitCode()
-    {   ArchivoBean.code = MESSAGE;    }
+    {
+        ArchivoBean.code = MESSAGE;
+        clases.clear();
+    }
     
     public static void limpiarLista()
     {	clases.clear();		}
@@ -49,6 +53,7 @@ public static String getCode()
 
     public static void setCode(String code)
     {	ArchivoBean.code = code;    }
+    
     /*
     * Método invocado al hacer click en un elemento de la tabla Archivos
     * Extrae el nombre del archivo, lo busca en la lista "clases" y cuando
@@ -79,7 +84,7 @@ public static String getCode()
         else setCode("No se ha encontrado el archivo.");
 
         //Actualiza el componente de id=txtCode
-        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("myFrm:txtCode"); 
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("result"); 
     }
 
 

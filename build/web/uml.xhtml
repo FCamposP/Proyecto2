@@ -8,12 +8,11 @@
 
     <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
 	metadata antes del body:
-        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
-    -->
-    
     <f:metadata>
         <f:viewAction action="#{archivoBean.InitCode()}" />
+        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
     </f:metadata>
+    -->
     
     <body> 
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
@@ -101,7 +100,9 @@
                                     <br />
 
                                     <h:form id="myFrm">
-                                        <h:inputTextarea id="txtCode" class="codemirror-textarea" value="#{archivoBean.getCode()}"
+                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
+                                                         class="codemirror-textarea"
+                                                         value="#{archivoBean.getCode()}"
                                                          valueChangeListener="#{archivoBean.code}">
                                         </h:inputTextarea>
 
