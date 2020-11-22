@@ -1,9 +1,9 @@
 
 package controllers;
 
-import generadorJava.Convertidor;
-import generadorJava.GeneradorJava;
-import generadorJava.LectorXmiHandler;
+import convertidorUmlJava.Convertidor;
+import convertidorUmlJava.GeneradorJava;
+import convertidorUmlJava.LectorXmiHandler;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;

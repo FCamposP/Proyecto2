@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Disco%20D/Proyecto2/src/java/componentegestordearchivos/ArchivoBean.java</file>
-            <file>file:/C:/Disco%20D/Proyecto2/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Disco%20D/Proyecto2/web/WEB-INF/templates/templateBase.xhtml</file>
-            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/PrincipalMBean.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/convertidorBDJava/DBColumn.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/ControllerPrincipal.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/cMB.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/web/database.xhtml</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/convertidorBDJava/DBConnection.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/convertidorBDJava/DBRelation.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/convertidorBDJava/PruebaConexion.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/convertidorBDJava/DBMetaData.java</file>
             <file>file:/C:/Disco%20D/Proyecto2/web/uml.xhtml</file>
-            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/FileUploadMBean.java</file>
+            <file>file:/C:/Disco%20D/Proyecto2/src/java/controllers/ControllerBD.java</file>
         </group>
     </open-files>
 </project-private>
