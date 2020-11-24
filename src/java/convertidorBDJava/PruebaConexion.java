@@ -29,8 +29,8 @@ public class PruebaConexion {
         Scanner input = new Scanner(System.in);
         
         try{ 
-            
-            ArrayList<String> schemas = DBMetaData.getSchemasNames();
+            DBMetaData metaData= new DBMetaData(conexion);
+            ArrayList<String> schemas = metaData.getSchemasNames();
             
             System.out.println("A continuación se listan las bases de datos disponibles: \n");
             for(int i = 0; i < schemas.size(); i++)
@@ -41,11 +41,11 @@ public class PruebaConexion {
             
             String bd = schemas.get(input.nextInt());
             System.out.println("Imprimiendo metadata de la base " + bd + ":\n");
-            ArrayList<String> tablas = DBMetaData.getTablesMetadata(bd);
+            ArrayList<String> tablas = metaData.getTablesMetadata(bd);
             ArrayList<DBColumn> columnas;
                 for(int i = 0; i < tablas.size(); i++)
                 {
-                    columnas = DBMetaData.getColumnsMetadata(tablas.get(i));
+                    columnas = metaData.getColumnsMetadata(tablas.get(i));
                     System.out.println("\nImprimiendo las columnas de la tabla " + tablas.get(i) + ":");
                     
                     for(int j = 0; j < columnas.size(); j++)

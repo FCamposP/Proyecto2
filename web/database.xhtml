@@ -1,31 +1,244 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
-	metadata antes del body:
-        <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
-    -->
-    
+        metadata antes del body:
     <f:metadata>
         <f:viewAction action="#{archivoBean.InitCode()}" />
         <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
     </f:metadata>
-    
-    <body>
+    -->
 
+    <body> 
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
 
             <ui:define name="content">
+
                 <div class="breadcrumb">
-                    <h5> Generacion de codigo por UML</h5>
+
+                    <h5> Generacion de codigo por Base de Datos</h5>
+
                 </div>
                 <div class="container">
-                    <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-12">
+                            <div class="box-grey">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up col-sm-4" data-toggle='modal' data-target='#modalForm'>  Elegir DB</button>
+
+
+
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <h:form prependId="false" enctype="multipart/form-data">
+                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
+                                                                         class="btn btn-dark fa fa-check">
+                                                            <f:ajax execute="@form" render="result1" />
+                                                        </h:commandButton>
+                                                    </h:form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="text-center">
+                                            <h:panelGroup id="result1">
+                                                <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
+                                                               value="Aquí aparecerán los archivos generados.">
+                                                </h:outputLabel>
+
+                                                <p:dataTable id="tbFiles" var="num"
+                                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
+                                                             rendered="#{archivoBean.getClases().size()!=0}">
+                                                    <p:column headerText="Archivos">
+                                                        <h:form>
+                                                            <p:commandLink value="#{num.nombre}"
+                                                                           actionListener="#{archivoBean.actualizaCode}">
+                                                                <f:ajax execute="@form" render="result2" />
+                                                            </p:commandLink>
+                                                        </h:form>
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </h:panelGroup>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Shows the error or success message -->
+                                <h:outputText value="#{fileUploadMBean.message}"
+                                              rendered="#{!empty fileUploadMBean.message}"></h:outputText>
+
+
+                            </div>
+                            <hr />
+                            <h:panelGroup id="result2">
+
+
+                                <div class="box-grey">
+                                    <div class="text-center">
+                                        Codigo
+
+                                        <br />
+                                    </div>
+
+                                    <br />
+
+                                    <h:form id="myFrm">
+                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
+                                                         class="codemirror-textarea"
+                                                         value="#{archivoBean.getCode()}"
+                                                         valueChangeListener="#{archivoBean.code}" >
+                                        </h:inputTextarea>
+
+                                        <br />
+
+                                        <div class="row justify-content-center">
+                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}">
+                                                <f:ajax render="salida" />
+                                            </h:commandButton>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </h:panelGroup>
+
+
+                            <div class="box-grey">
+                                <div class="text-center">
+                                    Salida(temporal)
+
+                                    <br />
+
+                                    <h:outputText id="salida" value="#{beanUML.archivo}" />
+
+                                    <br />
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+
+
+                <div class="container">
+                    <div class="modal" tabindex="-1" id="modalForm">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Database Connection Properties</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <h:form>
+                                        <label>Specify following to connect to MySQL server: </label>
+                                        <div class="form-group row">
+                                            <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+                                            <div class="col-sm-10">
+                                                <select id="inputType" class="form-control">
+                                                    <option>TCP/IP</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputHost" class="col-sm-2 col-form-label">Host:</label>
+                                            <div class="col-sm-10">
+                                                <h:inputText id="inputServer" value="#{controllerBD.serverd}" class="form-control"/>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPort" class="col-sm-2 col-form-label">Port:</label>
+                                            <div class="col-sm-10">
+                                                <h:inputText id="inputPort" value="#{controllerBD.puertod}" class="form-control"/>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label for="inputUser" class="col-sm-2 col-form-label">User:</label>
+                                            <div class="col-sm-10">
+                                                <h:inputText id="inputUser" value="#{controllerBD.userBDd}" class="form-control"/>
+
+                                                <div class="invalid-feedback">
+                                                    No puede dejar este campo vacío
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                                            <div class="col-sm-10">
+                                                <h:inputText id="inputPass" value="#{controllerBD.passd}" class="form-control"/>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="dataBase" class="col-sm-2 col-form-label">Database:</label>
+                                            <div class="col-sm-10">
+                                                <h:panelGroup id="bases">
+                                                    <h:selectOneMenu class="form-control" value="#{controllerBD.baseElegidad}">
+                                                        <f:selectItems value="#{principalMBean.listaBasesDatos}" />
+                                                    </h:selectOneMenu>                                                        
+                                                </h:panelGroup>
+
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="modal-footer">
+
+                                            <h:commandButton value="Obtener BD" actionListener="#{principalMBean.conectarBd()}"
+                                                             class="btn btn-dark fa fa-check">
+                                                <f:ajax execute="@form" render="bases" />
+                                            </h:commandButton>
+
+                                            <label class="col-sm-4 col-form-label"></label>
+                                            <div data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>
+                                         <h:commandButton value="Siguiente" actionListener="#{principalMBean.obtenerTablas()}"
+                                                             class="btn btn-dark fa fa-check " >
+                                                <f:ajax execute="@form" render="tablas" />
+                                            </h:commandButton>
+                                            </div>
+
+<!--                                            <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>Next</button>-->
+                                            <button type="submit" class="btn btn-primary col-sm-2">Cancel</button>
+                                        </div>
+
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+
+<div class="container">
                         <form>
                             <div class="modal" tabindex="-1" id="modalForm2">
                                 <div class="modal-dialog">
@@ -48,174 +261,35 @@
                                                     </label>
                                                 </div>
 
-
+<!--
                                                 <div class="form-check form-check-inline col-sm-4">
                                                     <input class="form-check-input" type="checkbox" id="gridCheck1" />
                                                     <label class="form-check-label" for="gridCheck1">
                                                         Columns
                                                     </label>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="form-check col-sm-7">
-                                                <div class="form-check">
+                                            <div class="form-check col-sm-11">
+                                                <h:panelGroup id="tablas">
+                                                <ui:repeat value="#{principalMBean.tablas}" var="tabla">
+                                                   <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="gridCheck1" />
                                                     <label class="form-check-label" for="gridCheck1">
-                                                        ActivoClasificacion
+                                                        #{tabla}
                                                     </label>
                                                 </div>
+                                                </ui:repeat>                                                    
+                                                </h:panelGroup>
 
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck2" />
-                                                    <label class="form-check-label" for="gridCheck2">
-                                                        ActivoDepreciacion
-                                                    </label>
-                                                </div>
+                                                
 
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck3" />
-                                                    <label class="form-check-label" for="gridCheck3">
-                                                        ActivoDepreciacionDeta
-                                                    </label>
-                                                </div>
 
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck4" />
-                                                    <label class="form-check-label" for="gridCheck4">
-                                                        ActivoDepreciacionDetaActivo
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck5" />
-                                                    <label class="form-check-label" for="gridCheck5">
-                                                        ActivoFijo
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck6" />
-                                                    <label class="form-check-label" for="gridCheck6">
-                                                        ActivoFijo_ActivoDepreciacionDetaActivo
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck7" />
-                                                    <label class="form-check-label" for="gridCheck7">
-                                                        ActivoParametros
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck8" />
-                                                    <label class="form-check-label" for="gridCheck8">
-                                                        ActivoTipo
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck9" />
-                                                    <label class="form-check-label" for="gridCheck9">
-                                                        AuditDataItemPersistent
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck10" />
-                                                    <label class="form-check-label" for="gridCheck10">
-                                                        AuditedObjectWeakReference
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck11" /> 
-                                                    <label class="form-check-label" for="gridCheck11">
-                                                        AutorizacionDeRequisiciones
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck12" /> 
-                                                    <label class="form-check-label" for="gridCheck12">
-                                                        ConfigEmpleados
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck13" /> 
-                                                    <label class="form-check-label" for="gridCheck13">
-                                                        ConfigTurnos
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck14" /> 
-                                                    <label class="form-check-label" for="gridCheck14">
-                                                        ConfigUser
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck15" /> 
-                                                    <label class="form-check-label" for="gridCheck15">
-                                                        ContaCatalogoCuentas
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck16" /> 
-                                                    <label class="form-check-label" for="gridCheck16">
-                                                        ContaCentroCosto
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck17" /> 
-                                                    <label class="form-check-label" for="gridCheck17">
-                                                        ContaConfigPeriodo
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck18" /> 
-                                                    <label class="form-check-label" for="gridCheck18">
-                                                        ContaEstructura
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck19" /> 
-                                                    <label class="form-check-label" for="gridCheck19">
-                                                        ContaParametros
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck20" /> 
-                                                    <label class="form-check-label" for="gridCheck20">
-                                                        ContaPartidaContableDetalle
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck21" /> 
-                                                    <label class="form-check-label" for="gridCheck21">
-                                                        ContaPartidaRepetitiva
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck22" /> 
-                                                    <label class="form-check-label" for="gridCheck22">
-                                                        ContaPartidasContables
-                                                    </label>
-                                                </div>
                                             </div>
 
-                                            <div class="col-sm-4">
+<!--                                            <div class="col-sm-4">
 
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="gridCheck1" /> 
@@ -258,14 +332,15 @@
                                                         GCRecord
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
 
 
                                         <div class="modal-footer">
-                                            <label class="col-sm-7 col-form-label"></label>
+                                            <label class="col-sm-4 col-form-label"></label>
+                                            <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm'>Regresar</button>
                                             <button type="submit" class="btn btn-primary col-sm-2">Finalizar</button>
-                                            <button type="submit" class="btn btn-primary col-sm-2">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary col-sm-2" >Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -273,197 +348,8 @@
                         </form>
                     </div>
 
-                    <div class="container">
-                        <div class="modal" tabindex="-1" id="modalForm">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Database Connection Properties</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <form>
-                                            <label>Specify following to connect to MySQL server: </label>
-                                            <div class="form-group row">
-                                                <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
-                                                <div class="col-sm-10">
-                                                    <select id="inputType" class="form-control">
-                                                        <option>TCP/IP</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="inputHost" class="col-sm-2 col-form-label">Host:</label>
-                                                <div class="col-sm-10">
-                                                    <select id="inputHost" class="form-control">
-                                                        <option selected=""></option>
-                                                        <option></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="inputPort" class="col-sm-2 col-form-label">Port:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="number" id="inputPort" class="form-control" value="3306" required="" />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="inputUser" class="col-sm-2 col-form-label">User:</label>
-                                                <div class="col-sm-10">
-                                                    <input id="inputUser" class="form-control" required="" />
-                                                    <div class="invalid-feedback">
-                                                        No puede dejar este campo vacío
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="password" id="inputPassword" class="form-control" value="" required="" /> 
-                                                    <div class="invalid-feedback">
-                                                        No puede dejar este campo vacío
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-10">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="gridCheck1" /> 
-                                                        <label class="form-check-label" for="gridCheck1">Allow saving password</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="dataBase" class="col-sm-2 col-form-label">Database:</label>
-                                                <div class="col-sm-10">
-                                                    <select id="dataBase" class="form-control">
-                                                        <option>Choose a database</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-10">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="gridCheck2" /> 
-                                                        <label class="form-check-label" for="gridCheck2">Show all databases</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label for="connectionName">Connection Name:</label>
-                                                <div class="col-sm-12">
-                                                    <input type="text" id="connectionName" class="form-control" placeholder="localhost1" /> 
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="documentCategory">Document Category:</label>
-                                                <div class="col-sm-12">
-                                                    <select id="documentCategory" class="form-control">
-                                                        <option> None</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary sm-3">Test Connection</button>
-                                                <label class="col-sm-4 col-form-label"></label>
-                                                <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>Next</button>
-                                                <button type="submit" class="btn btn-primary col-sm-2">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-start">
-
-                        <div class="col-md-12">
-                            <div class="box-grey">
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up col-sm-4" data-toggle='modal' data-target='#modalForm'>  Elegir DB</button>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row justify-content-center">
-                                            <button type="button" class="btn btn-dark fa fa-check"> Generar codigo</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-
-                            <br />
-
-                            <div class="box-grey">
-                                <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
-                                               value="Aquí aparecerán los archivos generados.">
-                                </h:outputLabel>
-
-                                <p:dataTable id="tbFiles" var="num"
-                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
-                                             rendered="#{archivoBean.getClases().size()!=0}">
-                                    <p:column headerText="Archivos">
-                                        <h:form>
-                                            <p:commandLink value="#{num.nombre}"
-                                                           actionListener="#{archivoBean.actualizaCode}">
-                                            </p:commandLink>
-                                        </h:form>
-                                    </p:column>
-                                </p:dataTable>
-                            </div>
-
-                            <br />
-
-                            <div class="box-grey">
-                                codigo
-                            </div>
-
-                            <br />
-
-                            <div class="row justify-content-center">
-                                <button type="button" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                            </div>
-
-                            <br />
-
-                            <div class="box-grey">
-                                salida
-                                <br />
-                                <br />
-                                <br />
-
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                </div>
-
-            </ui:define> 
-
+            </ui:define>
         </ui:composition>
-
     </body>
 </html>

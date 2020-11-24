@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\java",
+    "\\src\\java\\controllers"
   ],
-  "SelectedNode": "\\web",
+  "SelectedNode": "\\src\\java\\controllers\\FileUploadMBean.java",
   "PreviewInSolutionExplorer": false
 }

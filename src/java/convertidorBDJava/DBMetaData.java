@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package convertidorBDJava;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+
 /**
  *
  * @author MontoyaOsorio
@@ -18,9 +20,16 @@ import java.sql.DatabaseMetaData;
 //@ManagedBean
 //@RequestScoped
 public class DBMetaData {
+
     //static variables
-    static Connection connection = null;
-    static DatabaseMetaData metadata = null;
+    private Connection connection = null;
+    private DatabaseMetaData metadata = null;
+    ResultSet res;
+
+    public DBMetaData(Connection conn) {
+        this.connection = conn;
+    }
+
 
     // Static block for initialization
 //    static {
@@ -37,39 +46,47 @@ public class DBMetaData {
 //                    + e.getMessage());
 //        }
 //    }
-
-    
     /**
      *
      * @return Arraylist with the names of the DB tables
      * * @throws SQLException
-     */ /*Este método originalmente no recibía parámetros
+     */    /*Este método originalmente no recibía parámetros
             Yo lo modifiqué para que reciba como parámetro el nombre
             de la base de datos de la cual quiere conocer la metadata
             Para recibir la metadata de todas las bases se le manda null*/
 
-    public static ArrayList<String> getTablesMetadata(String db) throws SQLException {
-        String table[] = {"TABLE"};
-        ResultSet rs = null;
+    public ArrayList<String> getTablesMetadata(String db) throws SQLException {
+//        String table[] = {"TABLE"};
+//        ResultSet rs = null;
         ArrayList<String> tables = new ArrayList<String>();
-        // reqest the table names
-        rs = metadata.getTables(db, null, null, table);
+//        // reqest the table names
+//        rs = metadata.getTables(db, null, null, table);
 
-        //record the names
-        while (rs.next()) {
-            tables.add(rs.getString("TABLE_NAME"));
+//        //record the names
+//        while (rs.next()) {
+//            tables.add(rs.getString("TABLE_NAME"));
+//        }
+//        return tables;
+        String[] types = {"TABLE"};
+        res = connection.getMetaData().getTables(db, null, "%", types);
+        String nombreTabla = "";
+        while (res.next()) {
+
+            nombreTabla = res.getString(3);
+            tables.add(nombreTabla);
+
         }
         return tables;
     }
 
-
     /**
      * Gets a list with all relationships in the DB.
+     *
      * @param tableNames A list with the tables in the DB.
      * @return Arraylist
      * * @throws SQLException
      */
-    public static ArrayList<DBRelation> getRelationsMetadata(ArrayList<String> tableNames)
+    public ArrayList<DBRelation> getRelationsMetadata(ArrayList<String> tableNames)
             throws SQLException {
 
         ArrayList<DBRelation> result = new ArrayList<DBRelation>();
@@ -94,14 +111,14 @@ public class DBMetaData {
     }
 
     /**
-     * Returns a list with DBColumn objects, one for each column
-     * in the table provided as a parameter.
+     * Returns a list with DBColumn objects, one for each column in the table
+     * provided as a parameter.
      *
      * @param tableName
      * @return List with the columns in the table.
      * @throws SQLException
      */
-    public static ArrayList<DBColumn> getColumnsMetadata(String tableName)
+    public ArrayList<DBColumn> getColumnsMetadata(String tableName)
             throws SQLException {
         ResultSet rs = null;
 
@@ -123,9 +140,10 @@ public class DBMetaData {
                     rs.getString("COLUMN_SIZE"));
 
             //checks if this column is the primary key
-            for(String primaryKey : primaryKeys) {
-                if (primaryKey.equals(column.name))
+            for (String primaryKey : primaryKeys) {
+                if (primaryKey.equals(column.name)) {
                     column.primaryKey = true;
+                }
             }
 
             result.add(column);
@@ -134,17 +152,18 @@ public class DBMetaData {
         return result;
     }
 
-    
     //Método agregado por Daniel Serrano
     //Consulta y retorna un List con los nombres de las bases de datos
-    public static ArrayList<String> getSchemasNames() throws SQLException
-    {
-        ResultSet res = connection.getMetaData().getCatalogs();
+    public ArrayList<String> getSchemasNames() throws SQLException {
+        res = connection.getMetaData().getCatalogs();
         ArrayList<String> schemas = new ArrayList<String>();
-        
-        while(res.next())
-        {
-            schemas.add(res.getString("TABLE_CAT"));
+
+        while (res.next()) {
+            String nombreBase = res.getString("TABLE_CAT");
+            if (!nombreBase.equals("information_schema")  && !nombreBase.equals("cr_debug")  && !nombreBase.equals("mysql") && !nombreBase.equals("information_schema")) {
+                schemas.add(nombreBase);
+            }
+
         }
         return schemas;
     }

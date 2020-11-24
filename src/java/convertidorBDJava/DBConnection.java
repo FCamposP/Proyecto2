@@ -21,29 +21,35 @@ public class DBConnection {
 //    private static  String DB_URL = "jdbc:mysql://localhost:3307/alumnos?zeroDateTimeBehavior=convertToNull";
 
     
-    public static Connection connection;
+    public Connection connection;
+
+    public DBConnection() {
+    }
 
     
     
     
-    public static Connection getConnection(String server,int puerto,String bd, String DB_USER, String DB_PASSWORD) throws SQLException{
+    public void getConnection(String server,String puerto,String bd, String DB_USER, String DB_PASSWORD) throws SQLException, ClassNotFoundException{
         
         try {
+            final String Controlador = "com.mysql.jdbc.Driver";
+            Class.forName(Controlador);
             String direccionCompleta="jdbc:mysql://";
             direccionCompleta+= server+":"+puerto+"/";
           connection = DriverManager.getConnection(direccionCompleta, DB_USER, DB_PASSWORD);
-          System.err.println("The connection is successfully obtained");
+           System.out.println("Conexión iniciada con éxito");
+
 
         } catch(SQLException ex){
 
             System.err.println("error establishing connection");
         }
         
-        return connection;
+      
     }
     
     //CloseConexion
-    public static Connection closeConnection(){
+    public  Connection closeConnection(){
     
         try{
         
