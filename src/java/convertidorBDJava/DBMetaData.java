@@ -5,6 +5,7 @@
  */
 package convertidorBDJava;
 
+import controllers.ControllerBD;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 
+import java.util.List;
 /**
  *
  * @author MontoyaOsorio
@@ -31,52 +33,28 @@ public class DBMetaData {
     }
 
 
-    // Static block for initialization
-//    static {
-//        try { 
-//             connection = DBConnection.getConnection();
-//        } catch(SQLException e) {
-//            System.err.println("There was an error getting the connection: " + e.getMessage());
-//        }
-//
-//        try {
-//            metadata = connection.getMetaData();
-//        } catch (SQLException e) {
-//            System.err.println("There was an error getting the metadata: "
-//                    + e.getMessage());
-//        }
-//    }
-    /**
-     *
-     * @return Arraylist with the names of the DB tables
-     * * @throws SQLException
-     */    /*Este método originalmente no recibía parámetros
-            Yo lo modifiqué para que reciba como parámetro el nombre
-            de la base de datos de la cual quiere conocer la metadata
-            Para recibir la metadata de todas las bases se le manda null*/
-
-    public ArrayList<String> getTablesMetadata(String db) throws SQLException {
+    public List<BaseTablas> getTablesMetadata(String db) throws SQLException {
 //        String table[] = {"TABLE"};
 //        ResultSet rs = null;
-        ArrayList<String> tables = new ArrayList<String>();
-//        // reqest the table names
-//        rs = metadata.getTables(db, null, null, table);
-
-//        //record the names
-//        while (rs.next()) {
-//            tables.add(rs.getString("TABLE_NAME"));
-//        }
-//        return tables;
+    
+        List<BaseTablas> tablas = new ArrayList<BaseTablas>();
+        
         String[] types = {"TABLE"};
         res = connection.getMetaData().getTables(db, null, "%", types);
-        String nombreTabla = "";
+        
         while (res.next()) {
-
-            nombreTabla = res.getString(3);
-            tables.add(nombreTabla);
-
+               BaseTablas nuevaTabla= new BaseTablas();
+               DtoTabla dtoTabla= new DtoTabla();
+               dtoTabla.setNombreTabla(res.getString(3));
+               List<DBColumn> columns= getColumnsMetadata(dtoTabla.getNombreTabla());
+               nuevaTabla.setColumnas(columns);
+               nuevaTabla.setTabla(dtoTabla);
+            //crerar objeto de tabla
+            //obtener atributos
+            
+            tablas.add(nuevaTabla);
         }
-        return tables;
+        return tablas;
     }
 
     /**
@@ -121,30 +99,33 @@ public class DBMetaData {
     public ArrayList<DBColumn> getColumnsMetadata(String tableName)
             throws SQLException {
         ResultSet rs = null;
-
-        rs = metadata.getPrimaryKeys(null, null, tableName);
+        metadata= connection.getMetaData();
+       // rs = metadata.getPrimaryKeys(null, null, tableName);
 
         //get primary key
         ArrayList<String> primaryKeys = new ArrayList<String>();
-        while (rs.next()) {
-            primaryKeys.add(rs.getString("COLUMN_NAME"));
-        }
+//        while (rs.next()) {
+//            primaryKeys.add(rs.getString("COLUMN_NAME"));
+//        }
 
         // gets the columns
         ArrayList<DBColumn> result = new ArrayList<DBColumn>();
-        rs = metadata.getColumns(null, null, tableName, null);
+        rs = metadata.getColumns(ControllerBD.getBaseElegida(), null, tableName, "%");
 
         //records the data for each column
         while (rs.next()) {
-            DBColumn column = new DBColumn(rs.getString("COLUMN_NAME"), rs.getString("TYPE_NAME"),
-                    rs.getString("COLUMN_SIZE"));
+            String uno=rs.getString("COLUMN_NAME");
+            String dos=rs.getString("TYPE_NAME");
+             String tres=rs.getString("COLUMN_SIZE");
+            DBColumn column = new DBColumn(uno,dos ,
+                   tres);
 
             //checks if this column is the primary key
-            for (String primaryKey : primaryKeys) {
-                if (primaryKey.equals(column.name)) {
-                    column.primaryKey = true;
-                }
-            }
+//            for (String primaryKey : primaryKeys) {
+//                if (primaryKey.equals(column.name)) {
+//                    column.primaryKey = true;
+//                }
+//            }
 
             result.add(column);
         }

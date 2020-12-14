@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
-        metadata antes del body:
+	metadata antes del body:
     <f:metadata>
         <f:viewAction action="#{archivoBean.InitCode()}" />
         <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
@@ -18,7 +18,6 @@
         <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
 
             <ui:define name="content">
-
                 <div class="breadcrumb">
 
                     <h5> Generacion de codigo por Base de Datos</h5>
@@ -29,27 +28,11 @@
                         <div class="col-12">
                             <div class="box-grey">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                                  <div class="col-md-6">
                                         <div class="row">
                                             <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up col-sm-4" data-toggle='modal' data-target='#modalForm'>  Elegir DB</button>
-
-
-
                                         </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <h:form prependId="false" enctype="multipart/form-data">
-                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
-                                                                         class="btn btn-dark fa fa-check">
-                                                            <f:ajax execute="@form" render="result1" />
-                                                        </h:commandButton>
-                                                    </h:form>
-                                                </div>
-                                            </div>
-
-                                        </div>
+  
 
                                     </div>
                                     <div class="col-md-6">
@@ -80,9 +63,7 @@
                                 <!-- Shows the error or success message -->
                                 <h:outputText value="#{fileUploadMBean.message}"
                                               rendered="#{!empty fileUploadMBean.message}"></h:outputText>
-
-
-                            </div>
+                           </div>
                             <hr />
                             <h:panelGroup id="result2">
 
@@ -128,17 +109,14 @@
                                     <br />
                                 </div>
 
-
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <br />
-
-
-
-                <div class="container">
+                
+                                <div class="container">
                     <div class="modal" tabindex="-1" id="modalForm">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -221,13 +199,13 @@
 
                                             <label class="col-sm-4 col-form-label"></label>
                                             <div data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>
-                                         <h:commandButton value="Siguiente" actionListener="#{principalMBean.obtenerTablas()}"
-                                                             class="btn btn-dark fa fa-check " >
-                                                <f:ajax execute="@form" render="tablas" />
-                                            </h:commandButton>
+                                                <h:commandButton value="Siguiente" actionListener="#{principalMBean.obtenerTablas()}"
+                                                                 class="btn btn-dark fa fa-check " >
+                                                    <f:ajax execute="@form" render="tablas" />
+                                                </h:commandButton>
                                             </div>
 
-<!--                                            <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>Next</button>-->
+                                            <!--                                            <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>Next</button>-->
                                             <button type="submit" class="btn btn-primary col-sm-2">Cancel</button>
                                         </div>
 
@@ -238,116 +216,74 @@
                     </div>
                 </div>      
 
-<div class="container">
-                        <form>
-                            <div class="modal" tabindex="-1" id="modalForm2">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
+                <div class="container">
 
-                                        <div class="modal-header">
-                                            <h6 class="modal-title">Select tables and columns to include to the model</h6>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
+                    <div class="modal" tabindex="-1" id="modalForm2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-                                        <div class="modal-body">
+                                <div class="modal-header">
+                                    <h6 class="modal-title">Select tables and columns to include to the model</h6>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-                                            <div class="form-group-row">
-                                                <div class="form-check form-check-inline col-sm-7">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                                    <label class="form-check-label" for="gridCheck1">
-                                                        Table
-                                                    </label>
-                                                </div>
-
-<!--
-                                                <div class="form-check form-check-inline col-sm-4">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                                    <label class="form-check-label" for="gridCheck1">
-                                                        Columns
-                                                    </label>
-                                                </div>-->
+                                <div class="modal-body">
+                                    <h:form>
+                                        <div class="form-group-row">
+                                            <div class="col-md-12" >
+                                                <h:selectBooleanCheckbox  value="#{principalMBean.tablasTodas}"> Elegir todas
+                                                    <f:ajax render="tablas" listener="#{principalMBean.elegirTodos()}"/>
+                                                </h:selectBooleanCheckbox>
                                             </div>
                                         </div>
-
+                                        </h:form>
+                                        <hr/>
                                         <div class="form-group row">
                                             <div class="form-check col-sm-11">
+
                                                 <h:panelGroup id="tablas">
-                                                <ui:repeat value="#{principalMBean.tablas}" var="tabla">
-                                                   <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                                    <label class="form-check-label" for="gridCheck1">
-                                                        #{tabla}
-                                                    </label>
-                                                </div>
-                                                </ui:repeat>                                                    
+                                                    <ui:repeat value="#{principalMBean.tablasMostrar}" var="tabla">
+                                                        <div class="form-check">
+
+                                                            <h:selectBooleanCheckbox  value="#{tabla.elegido}"> 
+                                                                <f:ajax render="tablas" listener="#{principalMBean.actualizarCadaTabla(tabla)}"/>
+                                                               </h:selectBooleanCheckbox>#{tabla.nombreTabla}
+                                                        </div>
+                                                    </ui:repeat>                                                    
                                                 </h:panelGroup>
-
-                                                
-
 
                                             </div>
 
-<!--                                            <div class="col-sm-4">
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck1" /> 
-                                                    <label class="form-check-label" for="gridCheck1">
-                                                        CID
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck2" /> 
-                                                    <label class="form-check-label" for="gridCheck2">
-                                                        Nombre
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck3" /> 
-                                                    <label class="form-check-label" for="gridCheck3">
-                                                        Descripción
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck4" />
-                                                    <label class="form-check-label" for="gridCheck4">
-                                                        VidaUtil
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck5" />
-                                                    <label class="form-check-label" for="gridCheck5">
-                                                        OptimistClockField
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck6" />
-                                                    <label class="form-check-label" for="gridCheck6">
-                                                        GCRecord
-                                                    </label>
-                                                </div>
-                                            </div>-->
                                         </div>
 
-
+                                        <h:form>
                                         <div class="modal-footer">
+
                                             <label class="col-sm-4 col-form-label"></label>
-                                            <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm'>Regresar</button>
-                                            <button type="submit" class="btn btn-primary col-sm-2">Finalizar</button>
-                                            <button type="submit" class="btn btn-primary col-sm-2" >Cancelar</button>
+                                            <div   data-dismiss='modal' data-toggle='modal' data-target='#modalForm'>
+                                                <h:commandButton value="Regresar" actionListener="#{principalMBean.limpiarTablas()}"
+                                                             class="btn btn-dark fa fa-check">
+                                                <f:ajax execute="@form" render="tablas" />
+                                            </h:commandButton>
+                                            </div>
+                                     
+                                            <h:commandButton value="Generar" actionListener="#{principalMBean.generarClasesTablas()}"
+                                                             class="btn btn-dark fa fa-check">
+                                                <f:ajax execute="@form" render="result1" />
+                                            </h:commandButton>
+                                            <button  class="btn btn-primary col-sm-2"  data-dismiss="modal" aria-label="Close">Finalizar</button>
+
                                         </div>
-                                    </div>
+                                    </h:form> 
                                 </div>
                             </div>
-                        </form>
+
+                        </div>
                     </div>
 
+                </div>
 
             </ui:define>
         </ui:composition>

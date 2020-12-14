@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package convertidorUmlJava;
+package datos.clases;
 
 import java.util.StringTokenizer;
 

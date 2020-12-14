@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import convertidorBDJava.BaseTablas;
+import convertidorBDJava.DtoTabla;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,9 @@ public class ControllerBD implements Serializable{
     private static List<String> tablas;
      private static String baseElegida;
 
+    private static List<BaseTablas> tablasBd;
+    
+    
     private  String userBDd="";
     private  String serverd;
     private  String puertod;
@@ -40,10 +45,22 @@ public class ControllerBD implements Serializable{
     private  List<String> tablasd;
     private String baseElegidad;
     
+
+    
     public ControllerBD() {
         basesDatosd= new ArrayList<String>();
 
     }
+
+    public List<BaseTablas> getTablasBd() {
+        return tablasBd;
+    }
+
+    public void setTablasBd(List<BaseTablas> tablasBd) {
+        this.tablasBd = tablasBd;
+    }
+
+
 
     public static List<String> getTablas() {
         return tablas;

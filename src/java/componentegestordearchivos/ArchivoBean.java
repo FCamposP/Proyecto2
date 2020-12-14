@@ -1,6 +1,7 @@
 package componentegestordearchivos;
 
 import beans.BeanUML;
+import datos.clases.Clase;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
@@ -21,10 +22,48 @@ public class ArchivoBean
     private static final String MESSAGE = "El código aparecerá aquí.";
     private static ArrayList<Archivo> clases = new ArrayList<Archivo>();
     public static String code;
+    private static ArrayList<Archivo> clases2 = new ArrayList<Archivo>();
+    public static String code2;
+    private  ArrayList<Archivo> clases2d = new ArrayList<Archivo>();
+    public  String code2d;
   
     public static void agregarArchivo(Archivo file)
     {
         clases.add(file);
+    }
+
+    public ArrayList<Archivo> getClases2d() {
+        return clases2d;
+    }
+
+    public void setClases2d(ArrayList<Archivo> clases2d) {
+        this.clases2d = clases2d;
+    }
+
+    public String getCode2d() {
+        return code2;
+    }
+
+    public void setCode2d(String code2d) {
+        this.code2d = code2d;
+    }
+    
+    
+
+    public static ArrayList<Archivo> getClases2() {
+        return clases2;
+    }
+
+    public static void setClases2(ArrayList<Archivo> clases2) {
+        ArchivoBean.clases2 = clases2;
+    }
+
+    public static String getCode2() {
+        return code2;
+    }
+
+    public static void setCode2(String code2) {
+        ArchivoBean.code2 = code2;
     }
     
     
@@ -37,8 +76,13 @@ public class ArchivoBean
     }
 
     public static ArrayList<Archivo> getClases()
-    {	return clases;	}
+    {	return clases;	
+    }
 
+    public void limpiarPagina(){
+        limpiarLista();
+        ArchivoBean.code = "";  
+    }
     public static void InitCode()
     {
         ArchivoBean.code = MESSAGE;
@@ -46,10 +90,14 @@ public class ArchivoBean
     }
     
     public static void limpiarLista()
-    {	clases.clear();		}
+    {	
+        clases.clear();		}
 
 public static String getCode()
-    {	return code;    }
+    {	
+        return code; 
+    
+    }
 
     public static void setCode(String code)
     {	ArchivoBean.code = code;    }
@@ -82,6 +130,58 @@ public static String getCode()
         if(index != -1)
             setCode(clases.get(index).getCodigo());
         else setCode("No se ha encontrado el archivo.");
+
+        //Actualiza el componente de id=txtCode
+     //   FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("result"); 
+    }
+    public void actualizaCode2(ActionEvent event)
+    {
+        String value;
+        int index = 0;
+        UIComponent component = event.getComponent();
+        value = (String) component.getAttributes().get("value");
+        boolean found = false;
+        
+        while(!found || (index == -1))
+        {
+            try{
+                if(clases2.get(index).getNombre().equals(value))
+                found = true;
+                else index++;
+            }catch(Exception e)
+            { index = -1; }
+            
+        }
+        
+        if(index != -1)
+            setCode2(clases2.get(index).getCodigo());
+        else setCode2("No se ha encontrado el archivo.");
+
+        //Actualiza el componente de id=txtCode
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("result"); 
+    }
+    public void actualizaCode2(Archivo clas)
+    {
+        String value;
+        int index = 0;
+//        UIComponent component = event.getComponent();
+//        value = (String) component.getAttributes().get("value");
+        boolean found = false;
+        
+        while(!found || (index == -1))
+        {
+            try{
+                if(clases2.get(index).getNombre().equals(clas.getNombre()))
+                found = true;
+                else index++;
+            }catch(Exception e)
+            { index = -1; }
+            
+        }
+        
+        if(index != -1)
+            setCode2(clases2.get(index).getCodigo());
+        else setCode2("No se ha encontrado el archivo.");
 
         //Actualiza el componente de id=txtCode
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("result"); 

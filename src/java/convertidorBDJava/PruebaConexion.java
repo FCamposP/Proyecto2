@@ -41,7 +41,8 @@ public class PruebaConexion {
             
             String bd = schemas.get(input.nextInt());
             System.out.println("Imprimiendo metadata de la base " + bd + ":\n");
-            ArrayList<String> tablas = metaData.getTablesMetadata(bd);
+           // ArrayList<String> tablas = metaData.getTablesMetadata(bd);
+            ArrayList<String> tablas = new ArrayList<String>();
             ArrayList<DBColumn> columnas;
                 for(int i = 0; i < tablas.size(); i++)
                 {

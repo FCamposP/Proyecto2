@@ -2,7 +2,7 @@
 package controllers;
 
 import convertidorUmlJava.Convertidor;
-import convertidorUmlJava.GeneradorJava;
+import datos.clases.GeneradorJava;
 import convertidorUmlJava.LectorXmiHandler;
 import java.io.IOException;
 import javax.inject.Named;

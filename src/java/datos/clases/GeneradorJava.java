@@ -3,9 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package convertidorUmlJava;
+package datos.clases;
 
+
+import componentegestordearchivos.Archivo;
+import componentegestordearchivos.ArchivoBean;
 import java.util.ArrayList;
+import datos.clases.Clase;
+import datos.clases.Atributo;
+import datos.clases.AtributoMostrar;
+import datos.clases.Formato;
 
 /**
  *
@@ -19,12 +26,38 @@ public class GeneradorJava {
     private static ArrayList<AtributoMostrar> listaDeclaracionAtributos;
     private static ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;
 
+        public static void CrearArchivos(ArrayList<Clase> listaClases, int opcion) {
+
+        ArrayList<Archivo> archivos = new ArrayList<Archivo>();
+        archivos.add(new Archivo(GenerarClaseMain(), "Main.java"));
+        
+        try {
+            for (Clase clase : listaClases) {
+
+                //   for (Clase clas:listaClases)
+                String codigo = GenerarCodigoJava(clase);
+                //pw.println(codigo);
+                archivos.add(new Archivo(codigo, clase.getNombre() + ".java"));
+                //fichero.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        if(opcion==1){
+           ArchivoBean.setClases(archivos);   
+        }else{
+              ArchivoBean.setClases2(archivos);
+        }
+      
+    }
+
+    
     public static String GenerarCodigoJava(Clase clase) {
         
         String importJava = "import java.util.ArrayList;\n\n";
         String codigoCompleto="";
         String X="";
-        
+        boolean hayListas=false;
         
         //Generación de código Java
         X += "public class " + clase.getNombre() + (clase.isHija() ? " extends " + clase.getNombrePadre() + " " : " ") + "{\n";
@@ -41,11 +74,15 @@ public class GeneradorJava {
         X += espacios + GenerarConstructorConParametrosJava(clase);
         X += GenerarGettersAndSetters();
         //codigo de metodos cuando los atributos son una lista de objetos
-        X+=espacios+"//Metodos para uso de ArrayList\n";
+        hayListas=VerificarExistenListas(clase);
+        if(hayListas){
+              X+=espacios+"//Metodos para uso de ArrayList\n";
+        }
+      
         X += GenerarMetodosListas();
 
         X += "}";
-        if (VerificarExistenListas(clase)) {
+        if (hayListas) {
             codigoCompleto=paquete;
             codigoCompleto+=importJava;
             codigoCompleto+=mensajeArchivo;
@@ -90,14 +127,46 @@ public class GeneradorJava {
         }
 
         for (AtributoMostrar mostrarAtributo : listaDeclaracionAtributosPrimitivos) {
-            x += "    " + " " + mostrarAtributo.getTipoDato() + " " + mostrarAtributo.getNombreVariable() + ";\n";
+            x += "    private" + " " + obtenerTipoAtributo(mostrarAtributo.getTipoDato()) + " " + mostrarAtributo.getNombreVariable() + ";\n";
         }
         for (AtributoMostrar mostrarAtributo : listaDeclaracionAtributos) {
-            x += "    " + " ArrayList<" + mostrarAtributo.getTipoDato() + "> " + mostrarAtributo.getNombreVariable() + ";\n";
+            x += "    private" + " ArrayList<" + obtenerTipoAtributo(mostrarAtributo.getTipoDato())  + "> " + mostrarAtributo.getNombreVariable() + ";\n";
         }
 
         return x;
 
+    }
+    
+    private static String obtenerTipoAtributo(String tipoDato){
+        String tipo="";
+        tipo=tipoDato;
+        switch(tipoDato){
+            case "VARCHAR":
+                tipo="String";
+                break;
+            case "TEXT":
+                tipo="String";
+                break;
+            case "INT":
+                tipo="int";
+                break;
+            case "BOOLEAN":
+                tipo="boolean";
+                break;
+            case "Integer":
+                tipo="int";
+                break;
+            case "DOUBLE":
+                tipo="double";
+                break;
+            case "EDouble":
+                tipo="double";
+                break;
+            case "BIT":
+                tipo="bit";
+                break;
+        }
+        return tipo;
     }
 
     private static String GenerarConstructorDefault(Clase clase) {
@@ -130,10 +199,10 @@ public class GeneradorJava {
         for (int i = 0; i < listaAtributosAMostrar.size(); i++) {
             AtributoMostrar atributoM= new AtributoMostrar(listaAtributosAMostrar.get(i).getTipoDato(), listaAtributosAMostrar.get(i).getNombreVariable(),listaAtributosAMostrar.get(i).isLista());
             if(atributoM.isLista()){
-            X += atributoM.getTipoDato() + " " + Formato.variable(atributoM.getTipoDato());    
+            X += obtenerTipoAtributo(atributoM.getTipoDato()) + " " + Formato.variable(atributoM.getTipoDato());    
             }
             else{
-               X += atributoM.getTipoDato() + " " + Formato.variable(atributoM.getNombreVariable());
+               X += obtenerTipoAtributo(atributoM.getTipoDato()) + " " + Formato.variable(atributoM.getNombreVariable());
             }
   
             
@@ -148,7 +217,7 @@ public class GeneradorJava {
 
         }
         for (AtributoMostrar mostrar : listaDeclaracionAtributos) {
-            X += espacios + espacios + "add" + mostrar.getTipoDato() + "(" + Formato.variable(mostrar.getTipoDato()) + ");\n";
+            X += espacios + espacios + "add" + obtenerTipoAtributo(mostrar.getTipoDato()) + "(" + Formato.variable(mostrar.getTipoDato()) + ");\n";
 
         }
         X += espacios + "}\n";
@@ -162,10 +231,10 @@ public class GeneradorJava {
         x += "\n" + espacios + "//Getters and Setters\n";
         for (AtributoMostrar atributoMostrar : listaDeclaracionAtributosPrimitivos) {
             //para getter          
-            x += "\n" + espacios + "public " + atributoMostrar.getTipoDato() + " get" + Formato.nombreClase(atributoMostrar.getNombreVariable()) + "()"
+            x += "\n" + espacios + "public " + obtenerTipoAtributo(atributoMostrar.getTipoDato()) + " get" + Formato.nombreClase(atributoMostrar.getNombreVariable()) + "()"
                     + " {\n " + espacios + espacios + "return " + atributoMostrar.getNombreVariable() + ";\n" + espacios + "}\n";
             //para setter
-            x += "\n" + espacios + "public void set" + Formato.nombreClase(atributoMostrar.getNombreVariable()) + "(" + atributoMostrar.getTipoDato() + " " + atributoMostrar.getNombreVariable() + ")"
+            x += "\n" + espacios + "public void set" + Formato.nombreClase(atributoMostrar.getNombreVariable()) + "(" + obtenerTipoAtributo(atributoMostrar.getTipoDato()) + " " + atributoMostrar.getNombreVariable() + ")"
                     + " {\n" + espacios + espacios + "this." + atributoMostrar.getNombreVariable() + " = " + atributoMostrar.getNombreVariable() + ";\n" + espacios + "}\n\n";
         }
 
@@ -178,7 +247,7 @@ public class GeneradorJava {
             //metodo addElemento
             String tipoDato = "";
             String nombreAtributo = "";
-            tipoDato = atributo.getTipoDato();
+            tipoDato = obtenerTipoAtributo(atributo.getTipoDato());
             nombreAtributo = atributo.getNombreVariable();
             x += "\n"+espacios + "public void add" + Formato.nombreClase(tipoDato) + "(" + tipoDato + " element) {\n"
                     + espacios + espacios + nombreAtributo + ".add(element);\n" + espacios + "}\n";
@@ -207,7 +276,7 @@ public class GeneradorJava {
                     + espacios + espacios + "if(" + nombreAtributo + ".contains(element))\n"
                     + espacios + espacios + espacios + nombreAtributo + ".remove(element);\n"
                     + espacios + espacios + "else\n"
-                    + espacios + espacios + espacios + "throw new IllegalArgumentException ( \"Error: Chofer no existe\");\n"
+                    + espacios + espacios + espacios + "throw new IllegalArgumentException ( \"Error: Elemento no existe\");\n"
                     + espacios + "}\n\n";
         }
         return x;
