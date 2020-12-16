@@ -71,12 +71,13 @@
                                                                value="Aquí aparecerán los archivos generados.">
                                                 </h:outputLabel>
 
-                                                <p:dataTable id="tbFiles" var="num"
+                                                <p:dataTable id="tbFiles" var="num" scrollable="true" scrollHeight="150"
                                                              value="#{archivoBean.getClases()}" styleClass="sCFiles"
                                                              rendered="#{archivoBean.getClases().size()!=0}">
-                                                    <p:column headerText="Archivos">
+                                                    <p:column headerText="Archivos"
+                                                              style="padding:6px; background-color:#e4e5e6; color:#2f353a">
                                                         <h:form>
-                                                            <p:commandLink value="#{num.nombre}"
+                                                            <p:commandLink value="#{num.nombre}"  style="color:#2f353a;"
                                                                            actionListener="#{archivoBean.actualizaCode}">
                                                                 <f:ajax execute="@form" render="result2" />
                                                             </p:commandLink>

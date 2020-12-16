@@ -199,6 +199,10 @@ public static String getCode()
                                 "\t//Please put on all your code here:\n\t}", "Main.java"));
         clases.add(new Archivo("public int getValor(){\n\treturn valor;\n\t}", "GetValor.java"));
         clases.add(new Archivo("public void setValor(int valor){\n\tthis.valor = valor;\n\t}", "SetValor.java"));
+        
+        //Generación de 20 archivos para probar el scroll
+        for (int i = 1; i <= 20; i++)
+            clases.add(new Archivo("Este es el código del archivo " + i, "Archivo" + i + ".java"));
     }
     
 }
