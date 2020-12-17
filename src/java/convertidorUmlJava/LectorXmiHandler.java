@@ -87,7 +87,8 @@ public class LectorXmiHandler  extends DefaultHandler{
                 nuevoAtributo.setNombre(attributes.getValue("name"));
                 nuevoAtributo.setId(attributes.getValue("xmi:id"));
                 nuevoAtributo.setAgregation(attributes.getValue("aggregation"));
-                if(nuevoAtributo.getAgregation()!=null){
+                if(nuevoAtributo.getAgregation()!=null && nuevoAtributo.getMultiplicidadMaxima()!=null) /*si es agregacion y tiene multiplicidad* */
+                {
                     nuevoAtributo.setIsLista(true);
                 }
                 //setear isLista, aggregation define si es una lista?
@@ -125,7 +126,10 @@ public class LectorXmiHandler  extends DefaultHandler{
                 break;
             case "upperValue":
                 nuevoAtributo.setMultiplicidadMaxima(Enums.Multiplicidad.muchos);
-                nuevoAtributo.setIsLista(true);
+                if(nuevoAtributo.isPrimitiva()==false ) /* Solo si no es dato primitivo*/
+                { 
+                    nuevoAtributo.setIsLista(true);
+                }
                 break;
                 
         }

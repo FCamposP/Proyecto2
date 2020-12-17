@@ -55,6 +55,7 @@ public class GeneradorJava {
     public static String GenerarCodigoJava(Clase clase) {
         
         String importJava = "import java.util.ArrayList;\n\n";
+        String importDate="import java.util.Date;\n\n";
         String codigoCompleto="";
         String X="";
         boolean hayListas=false;
@@ -92,7 +93,15 @@ public class GeneradorJava {
             codigoCompleto+=mensajeArchivo;
             codigoCompleto+=X;
         }
-
+        /*codigo para el uso de Date*/
+       boolean usoDate=false;
+        usoDate=VerificarUsoDate();
+        if(usoDate){
+            codigoCompleto=paquete;
+            codigoCompleto+=importDate;
+            codigoCompleto+=mensajeArchivo;
+            codigoCompleto+=X;
+        }
         return codigoCompleto;
     }
 
@@ -105,6 +114,20 @@ public class GeneradorJava {
                 cantidad++;
             }
         }
+        if (cantidad > 0) {
+            existen = true;
+        }
+        return existen;
+    }
+    private static boolean VerificarUsoDate() {
+
+        boolean existen = false;
+        int cantidad = 0;
+         for (AtributoMostrar mostrarAtributo : listaDeclaracionAtributosPrimitivos) {
+           
+            if(obtenerTipoAtributo(mostrarAtributo.getTipoDato())=="Date"){ /*Verifica si hay un dato de tipo Date */
+             cantidad++;
+            }}
         if (cantidad > 0) {
             existen = true;
         }
@@ -127,7 +150,14 @@ public class GeneradorJava {
         }
 
         for (AtributoMostrar mostrarAtributo : listaDeclaracionAtributosPrimitivos) {
-            x += "    private" + " " + obtenerTipoAtributo(mostrarAtributo.getTipoDato()) + " " + mostrarAtributo.getNombreVariable() + ";\n";
+           
+            if(obtenerTipoAtributo(mostrarAtributo.getTipoDato())=="Date"){ /*si el tipo de dato es Date la declaracion es distinta*/
+                x+= "    private" + " "+obtenerTipoAtributo(mostrarAtributo.getTipoDato()) + " "+ mostrarAtributo.getNombreVariable()+"= "+"new"+ " "+obtenerTipoAtributo(mostrarAtributo.getTipoDato())+"()"+ ";\n";
+            }
+            else{
+             x += "    private" + " " + obtenerTipoAtributo(mostrarAtributo.getTipoDato()) + " " + mostrarAtributo.getNombreVariable() + ";\n";
+            
+            }
         }
         for (AtributoMostrar mostrarAtributo : listaDeclaracionAtributos) {
             x += "    private" + " ArrayList<" + obtenerTipoAtributo(mostrarAtributo.getTipoDato())  + "> " + mostrarAtributo.getNombreVariable() + ";\n";
@@ -165,6 +195,9 @@ public class GeneradorJava {
             case "BIT":
                 tipo="bit";
                 break;
+            case "EDate":
+                tipo="Date";
+                break;
         }
         return tipo;
     }
@@ -195,7 +228,7 @@ public class GeneradorJava {
                 listaAtributosAMostrar.add(nuevoAtributoMostrar);
             }
         }
-
+        
         for (int i = 0; i < listaAtributosAMostrar.size(); i++) {
             AtributoMostrar atributoM= new AtributoMostrar(listaAtributosAMostrar.get(i).getTipoDato(), listaAtributosAMostrar.get(i).getNombreVariable(),listaAtributosAMostrar.get(i).isLista());
             if(atributoM.isLista()){
@@ -216,10 +249,13 @@ public class GeneradorJava {
             X += espacios + espacios + "this." + mostrar.getNombreVariable() + " = " + mostrar.getNombreVariable() + ";\n";
 
         }
-        for (AtributoMostrar mostrar : listaDeclaracionAtributos) {
-            X += espacios + espacios + "add" + obtenerTipoAtributo(mostrar.getTipoDato()) + "(" + Formato.variable(mostrar.getTipoDato()) + ");\n";
-
+        for (int i = 0; i < listaAtributosAMostrar.size(); i++) { /*solo las listas pasadas por parametros en el constructor*/
+            AtributoMostrar atributoM= new AtributoMostrar(listaAtributosAMostrar.get(i).getTipoDato(), listaAtributosAMostrar.get(i).getNombreVariable(),listaAtributosAMostrar.get(i).isLista());
+            if(atributoM.isLista()){
+            X += espacios + espacios + "add" + obtenerTipoAtributo(atributoM.getTipoDato()) + "(" + Formato.variable(atributoM.getTipoDato()) + ");\n";
+            }
         }
+        
         X += espacios + "}\n";
         return X;
 
@@ -288,7 +324,7 @@ public class GeneradorJava {
         x += mensajeArchivo;
         x += "public class Main {\n";
         x += espacios + "\npublic static void main(String [] args){\n";
-        x += espacios + espacios + "/*\n" + espacios + espacios + " * ESCRIBE AQUI TU CODOIGO\n " + espacios + espacios + "*/\n";
+        x += espacios + espacios + "/*\n" + espacios + espacios + " * ESCRIBE AQUI TU CODIGO\n " + espacios + espacios + "*/\n";
         x += espacios + "}\n";
         x += "}";
 
@@ -301,7 +337,7 @@ public class GeneradorJava {
         int cantidadObligatorios = 0;//si hay campos obligatorios no se generar un constructor vacio
         for (Atributo atributo : clase.getAtributos()) {//verificar si hay campos obligatorios
 
-            if (!atributo.isPrimitiva() && atributo.getMultiplicidadMinima() == null) {//no primitivo y null significa atributo no primitivo con multiplicidadMinima unoo
+            if ( atributo.getMultiplicidadMinima() == null) {//no primitivo y null significa atributo no primitivo con multiplicidadMinima unoo
                 cantidadObligatorios++;
             }
         }
