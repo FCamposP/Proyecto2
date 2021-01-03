@@ -5,7 +5,6 @@
  */
 package subirXmi;
 
-import controllers.FileUploadMBean;
 import java.io.InputStream;
 import java.util.Scanner;
 import javax.faces.application.FacesMessage;

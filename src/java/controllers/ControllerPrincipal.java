@@ -1,5 +1,6 @@
 package controllers;
 
+import subirXmi.FileUploadMBean;
 import componentegestordearchivos.Archivo;
 import componentegestordearchivos.ArchivoBean;
 import convertidorBDJava.BaseTablas;
@@ -17,6 +18,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.xml.parsers.ParserConfigurationException;
@@ -30,6 +32,13 @@ public class ControllerPrincipal implements Serializable {
     /**
      * Creates a new instance of PrincipalMBean
      */
+    
+    //otros beans
+        @ManagedProperty("#{fileUploadMBean}")
+    private FileUploadMBean fileUpload;
+        
+    //fin otros beans
+    
     DBConnection conexionfc = new DBConnection();
     private List<String> listaBasesDatos;
     private List<String> tablas;
@@ -95,9 +104,9 @@ String prueba="";
     }
 
     public void saveArchivo() throws IOException {
-        String nombreArchivo = FileUploadMBean.getArchivoSubido().getSubmittedFileName();
+        String nombreArchivo = fileUpload.getArchivoSubido().getSubmittedFileName();
         if (nombreArchivo.endsWith(".xmi")) {
-            FileUploadMBean.setContenidoArchivo(FileUploadMBean.getArchivoSubido().getInputStream());
+            fileUpload.setContenidoArchivo(fileUpload.getArchivoSubido().getInputStream());
             
             this.setMensajet("Archivo leído con éxito");
             
@@ -106,7 +115,7 @@ String prueba="";
 
     public void generar() throws ParserConfigurationException, IOException, SAXException {
 
-        if (FileUploadMBean.getContenidoArchivo() != null) {
+        if (fileUpload.getContenidoArchivo() != null) {
             Convertidor converter = new Convertidor();
             converter.ConvertidorXmi();
         } 

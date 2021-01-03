@@ -1,6 +1,7 @@
 
 package controllers;
 
+import subirXmi.FileUploadMBean;
 import convertidorUmlJava.Convertidor;
 import datos.clases.GeneradorJava;
 import convertidorUmlJava.LectorXmiHandler;
@@ -35,7 +36,7 @@ public class cMB {
     public void guarda() throws ParserConfigurationException, IOException, SAXException
     {
         FileUploadMBean obje=new FileUploadMBean();
-        obje.uploadFile();
+  //      obje.uploadFile();
     }
 
 //    public Model getModel(String pathToModel) {

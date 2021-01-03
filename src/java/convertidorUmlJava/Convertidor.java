@@ -5,7 +5,7 @@
  */
 package convertidorUmlJava;
 
-import controllers.FileUploadMBean;
+import subirXmi.FileUploadMBean;
 
 import java.io.IOException;
 import java.io.PrintWriter;
