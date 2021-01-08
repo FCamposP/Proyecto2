@@ -1,0 +1,182 @@
+﻿<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="lib/coreui/icons/css/coreui-icons.min.css"/>
+        <h:outputStylesheet name="lib/flag-icon-css/css/flag-icon.min.css"/>
+        <h:outputStylesheet name="lib/font-awesome/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="lib/simple-line-icons/css/simple-line-icons.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="vendors/pace-progress/css/pace.min.css"/>  
+        <h:outputStylesheet name="css/HS19011Styles.css"/>
+        <h:outputStylesheet name ="plugin/codemirror/lib/codemirror.css"/>
+        <h:outputStylesheet name ="plugin/codemirror/lib/codemirror.css"/>
+	<title>Proyecto2</title>
+    </h:head>
+
+    <h:body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+
+        <header class="app-header navbar">
+            <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="home.xhtml">
+                <h:graphicImage value="resources/images/brand/logo.jpeg" width="130" height="55" alt="CoreUI Logo" />
+
+            </a>
+            <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <ul class="nav navbar-nav ml-auto">
+                <!--
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#">
+                    <i class="icon-bell"></i>
+                    <span class="badge badge-pill badge-danger">5</span>
+                </a>
+            </li>
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#">
+                    <i class="icon-list"></i>
+                </a>
+            </li>
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#">
+                    <i class="icon-location-pin"></i>
+                </a>
+            </li>-->
+                <li>
+                    UsuarioX
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <h:graphicImage value="resources/images/avatars/1.jpg" width="30" height="30" alt="user" />
+
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <!--
+                    <div class="dropdown-header text-center">
+                        <strong>Account</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-bell-o"></i> Updates
+                        <span class="badge badge-info">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-envelope-o"></i> Messages
+                        <span class="badge badge-success">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-tasks"></i> Tasks
+                        <span class="badge badge-danger">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-comments"></i> Comments
+                        <span class="badge badge-warning">42</span>
+                    </a>
+                    <div class="dropdown-header text-center">
+                        <strong>Settings</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-wrench"></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-usd"></i> Payments
+                        <span class="badge badge-secondary">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-file"></i> Projects
+                        <span class="badge badge-primary">42</span>
+                    </a>-->
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-shield"></i>Login
+                        </a>
+                        <a class="dropdown-item" href="login.xhtml">
+                            <i class="fa fa-lock"></i> Logout
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+            <!--<button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        -->
+        </header>
+        <div class="app-body">
+
+            <div class="sidebar">
+                <nav class="sidebar-nav">
+                    <ul class="nav">
+
+                        <li class="nav-title">Opciones</li>
+                        <li class="nav-item">
+                            
+                            <h:link class="nav-link" outcome="uml">
+                                <i class="fa fa-puzzle-piece"></i>  UML
+                            </h:link>
+                        </li>
+                        <li class="nav-item">
+                      <h:link class="nav-link" outcome="database">
+                                <i class="fa fa-puzzle-piece"></i>  Base de datos
+                            </h:link>
+<!--                            <a class="nav-link" href="database.xhtml"> <i class="fa fa-database"></i>  Base de datos</a>-->
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+            <main class="main">
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div id="content">
+
+                            <ui:insert name="content" />
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <aside class="aside-menu">
+            </aside>
+        </div>
+        <footer class="app-footer">
+            <div>
+                <a href="#">IGF115-PRN315</a>
+                <span>&copy; 2020 SYSTEM</span>
+            </div>
+            <div class="ml-auto">
+
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <h:outputScript name="lib/jquery/dist/sweetAlert.js" />
+        <h:outputScript name="lib/jquery/dist/noti.js" />
+        <h:outputScript name="lib/popper.js/dist/umd/popper.min.js" />
+        <h:outputScript name="lib/bootstrap/dist/js/bootstrap.min.js" />
+        <h:outputScript name="lib/pace-progress/pace.min.js" />
+        <h:outputScript name="lib/perfect-scrollbar/dist/perfect-scrollbar.min.js" />
+        <h:outputScript name="lib/coreui/coreui/dist/js/coreui.min.js" />
+        <h:outputScript name="plugin/codemirror/lib/codemirror.js" />
+        <h:outputScript name="lib/jquery/dist/jquery.min.js" />
+        <h:outputScript name="lib/jquery/dist/default.js" />
+        <!-- Bootstrap and necessary plugins-->
+
+    </h:body>
+
+</html>
