@@ -108,11 +108,14 @@ public class SalidaRunBean implements Serializable {
     {
         try 
         {  
+                    //a sustituir por datos tomados del usuario
+        String direccion="/user01/project01/uml";
+            
             CompiladorEjecutorJava compilerJava = new CompiladorEjecutorJava();
             mensajeCompilando1="Compilando ...";
  
             String resultadoCompilacion="";
-            resultadoCompilacion=compilerJava.ejecutarArchivos("","javac");
+            resultadoCompilacion=compilerJava.ejecutarArchivos(direccion,"javac");
             if(resultadoCompilacion=="0"){
                 resultadoUml="\nCompilación realizada con éxito";
             }else{
@@ -123,7 +126,7 @@ public class SalidaRunBean implements Serializable {
              msjEjecutando1="Ejecutando ...";   
                 
                 String resultadoExec="";
-                resultadoExec=compilerJava.ejecutarArchivos("","java");
+                resultadoExec=compilerJava.ejecutarArchivos(direccion,"java");
                 msjEjecucion1=resultadoExec;
             } 
             

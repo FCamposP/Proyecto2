@@ -20,7 +20,8 @@ import java.util.ArrayList;
 public class GeneradorJava {
 
     private  String espacios = "    ";
-    private  String paquete="package fc1;\n";
+   // private  String paquete="package fc1;\n";
+    private  String paquete="";
     private  String mensajeArchivo = "/* \n * Codigo generado por WIFA Gencompiler\n */\n\n";
     private  ArrayList<AtributoMostrar> listaDeclaracionAtributos;
     private  ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;
@@ -325,6 +326,7 @@ public class GeneradorJava {
         x += "public class Main {\n";
         x += espacios + "\npublic static void main(String [] args){\n";
         x += espacios + espacios + "/*\n" + espacios + espacios + " * ESCRIBE AQUI TU CODIGO\n " + espacios + espacios + "*/\n";
+        x+=espacios+espacios+"System.out.println(\"Hola Mundo\");\n";
         x += espacios + "}\n";
         x += "}";
 

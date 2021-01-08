@@ -16,15 +16,18 @@ public class CompiladorEjecutorJava {
  
     
             public String ejecutarArchivos(String ubicacion, String comando) {
-
+        String direccionFisica="F:/facompiler";
         String salidaEstandar = "";
         String salidaError = "";
         String salidaReturn="";
+        String direccionTotal="";
+         direccionTotal= direccionFisica+ubicacion;
         boolean exito=false;
         if(comando=="javac"){
-             ubicacion=comando+" F:/facompiler/HolaMundo.java";
+             ubicacion=comando+" "+direccionTotal+"/*.java";
         }else{
-             ubicacion="java -cp F:\\facompiler HolaMundo";
+             
+             ubicacion="java -cp "+direccionTotal.replace("/", "\\\\")+" Main";
              //ubicacion="cd C:\\test && && "+comando+" HolaMundo";
         }
        
@@ -37,7 +40,7 @@ public class CompiladorEjecutorJava {
             while ((line = input.readLine()) != null) {
           //      System.out.println(line);
                 salidaEstandar += line; 
-            } 
+            }
             input.close();             
             
             if(salidaEstandar==""){

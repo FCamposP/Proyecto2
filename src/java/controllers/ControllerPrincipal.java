@@ -13,7 +13,7 @@ import datos.clases.Atributo;
 import datos.clases.Clase;
 import convertidorUmlJava.TransformadorXmiJava;
 import editor.ArchivoEdit;
-import editor.CreadorArchivosJava;
+import generadorJava.CreadorArchivosJava;
 import generadorJava.GeneradorJava;
 import java.io.IOException;
 import java.io.Serializable;
@@ -131,12 +131,19 @@ public class ControllerPrincipal implements Serializable {
 
     public void generarCodigo() throws ParserConfigurationException, IOException, SAXException {
 
+        //a sustituir por datos tomados del usuario
+        String direccion="/user01/project01/uml/";
+        
         if (fileUpload.getContenidoArchivo() != null) {
             ArrayList<Archivo> archivos = new ArrayList<Archivo>();
             TransformadorXmiJava converter = new TransformadorXmiJava();
             archivos = converter.TransformarXmiToJava();
+            
+            //creación de los archivos fisicos
             CreadorArchivosJava creador= new CreadorArchivosJava();
-            creador.crearArchivosJava(archivos, "");
+            creador.crearArchivosJava(archivos, direccion);
+         
+            //archivos a mostrar en pantalla
             ArchivoBean.setClases(archivos);
         }
 //        Model m = getModel("C:/ExtendedPO2.uml");

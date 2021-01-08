@@ -7,6 +7,7 @@ package editor;
  */
 
 
+import generadorJava.CreadorArchivosJava;
 import gestordearchivos.Archivo;
 import gestordearchivos.ArchivoBean;
 import java.io.BufferedWriter;
@@ -115,12 +116,20 @@ public class ArchivoEdit implements Serializable{
 
     
 
-        public void guardarEdicion(){
+        public void guardarEdicion() throws IOException{
+        //a sustituir por datos tomados del usuario
+        String direccion="/user01/project01/uml/";
+            
         String cambios= contenidoArchivo1;
 
         ArchivoBean.actualizaClaseEditada(contenidoArchivo1, ObtenerIndice( nombreArchivo1));
                   String otoro=text;
         String ojala=""; 
+        
+        //dirección de archivos obtenido de Principal
+            CreadorArchivosJava editorJava= new CreadorArchivosJava();
+            
+            editorJava.editarArchivoJava(direccion+nombreArchivo1, cambios);
         
     }
     

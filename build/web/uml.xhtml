@@ -88,7 +88,7 @@
                          
 
 
-                            <div class="box-grey">
+                            <div class="box-green">
                                 <div class="" >
                                 <h:panelGroup id="result2">
                                       <h:form id="myFrm"> 
@@ -103,7 +103,7 @@
                                 </div>
                                 <br />
                                         <h:inputTextarea id="txtCode" rows="20" cols="165"
-                                                         class="codemirror-textarea"
+                                                         class="codemirror-textarea" 
                                                          value="#{archivoEdit.contenidoArchivo1}" >
                                         </h:inputTextarea>
                               
@@ -114,13 +114,17 @@
                                <hr/>
                                 <div class="row">
                                   <div class="col-md-12">
-                                    Salida(temporal)
+                                      <b> Salida</b>
                                     <br />
                                     <h:panelGroup id="salidacom">
+                                        <div class="row" style="background: #2B2D30; color: #18BC45; height: 200px;" >
+                                            <div class="col-md-12">
                                         <h:outputText id="salidau" value="#{salidaRunBean.mensajeCompilando1}" /><br/>
                                         <h:outputText id="salidau2" value="#{salidaRunBean.resultadoUml}" /><br/>
                                         <h:outputText id="salidau3" value="#{salidaRunBean.msjEjecutando1}" /><br/>
                                         <h:outputText id="salidau4" value="#{salidaRunBean.msjEjecucion1}" /><br/>
+                                        </div>
+                                        </div>
                                     </h:panelGroup>
                                  <br />
                                 </div>
