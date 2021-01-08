@@ -51,7 +51,7 @@
                                                     <h:form prependId="false" enctype="multipart/form-data">
                                                         <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generarCodigo()}"
                                                                          class="btn btn-dark fa fa-check">
-                                                            <f:ajax execute="@form" render="botones" />
+                                                            <f:ajax execute="@form" render=":botones" />
                                                         </h:commandButton>
                                                     </h:form>
                                                 </div>
@@ -65,22 +65,20 @@
                                                 Archivos creados
                                             </div>
                                             <div class="card-body">
+                                                   <div class="btn-group row" role="group" aria-label="Basic example">
                                                 <h:panelGroup id="botones">
-                                                    <div class="btn-group row" role="group" aria-label="Basic example">
-                                                        <h:form>
+                                                      <h:form>
                                                             <ui:repeat value="#{archivoBean.getClases()}" var="item">
                                                                 <h:commandButton  class="btn btn-secondary" value="#{item.nombre}" 
-                                                                                  actionListener="#{archivoEdit.editarArchivo}">
-                                                                    <f:ajax execute="@form" render="result2" />
+                                                                                  actionListener="#{archivoEdit.editarArchivo}" >
+                                                                    <f:ajax execute="@form" render=":result2" />
                                                                 </h:commandButton>
 
                                                             </ui:repeat>   
                                                         </h:form>
-
-
-                                                    </div>
+                                                  
                                                 </h:panelGroup>
-
+  </div>
                                             </div>
                                         </div>
                                     </div>
@@ -93,20 +91,18 @@
                             <div class="box-grey">
                                 <div class="" >
                                 <h:panelGroup id="result2">
-                                      <h:form id="myFrm">
+                                      <h:form id="myFrm"> 
                                 <div class="text-center">
                                         <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{archivoEdit.guardarEdicion()}">
                                                 <f:ajax execute="@form" render="result1" />
                                             </h:commandButton>
-                                    <h:commandButton styleClass="btn btn-dark fa fa-save" value="Crear" actionListener="#{archivoEdit.crearArchivo()}">
-                                                <f:ajax execute="@form" render="result1" />
-                                            </h:commandButton>
+
                                     <h:commandButton styleClass="btn btn-dark fa fa-save" value="Ejecutar" actionListener="#{salidaRunBean.compilarEjecutar()}">
                                                 <f:ajax execute="@form" render="salidacom" />
                                             </h:commandButton>
                                 </div>
                                 <br />
-                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
+                                        <h:inputTextarea id="txtCode" rows="20" cols="165"
                                                          class="codemirror-textarea"
                                                          value="#{archivoEdit.contenidoArchivo1}" >
                                         </h:inputTextarea>

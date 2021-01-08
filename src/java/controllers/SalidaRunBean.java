@@ -15,7 +15,7 @@ import runCode.CompiladorEjecutorJava;
  * @author fabry
  */
 @Named(value = "salidaRunBean")
-@SessionScoped
+@SessionScoped  
 public class SalidaRunBean implements Serializable {
 
     /**
@@ -27,7 +27,7 @@ public class SalidaRunBean implements Serializable {
         private String resultadoUml;
         private String resultadoBD;
         private String msjEjecutando1;
-        private String msjEjecutando2;
+        private String msjEjecutando2; 
         private String msjEjecucion1;
         private String msjEjecucion2;
         
@@ -40,7 +40,7 @@ public class SalidaRunBean implements Serializable {
 
     public void setMsjEjecutando1(String msjEjecutando1) {
         this.msjEjecutando1 = msjEjecutando1;
-    }
+    } 
 
     public String getMsjEjecutando2() {
         return msjEjecutando2;
@@ -106,11 +106,11 @@ public class SalidaRunBean implements Serializable {
     
     public void compilarEjecutar() 
     {
-        try
-        {
+        try 
+        {  
             CompiladorEjecutorJava compilerJava = new CompiladorEjecutorJava();
             mensajeCompilando1="Compilando ...";
-
+ 
             String resultadoCompilacion="";
             resultadoCompilacion=compilerJava.ejecutarArchivos("","javac");
             if(resultadoCompilacion=="0"){

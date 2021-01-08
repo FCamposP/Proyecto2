@@ -13,12 +13,14 @@ import datos.clases.Atributo;
 import datos.clases.Clase;
 import convertidorUmlJava.TransformadorXmiJava;
 import editor.ArchivoEdit;
+import editor.CreadorArchivosJava;
 import generadorJava.GeneradorJava;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -26,7 +28,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 @Named(value = "principalMBean")
-@ViewScoped
+@SessionScoped
 public class ControllerPrincipal implements Serializable {
 
     /**
@@ -133,6 +135,8 @@ public class ControllerPrincipal implements Serializable {
             ArrayList<Archivo> archivos = new ArrayList<Archivo>();
             TransformadorXmiJava converter = new TransformadorXmiJava();
             archivos = converter.TransformarXmiToJava();
+            CreadorArchivosJava creador= new CreadorArchivosJava();
+            creador.crearArchivosJava(archivos, "");
             ArchivoBean.setClases(archivos);
         }
 //        Model m = getModel("C:/ExtendedPO2.uml");

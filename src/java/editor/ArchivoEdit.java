@@ -116,12 +116,11 @@ public class ArchivoEdit implements Serializable{
     
 
         public void guardarEdicion(){
-        
         String cambios= contenidoArchivo1;
 
         ArchivoBean.actualizaClaseEditada(contenidoArchivo1, ObtenerIndice( nombreArchivo1));
                   String otoro=text;
-        String ojala="";
+        String ojala=""; 
         
     }
     
