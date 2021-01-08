@@ -1,8 +1,8 @@
 package controllers;
 
 import subirXmi.FileUploadMBean;
-import componentegestordearchivos.Archivo;
-import componentegestordearchivos.ArchivoBean;
+import gestordearchivos.Archivo;
+import gestordearchivos.ArchivoBean;
 import convertidorBDJava.BaseTablas;
 import convertidorBDJava.DBColumn;
 import convertidorBDJava.DBConnection;
@@ -11,8 +11,9 @@ import convertidorBDJava.DtoTabla;
 import convertidorBDJava.Funciones;
 import datos.clases.Atributo;
 import datos.clases.Clase;
-import convertidorUmlJava.Convertidor;
-import datos.clases.GeneradorJava;
+import convertidorUmlJava.TransformadorXmiJava;
+import editor.ArchivoEdit;
+import generadorJava.GeneradorJava;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -23,7 +24,6 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-import subirXmi.FileValidator;
 
 @Named(value = "principalMBean")
 @ViewScoped
@@ -32,24 +32,39 @@ public class ControllerPrincipal implements Serializable {
     /**
      * Creates a new instance of PrincipalMBean
      */
-    
     //otros beans
-        @ManagedProperty("#{fileUploadMBean}")
+    @ManagedProperty("#{fileUploadMBean}")
     private FileUploadMBean fileUpload;
-        
+    @ManagedProperty("#{archivoEdit}")
+    private ArchivoEdit archivoEdit;
+
+    public FileUploadMBean getFileUpload() {
+        return fileUpload;
+    }
+
+    public void setFileUpload(FileUploadMBean fileUpload) {
+        this.fileUpload = fileUpload;
+    }
+
     //fin otros beans
-    
     DBConnection conexionfc = new DBConnection();
     private List<String> listaBasesDatos;
     private List<String> tablas;
-    private  List<DtoTabla> tablasMostrar;
+    private List<DtoTabla> tablasMostrar;
     private List<BaseTablas> tablasCompletas;
     private boolean tablasTodas;
     private String mensajet;
+
+
     
     public ControllerPrincipal() {
-String prueba="";
+        String prueba = "";
     }
+
+
+    
+    
+    
 
     public String getMensajet() {
         return mensajet;
@@ -58,8 +73,6 @@ String prueba="";
     public void setMensajet(String mensajet) {
         this.mensajet = mensajet;
     }
-    
-    
 
     public boolean isTablasTodas() {
         return tablasTodas;
@@ -68,8 +81,6 @@ String prueba="";
     public void setTablasTodas(boolean tablasTodas) {
         this.tablasTodas = tablasTodas;
     }
-    
-    
 
     public List<BaseTablas> getTablasCompletas() {
         return tablasCompletas;
@@ -79,11 +90,11 @@ String prueba="";
         this.tablasCompletas = tablasCompletas;
     }
 
-    public  List<DtoTabla> getTablasMostrar() {
+    public List<DtoTabla> getTablasMostrar() {
         return tablasMostrar;
     }
 
-    public  void setTablasMostrar(List<DtoTabla> tablasMostrar) {
+    public void setTablasMostrar(List<DtoTabla> tablasMostrar) {
         this.tablasMostrar = tablasMostrar;
     }
 
@@ -103,22 +114,27 @@ String prueba="";
         this.listaBasesDatos = listaBasesDatos;
     }
 
+    
+
+
     public void saveArchivo() throws IOException {
         String nombreArchivo = fileUpload.getArchivoSubido().getSubmittedFileName();
         if (nombreArchivo.endsWith(".xmi")) {
             fileUpload.setContenidoArchivo(fileUpload.getArchivoSubido().getInputStream());
-            
+
             this.setMensajet("Archivo leído con éxito");
-            
+
         }
     }
 
-    public void generar() throws ParserConfigurationException, IOException, SAXException {
+    public void generarCodigo() throws ParserConfigurationException, IOException, SAXException {
 
         if (fileUpload.getContenidoArchivo() != null) {
-            Convertidor converter = new Convertidor();
-            converter.ConvertidorXmi();
-        } 
+            ArrayList<Archivo> archivos = new ArrayList<Archivo>();
+            TransformadorXmiJava converter = new TransformadorXmiJava();
+            archivos = converter.TransformarXmiToJava();
+            ArchivoBean.setClases(archivos);
+        }
 //        Model m = getModel("C:/ExtendedPO2.uml");
 //        System.out.println(m.getName());
     }
@@ -143,72 +159,72 @@ String prueba="";
             String baseElegida = ControllerBD.getBaseElegida();
             this.setTablasCompletas(metaData.getTablesMetadata(baseElegida));
             this.setTablasMostrar(new ArrayList<DtoTabla>());
-          
-            for(BaseTablas tabla:tablasCompletas){
+
+            for (BaseTablas tabla : tablasCompletas) {
                 this.tablasMostrar.add(tabla.getTabla());
             }
             String stop = "";
         } catch (Exception e) {
         }
     }
-    
-    public void elegirTodos(){
-       
-       
-        for(DtoTabla dto:tablasMostrar){
-            if(this.isTablasTodas()){
-                  dto.setElegido(true);
-            }else{
-                  dto.setElegido(false);
+
+    public void elegirTodos() {
+
+        for (DtoTabla dto : tablasMostrar) {
+            if (this.isTablasTodas()) {
+                dto.setElegido(true);
+            } else {
+                dto.setElegido(false);
             }
-          
+
         }
     }
-    
-    public void generarClasesTablas(){
-        ArrayList<Clase> clasesGenerar= new ArrayList<Clase>();
-        Funciones fun= new Funciones();       
-        for(DtoTabla tabla: tablasMostrar){
-            if(tabla.isElegido()){
-                BaseTablas tablaGenerar= fun.buscarBaseTablas(tablasCompletas, tabla);
-                List<DBColumn> columnasGenerar= tablaGenerar.getColumnas();
-                Clase nuevaClase= new Clase();
+
+    public void generarClasesTablas() {
+        ArrayList<Clase> clasesGenerar = new ArrayList<Clase>();
+        Funciones fun = new Funciones();
+        for (DtoTabla tabla : tablasMostrar) {
+            if (tabla.isElegido()) {
+                BaseTablas tablaGenerar = fun.buscarBaseTablas(tablasCompletas, tabla);
+                List<DBColumn> columnasGenerar = tablaGenerar.getColumnas();
+                Clase nuevaClase = new Clase();
                 nuevaClase.setNombre(tabla.getNombreTabla());
-                
-                for(DBColumn col:columnasGenerar){
-                    Atributo nuevoAtributo= new Atributo();
+
+                for (DBColumn col : columnasGenerar) {
+                    Atributo nuevoAtributo = new Atributo();
                     nuevoAtributo.setNombre(col.name);
                     nuevoAtributo.setNombreTipoPropiedad(col.type);
-                    
+
                     nuevaClase.adicionarAtributo(nuevoAtributo);
                 }
                 clasesGenerar.add(nuevaClase);
             }
         }
-        GeneradorJava.CrearArchivos(clasesGenerar,1);
-        
+        GeneradorJava creadorJava = new GeneradorJava();
+        creadorJava.CrearArchivos(clasesGenerar, 1);
+
     }
-    
-    public void actualizarCadaTabla(DtoTabla act){
-                       boolean sf=false;
-                        boolean otroo= false;
-         for(DtoTabla dto:tablasMostrar){
-            if(dto==act){
-           //     dto=act;
-                 sf= dto.isElegido();
-                         otroo= !sf;
+
+    public void actualizarCadaTabla(DtoTabla act) {
+        boolean sf = false;
+        boolean otroo = false;
+        for (DtoTabla dto : tablasMostrar) {
+            if (dto == act) {
+                //     dto=act;
+                sf = dto.isElegido();
+                otroo = !sf;
                 dto.setElegido(otroo);
             }
         }
     }
-    
-    public void limpiarTablas(){
-     this.setTablasMostrar(new ArrayList<DtoTabla>());
-     //tablasMostrar.clear();
-     this.setTablasCompletas(new ArrayList<BaseTablas>());
-  //s   tablasCompletas.clear();
-     this.setTablasTodas(false);
-        ArchivoBean.code="";
+
+    public void limpiarTablas() {
+        this.setTablasMostrar(new ArrayList<DtoTabla>());
+        //tablasMostrar.clear();
+        this.setTablasCompletas(new ArrayList<BaseTablas>());
+        //s   tablasCompletas.clear();
+        this.setTablasTodas(false);
+        ArchivoBean.code = "";
         ArchivoBean.setClases(new ArrayList<Archivo>());
     }
 

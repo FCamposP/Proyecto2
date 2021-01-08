@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <!-- Para generar archivos de prueba copie y pegue lo siguiente dentro de
-	metadata antes del body:
+        metadata antes del body:
     <f:metadata>
         <f:viewAction action="#{archivoBean.InitCode()}" />
         <f:viewAction action="#{archivoBean.generarArchivosDePrueba()}" />
@@ -19,128 +19,121 @@
 
             <ui:define name="content">
                 <div class="breadcrumb">
-
                     <h5> Generacion de codigo por UML</h5>
-
                 </div>
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-12">
-                            <div class="box-grey">
+                            <div class="">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row">
-                                            <h:form prependId="false" enctype="multipart/form-data">
+                                            <div class="col-md-7">
+                                                      <h:form prependId="false" enctype="multipart/form-data">
                                                 <h:inputFile style="" value="#{fileUploadMBean.file}" class="btn btn-dark">
                                                     <f:ajax listener="#{principalMBean.saveArchivo()}" render="mensajet" />
                                                 </h:inputFile>
-
-                                                <p:growl id="messages" showDetail="true" />
-
                                             </h:form>
-                                        </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-12" >
-                                                <h:panelGroup id="mensajet">
-                                                    #{principalMBean.mensajet}
-                                                </h:panelGroup>
                                             </div>
+                   <div class="col-md-5">
+                                                    <h:panelGroup id="mensajet">
+                                                    #{principalMBean.mensajet}
+                                                </h:panelGroup>     
+                                            </div>
+
                                         </div>
+                                   
                                         <br/>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                                                                    <div class="col-md-1"></div>
+                                        <div class="col-md-7">
                                                 <div class="row">
                                                     <h:form prependId="false" enctype="multipart/form-data">
-                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generar()}"
+                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generarCodigo()}"
                                                                          class="btn btn-dark fa fa-check">
-                                                            <f:ajax execute="@form" render="result1" />
+                                                            <f:ajax execute="@form" render="botones" />
                                                         </h:commandButton>
                                                     </h:form>
                                                 </div>
+                                            </div>  
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="card card-accent-info">
+                                            <div class="card-header">
+                                                Archivos creados
                                             </div>
-
-                                        </div>
-     
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <div class="text-center">
-                                            <h:panelGroup id="result1">
-                                                <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
-                                                               value="Aquí aparecerán los archivos generados.">
-                                                </h:outputLabel>
-
-                                                <p:dataTable id="tbFiles" var="num" scrollable="true" scrollHeight="150"
-                                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
-                                                             rendered="#{archivoBean.getClases().size()!=0}">
-                                                    <p:column headerText="Archivos"
-                                                              style="padding:6px; background-color:#e4e5e6; color:#2f353a">
+                                            <div class="card-body">
+                                                <h:panelGroup id="botones">
+                                                    <div class="btn-group row" role="group" aria-label="Basic example">
                                                         <h:form>
-                                                            <p:commandLink value="#{num.nombre}"  style="color:#2f353a;"
-                                                                           actionListener="#{archivoBean.actualizaCode}">
-                                                                <f:ajax execute="@form" render="result2" />
-                                                            </p:commandLink>
+                                                            <ui:repeat value="#{archivoBean.getClases()}" var="item">
+                                                                <h:commandButton  class="btn btn-secondary" value="#{item.nombre}" 
+                                                                                  actionListener="#{archivoEdit.editarArchivo}">
+                                                                    <f:ajax execute="@form" render="result2" />
+                                                                </h:commandButton>
+
+                                                            </ui:repeat>   
                                                         </h:form>
-                                                    </p:column>
-                                                </p:dataTable>
-                                            </h:panelGroup>
 
+
+                                                    </div>
+                                                </h:panelGroup>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                           </div>
-                            <hr />
-                            <h:panelGroup id="result2">
-
-
-                                <div class="box-grey">
-                                    <div class="text-center">
-                                        Codigo
-
-                                        <br />
-                                    </div>
-
-                                    <br />
-
-                                    <h:form id="myFrm">
-                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
-                                                         class="codemirror-textarea"
-                                                         value="#{archivoBean.getCode()}"
-                                                         valueChangeListener="#{archivoBean.code}" >
-                                        </h:inputTextarea>
-
-                                        <br />
-
-                                        <div class="row justify-content-center">
-                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}">
-                                                <f:ajax render="salida" />
-                                            </h:commandButton>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                                        </div>
-                                    </h:form>
-                                </div>
-                            </h:panelGroup>
-
-
-                            <div class="box-grey">
-                                <div class="text-center">
-                                    Salida(temporal)
-
-                                    <br />
-
-                                    <h:outputText id="salida" value="#{beanUML.archivo}" />
-
-                                    <br />
                                 </div>
 
                             </div>
+                         
+
+
+                            <div class="box-grey">
+                                <div class="" >
+                                <h:panelGroup id="result2">
+                                      <h:form id="myFrm">
+                                <div class="text-center">
+                                        <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{archivoEdit.guardarEdicion()}">
+                                                <f:ajax execute="@form" render="result1" />
+                                            </h:commandButton>
+                                    <h:commandButton styleClass="btn btn-dark fa fa-save" value="Crear" actionListener="#{archivoEdit.crearArchivo()}">
+                                                <f:ajax execute="@form" render="result1" />
+                                            </h:commandButton>
+                                    <h:commandButton styleClass="btn btn-dark fa fa-save" value="Ejecutar" actionListener="#{salidaRunBean.compilarEjecutar()}">
+                                                <f:ajax execute="@form" render="salidacom" />
+                                            </h:commandButton>
+                                </div>
+                                <br />
+                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
+                                                         class="codemirror-textarea"
+                                                         value="#{archivoEdit.contenidoArchivo1}" >
+                                        </h:inputTextarea>
+                              
+                                    </h:form>
+                                  </h:panelGroup>
+                                </div>
+                               
+                               <hr/>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    Salida(temporal)
+                                    <br />
+                                    <h:panelGroup id="salidacom">
+                                        <h:outputText id="salidau" value="#{salidaRunBean.mensajeCompilando1}" /><br/>
+                                        <h:outputText id="salidau2" value="#{salidaRunBean.resultadoUml}" /><br/>
+                                        <h:outputText id="salidau3" value="#{salidaRunBean.msjEjecutando1}" /><br/>
+                                        <h:outputText id="salidau4" value="#{salidaRunBean.msjEjecucion1}" /><br/>
+                                    </h:panelGroup>
+                                 <br />
+                                </div>
+                                </div>
+                            </div>
+          
                         </div>
                     </div>
                 </div>
-
                 <br />
             </ui:define>
         </ui:composition>

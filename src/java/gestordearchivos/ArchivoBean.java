@@ -1,4 +1,4 @@
-package componentegestordearchivos;
+package gestordearchivos;
 
 import beans.BeanUML;
 import datos.clases.Clase;
@@ -30,8 +30,10 @@ public class ArchivoBean
     public static void agregarArchivo(Archivo file)
     {
         clases.add(file);
+        
     }
 
+    
     public ArrayList<Archivo> getClases2d() {
         return clases2d;
     }
@@ -108,6 +110,12 @@ public static String getCode()
     * lo encuentra guarda el valor del atributo codigo en el atributo code
     * de esta clase.
     */
+    
+    public static void actualizaClaseEditada(String codigo, int indice){
+        clases.get(indice).setCodigo(codigo);
+        String prureba="";
+    }
+    
     public void actualizaCode(ActionEvent event)
     {
         String value;

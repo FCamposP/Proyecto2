@@ -1,4 +1,4 @@
-package componentegestordearchivos;
+package gestordearchivos;
 
 /**
  *

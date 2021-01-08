@@ -2,8 +2,8 @@
 package controllers;
 
 import subirXmi.FileUploadMBean;
-import convertidorUmlJava.Convertidor;
-import datos.clases.GeneradorJava;
+import convertidorUmlJava.TransformadorXmiJava;
+import generadorJava.GeneradorJava;
 import convertidorUmlJava.LectorXmiHandler;
 import java.io.IOException;
 import javax.inject.Named;
@@ -27,8 +27,8 @@ public class cMB {
 
     public void generar() throws ParserConfigurationException, IOException, SAXException {
 
-       Convertidor converter= new Convertidor();
-        converter.ConvertidorXmi();
+       TransformadorXmiJava converter= new TransformadorXmiJava();
+        converter.TransformarXmiToJava();
         
 //        Model m = getModel("C:/ExtendedPO2.uml");
 //        System.out.println(m.getName());

@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datos.clases;
+package generadorJava;
 
 
-import componentegestordearchivos.Archivo;
-import componentegestordearchivos.ArchivoBean;
-import java.util.ArrayList;
-import datos.clases.Clase;
 import datos.clases.Atributo;
 import datos.clases.AtributoMostrar;
+import datos.clases.Clase;
 import datos.clases.Formato;
+import gestordearchivos.Archivo;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,13 +19,13 @@ import datos.clases.Formato;
  */
 public class GeneradorJava {
 
-    private static String espacios = "    ";
-    private static String paquete="package fc1;\n";
-    private static String mensajeArchivo = "/* \n * Codigo generado por WIFA Gencompiler\n */\n\n";
-    private static ArrayList<AtributoMostrar> listaDeclaracionAtributos;
-    private static ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;
+    private  String espacios = "    ";
+    private  String paquete="package fc1;\n";
+    private  String mensajeArchivo = "/* \n * Codigo generado por WIFA Gencompiler\n */\n\n";
+    private  ArrayList<AtributoMostrar> listaDeclaracionAtributos;
+    private  ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;
 
-        public static void CrearArchivos(ArrayList<Clase> listaClases, int opcion) {
+        public  ArrayList<Archivo> CrearArchivos(ArrayList<Clase> listaClases, int opcion) {
 
         ArrayList<Archivo> archivos = new ArrayList<Archivo>();
         archivos.add(new Archivo(GenerarClaseMain(), "Main.java"));
@@ -43,16 +42,17 @@ public class GeneradorJava {
         } catch (Exception e) {
             e.printStackTrace();
         } 
-        if(opcion==1){
-           ArchivoBean.setClases(archivos);   
-        }else{
-              ArchivoBean.setClases2(archivos);
-        }
+        return archivos;
+//        if(opcion==1){
+//           ArchivoBean.setClases(archivos);   
+//        }else{
+//              ArchivoBean.setClases2(archivos);
+//        }
       
     }
 
     
-    public static String GenerarCodigoJava(Clase clase) {
+    public  String GenerarCodigoJava(Clase clase) {
         
         String importJava = "import java.util.ArrayList;\n\n";
         String importDate="import java.util.Date;\n\n";
@@ -105,7 +105,7 @@ public class GeneradorJava {
         return codigoCompleto;
     }
 
-    private static boolean VerificarExistenListas(Clase clase) {
+    private  boolean VerificarExistenListas(Clase clase) {
 
         boolean existen = false;
         int cantidad = 0;
@@ -119,7 +119,7 @@ public class GeneradorJava {
         }
         return existen;
     }
-    private static boolean VerificarUsoDate() {
+    private  boolean VerificarUsoDate() {
 
         boolean existen = false;
         int cantidad = 0;
@@ -134,7 +134,7 @@ public class GeneradorJava {
         return existen;
     }
 
-    private static String GenerarDeclaracionAtributos(Clase clase) {
+    private  String GenerarDeclaracionAtributos(Clase clase) {
         String x = "";
         AtributoMostrar nuevoAtributoMostrar;
         listaDeclaracionAtributos = new ArrayList<AtributoMostrar>();
@@ -167,7 +167,7 @@ public class GeneradorJava {
 
     }
     
-    private static String obtenerTipoAtributo(String tipoDato){
+    private  String obtenerTipoAtributo(String tipoDato){
         String tipo="";
         tipo=tipoDato;
         switch(tipoDato){
@@ -202,7 +202,7 @@ public class GeneradorJava {
         return tipo;
     }
 
-    private static String GenerarConstructorDefault(Clase clase) {
+    private  String GenerarConstructorDefault(Clase clase) {
 
         String x = "";
 
@@ -214,7 +214,7 @@ public class GeneradorJava {
         return x;
     }
 
-    private static String GenerarConstructorConParametrosJava(Clase clase) {
+    private  String GenerarConstructorConParametrosJava(Clase clase) {
 
         ArrayList<AtributoMostrar> listaAtributosAMostrar = new ArrayList<AtributoMostrar>();
         AtributoMostrar nuevoAtributoMostrar;
@@ -261,7 +261,7 @@ public class GeneradorJava {
 
     }
 
-    private static String GenerarGettersAndSetters() {
+    private  String GenerarGettersAndSetters() {
 
         String x = "";
         x += "\n" + espacios + "//Getters and Setters\n";
@@ -277,7 +277,7 @@ public class GeneradorJava {
         return x;
     }
 
-    private static String GenerarMetodosListas() {
+    private  String GenerarMetodosListas() {
         String x = "";
         for (AtributoMostrar atributo : listaDeclaracionAtributos) {
             //metodo addElemento
@@ -318,7 +318,7 @@ public class GeneradorJava {
         return x;
     }
 
-    public static String GenerarClaseMain() {
+    public  String GenerarClaseMain() {
 
         String x = paquete;
         x += mensajeArchivo;
@@ -331,7 +331,7 @@ public class GeneradorJava {
         return x;
     }
 
-    private static boolean EsVacio(Clase clase) {
+    private  boolean EsVacio(Clase clase) {
 
         boolean hacerVacio = true;
         int cantidadObligatorios = 0;//si hay campos obligatorios no se generar un constructor vacio
@@ -349,5 +349,3 @@ public class GeneradorJava {
         return hacerVacio;
     }
 }
-
-//proble denetro del contrunsctor cuando se agregue un nuevo elemennto de lsta en una listaa
