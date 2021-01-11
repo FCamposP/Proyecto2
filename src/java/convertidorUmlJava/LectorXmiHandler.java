@@ -13,6 +13,8 @@ import datos.clases.Atributo;
 import datos.clases.Clase;
 import datos.clases.Formato;
 import datos.clases.Enums;
+import datos.clases.Metodos;
+import datos.clases.Parametro;
 /**
  *
  * @author fabry
@@ -22,7 +24,9 @@ public class LectorXmiHandler  extends DefaultHandler{
     private ArrayList<Clase> listaClases= new ArrayList();
     private Clase nuevaClase;
     private Atributo nuevoAtributo;    
-    
+    private Metodos nuevoMetodo;
+    private Parametro nuevoParametro;
+
 
 
     public ArrayList<Clase> getListaClases() {
@@ -77,7 +81,7 @@ public class LectorXmiHandler  extends DefaultHandler{
                          nuevaClase.setNombre(attributes.getValue("name"));
                          nuevaClase.setId(attributes.getValue("xmi:id"));
                         break;
-
+                            
                 }//fin switch para tipo de packageElement
                 
                 break; //fin packagedElement
@@ -111,14 +115,54 @@ public class LectorXmiHandler  extends DefaultHandler{
                     nuevoAtributo.setPrimitiva(false);
                 }
                 break;
+            case "ownedOperation":  /*Operaciones o metodos*/
+                nuevoMetodo=new Metodos();
+                nuevaClase.adicionarMetodo(nuevoMetodo);
+                nuevoMetodo.setNombre(attributes.getValue("name"));
+                nuevoMetodo.setId(attributes.getValue("xmi:id"));
+                //visibilidad del metodo
+                switch(attributes.getValue("visibility"))
+                {
+                    case "public":
+                        nuevoMetodo.setVisibilidad(Enums.Visibilidad.publico);
+                        break;
+                    case "private":
+                        nuevoMetodo.setVisibilidad(Enums.Visibilidad.privado);
+                        break;
+                    case "protected":
+                        nuevoMetodo.setVisibilidad(Enums.Visibilidad.protegido);
+                        break;
+                }
+                String tipo=attributes.getValue("type"); //tipo de metodo cuando no es void 
+                if(tipo!=null)
+                {
+                    //nuevoMetodo.setTipo(idTipoPropiedadMetodo);
+                    nuevoMetodo.setRetorna(true);          
+                   nuevoMetodo.setTipo(ObtenerTipoDatoPrimitivo(attributes.getValue("href")));
+                            
+                }  
+                break;
+               case "ownedParameter": /*parametros */
+                nuevoParametro =new Parametro(); 
+                nuevoMetodo.adicionarParametro(nuevoParametro);
+                nuevoParametro.setNombre(attributes.getValue("name"));
+               nuevoParametro.setId("xmi:id");
+                
+                break;
             case "type":
                 nuevoAtributo.setNombreTipoPropiedad(ObtenerTipoDatoPrimitivo(attributes.getValue("href")));
+               // nuevoMetodo.setTipo(ObtenerTipoDatoPrimitivo(attributes.getValue("href"))); 
                 break;
             case "generalization":
                 nuevaClase.setHija(true);
                 String idPadre=attributes.getValue("general");
                 nuevaClase.setNombrePadre(ObtenerNombreClase(idPadre));
                nuevaClase.setIdPadre(idPadre);
+               if(!idPadre.isEmpty()){
+               
+               nuevaClase.setPadre(true);
+               nuevaClase.isPadre();
+               }
                 break;
                 //para multiplicidad de atributo
             case "lowerValue":
@@ -131,7 +175,7 @@ public class LectorXmiHandler  extends DefaultHandler{
                     nuevoAtributo.setIsLista(true);
                 }
                 break;
-                
+           
         }
     }
     
@@ -183,6 +227,19 @@ public class LectorXmiHandler  extends DefaultHandler{
                     atributo.setNombreTipoPropiedad(nombreClase);
                 }
             }
+            for(Metodos metodo: clase.getMetodos())
+            {
+                metodo.setNombre(Formato.variable(metodo.getNombre()));
+                if(metodo.getTipo()==null)
+                {
+                    //para cuando no retorna nada
+                    metodo.setTipo("void");         
+                }
+              /*  for(Parametro parametro :metodo.getParametros()){ 
+                parametro.setNombre(Formato.variable(parametro.getNombre()));
+                }*/
+            }
+            
         }
         
     }
