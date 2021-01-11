@@ -6,11 +6,15 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <h:outputStylesheet name="lib/coreui/icons/css/coreui-icons.min.css"/>
-    <h:outputStylesheet name="lib/flag-icon-css/css/flag-icon.min.css"/>
-    <h:outputStylesheet name="lib/font-awesome/css/font-awesome.min.css"/>
-            <h:outputStylesheet name="lib/simple-line-icons/css/simple-line-icons.css"/>
-    <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="lib/coreui/icons/css/coreui-icons.min.css"/>
+        <h:outputStylesheet name="lib/flag-icon-css/css/flag-icon.min.css"/>
+        <h:outputStylesheet name="lib/font-awesome/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="lib/simple-line-icons/css/simple-line-icons.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="vendors/pace-progress/css/pace.min.css"/>  
+        <h:outputStylesheet name="css/HS19011Styles.css"/>
+        <h:outputStylesheet name ="plugin/codemirror/lib/codemirror.css"/>
+
         <title>Login</title>
     </h:head>
 
@@ -18,7 +22,18 @@
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <h:outputScript name="lib/jquery/dist/sweetAlert.js" />
+        <h:outputScript name="lib/jquery/dist/noti.js" />
+        <h:outputScript name="lib/popper.js/dist/umd/popper.min.js" />
+        <h:outputScript name="lib/bootstrap/dist/js/bootstrap.min.js" />
+        <h:outputScript name="lib/pace-progress/pace.min.js" />
+        <h:outputScript name="lib/perfect-scrollbar/dist/perfect-scrollbar.min.js" />
+        <h:outputScript name="lib/coreui/coreui/dist/js/coreui.min.js" />
+        <h:outputScript name="plugin/codemirror/lib/codemirror.js" />
+        <h:outputScript name="lib/jquery/dist/jquery.min.js" />
+        <h:outputScript name="lib/jquery/dist/default.js" />
 
     </h:body>
-
+    
 </html>

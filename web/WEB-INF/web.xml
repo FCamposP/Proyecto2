@@ -9,6 +9,23 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <context-param>
+        <param-name>JDBC-DRIVER</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DB-SERVER</param-name>
+        <param-value>jdbc:mysql://localhost:3306/sd1_demo</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DB-USER</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DB-PASSWORD</param-name>
+        <param-value></param-value>
+    </context-param>
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -19,6 +36,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/uml.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

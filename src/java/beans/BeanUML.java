@@ -17,7 +17,7 @@ import java.io.Serializable;
 @SessionScoped
 public class BeanUML implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String archivo;
+    private String archivo = "prueba";
 
     public BeanUML() {
     }

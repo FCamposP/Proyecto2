@@ -59,9 +59,7 @@
                                                     </h:form>
                                                 </div>
                                             </div>
-
                                         </div>
-     
                                     </div>
                                     <div class="col-md-6">
 
@@ -84,7 +82,6 @@
                                                     </p:column>
                                                 </p:dataTable>
                                             </h:panelGroup>
-
                                         </div>
                                     </div>
                                 </div>
@@ -106,17 +103,17 @@
                                     <br />
 
                                     <h:form id="myFrm">
-                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
+                                        <p:inputTextarea id="txtCode" rows="15" cols="165"
                                                          class="codemirror-textarea"
                                                          value="#{archivoBean.getCode()}"
                                                          valueChangeListener="#{archivoBean.code}" >
-                                        </h:inputTextarea>
+                                        </p:inputTextarea>
 
                                         <br />
 
                                         <div class="row justify-content-center">
-                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}">
-                                                <f:ajax render="salida" />
+                                            <h:commandButton id="btnGuardar" value="Guardar" class="fa fa-save btn btn-dark" actionListener="#{alertBean.noti()}">
+                                                <f:ajax render="txtCode"/>
                                             </h:commandButton>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
