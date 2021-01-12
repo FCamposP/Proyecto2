@@ -19,12 +19,13 @@ import java.util.ArrayList;
  */
 public class GeneradorJava {
 
-    private  String espacios = "    ";
-   // private  String paquete="package fc1;\n";
-    private  String paquete="";
-    private  String mensajeArchivo = "/* \n * Codigo generado por WIFA Gencompiler\n */\n\n";
-    private  ArrayList<AtributoMostrar> listaDeclaracionAtributos;
-    private  ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;
+    private static String espacios = "    ";
+    private static String paquete="package fc1;\n";
+    private static String mensajeArchivo = "/* \n * Codigo generado por WIFA Gencompiler\n */\n\n";
+    private static ArrayList<AtributoMostrar> listaDeclaracionAtributos;
+    private static ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;
+    private static ArrayList<Metodos> listaDeMetodos;
+    private static ArrayList<Parametro> listaDeParametros;
 
         public  ArrayList<Archivo> CrearArchivos(ArrayList<Clase> listaClases, int opcion) {
 
@@ -75,6 +76,9 @@ public class GeneradorJava {
         X += espacios + "//Constructor con parametros\n";
         X += espacios + GenerarConstructorConParametrosJava(clase);
         X += GenerarGettersAndSetters();
+          //Metodos
+        X+="\n";
+        X+=GenerarMetodos(clase);      
         //codigo de metodos cuando los atributos son una lista de objetos
         hayListas=VerificarExistenListas(clase);
         if(hayListas){
@@ -167,6 +171,33 @@ public class GeneradorJava {
         return x;
 
     }
+    
+       private static String GenerarMetodos(Clase clase)
+    {
+        String x="";
+       // x+="\n"+espacios+"//Metodos\n";
+        Metodos nuevoMetod;
+        listaDeMetodos=new ArrayList<Metodos>();
+        for(Metodos m:clase.getMetodos()){
+             nuevoMetod = new Metodos(m.getTipo(), m.getNombre());
+                listaDeMetodos.add(nuevoMetod);
+           // clase.adicionarMetodo(m);
+            x += espacios + "public"+" " +nuevoMetod.getTipo() + " "+ nuevoMetod.getNombre() +"( "+
+                   // nuevoMetod.getParametros() +
+                              
+                    " )"+" {\n\n" + espacios + "}"+"\n\n" ;
+        } 
+        return x;
+    }
+       private static void GenerarParametros(Metodos metodo){
+       Parametro nuevoP;
+       listaDeParametros =new ArrayList<Parametro>();
+       for(Parametro p: metodo.getParametros()){
+       nuevoP=new Parametro(p.getTipo(),p.getNombre());
+       listaDeParametros.add(p);
+       }
+       
+       }
     
     private  String obtenerTipoAtributo(String tipoDato){
         String tipo="";
@@ -339,11 +370,11 @@ public class GeneradorJava {
         int cantidadObligatorios = 0;//si hay campos obligatorios no se generar un constructor vacio
         for (Atributo atributo : clase.getAtributos()) {//verificar si hay campos obligatorios
 
-            if ( atributo.getMultiplicidadMinima() == null) {//no primitivo y null significa atributo no primitivo con multiplicidadMinima unoo
+            if ( atributo.getMultiplicidadMinima() == null && clase.getIdPadre()!=null && clase.getIdPadre()==null) {//no primitivo y null significa atributo no primitivo con multiplicidadMinima unoo
                 cantidadObligatorios++;
             }
         }
-
+        
         if (cantidadObligatorios > 0) {
             hacerVacio = false;
         }
