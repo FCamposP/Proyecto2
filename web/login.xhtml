@@ -53,15 +53,15 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <f:ajax render="msg prueba usernameMsg passwordMsg" execute="username password">
-                                                            <h:commandButton value="Entrar" class="btn btn-primary px-4" action="#{loginBean.doLogin()}"/>
+                                                            <h:commandButton value="Entrar" class="btn btn-primary px-4 btn-block" action="#{loginBean.doLogin()}"/>
                                                         </f:ajax>
                                                     </div>
 
                                                     <div class="col-6 text-right">
                                                         <a href="faces/home.xhtml">
-                                                        <button type="button" class="btn btn-link px-0">Olvidaste tu contra?</button>
+                                                        <!--<button type="button" class="btn btn-link px-0">Olvidaste tu contra?</button>-->
                                                         </a>
                                                     </div>
                                                 </div>

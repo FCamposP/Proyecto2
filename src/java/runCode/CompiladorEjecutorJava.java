@@ -16,10 +16,12 @@ public class CompiladorEjecutorJava {
  
     
             public String ejecutarArchivos(String ubicacion, String comando) {
+                 String salidaReturn="";
+                    try {
         String direccionFisica="F:/facompiler";
         String salidaEstandar = "";
         String salidaError = "";
-        String salidaReturn="";
+       
         String direccionTotal="";
          direccionTotal= direccionFisica+ubicacion;
         boolean exito=false;
@@ -31,7 +33,7 @@ public class CompiladorEjecutorJava {
              //ubicacion="cd C:\\test && && "+comando+" HolaMundo";
         }
        
-        try {
+    
             String line; 
             Process p = Runtime.getRuntime().exec(ubicacion);
             

@@ -86,7 +86,8 @@ public class ArchivoEdit implements Serializable{
    
     
     public void crearArchivo() throws IOException{
-        String ruta = "F:/facompiler/archivo7.txt";
+        try {
+                String ruta = "F:/facompiler/archivo7.txt";
         File archivo = new File(ruta);
         BufferedWriter bw;
         if(archivo.exists()) {
@@ -96,21 +97,28 @@ public class ArchivoEdit implements Serializable{
             bw = new BufferedWriter(new FileWriter(archivo));
             bw.write("Acabo de crear el fichero de texto.");
         }
-        bw.close();
+        bw.close();    
+        } catch (Exception e) {
+        }
+
     }
     
 
     private int ObtenerIndice( String nombreClase){
-     
-        ArrayList<Archivo> archivos= new ArrayList<>();
-        archivos=ArchivoBean.getClases();
         int indice=-1;
+        try {
+                    ArrayList<Archivo> archivos= new ArrayList<>();
+        archivos=ArchivoBean.getClases();
+     
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).getNombre().equals(nombreClase)){
                 indice=i;
                 break;
             }
         }
+        } catch (Exception e) {
+        }
+
         return indice;
     }
 
@@ -118,7 +126,8 @@ public class ArchivoEdit implements Serializable{
 
         public void guardarEdicion() throws IOException{
         //a sustituir por datos tomados del usuario
-        String direccion="/user01/project01/uml/";
+            try {
+                 String direccion="/user01/project01/uml/";
             
         String cambios= contenidoArchivo1;
 
@@ -130,11 +139,15 @@ public class ArchivoEdit implements Serializable{
             CreadorArchivosJava editorJava= new CreadorArchivosJava();
             
             editorJava.editarArchivoJava(direccion+nombreArchivo1, cambios);
+            } catch (Exception e) {
+            }
+       
         
     }
     
         public void editarArchivo(ActionEvent event) {
-        String nombreArchivo;
+            try {
+                  String nombreArchivo;
        
         boolean found = false;
         ArrayList<Archivo> clases = new ArrayList<Archivo>();
@@ -154,6 +167,10 @@ public class ArchivoEdit implements Serializable{
             contenidoArchivo1=("Archivo no encontrado");
         }
 
+            } catch (Exception e) {
+            }
+            
+      
     }
 
 }

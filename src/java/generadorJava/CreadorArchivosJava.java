@@ -24,12 +24,16 @@ public class CreadorArchivosJava {
     public void editarArchivoJava(String ubicacion, String contenido) throws IOException{
       //  String direccion="/user01/project01/uml/";
         
+        try {
         FileWriter actualizar= new FileWriter(ubicacionFisica+ubicacion);
         PrintWriter pw= new PrintWriter(actualizar);
         pw.println("");
         pw.println(contenido);
         actualizar.close();
         
+        } catch (Exception e) {
+        }
+
     }
     
     public void crearArchivosJava(ArrayList<Archivo> archivos, String direccion) throws IOException{

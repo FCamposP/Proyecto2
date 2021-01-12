@@ -120,21 +120,24 @@ public class ControllerPrincipal implements Serializable {
 
 
     public void saveArchivo() throws IOException {
-        String nombreArchivo = fileUpload.getArchivoSubido().getSubmittedFileName();
+        try{
+                    String nombreArchivo = fileUpload.getArchivoSubido().getSubmittedFileName();
         if (nombreArchivo.endsWith(".xmi")) {
             fileUpload.setContenidoArchivo(fileUpload.getArchivoSubido().getInputStream());
 
             this.setMensajet("Archivo leído con éxito");
 
         }
+        }catch(Exception ex){
+            
+        }
+
     }
 
     public void generarCodigo() throws ParserConfigurationException, IOException, SAXException {
-
-        //a sustituir por datos tomados del usuario
-        String direccion="/user01/project01/uml/";
-        
-        if (fileUpload.getContenidoArchivo() != null) {
+    String direccion="/user01/project01/uml/";
+        try{
+             if (fileUpload.getContenidoArchivo() != null) {
             ArrayList<Archivo> archivos = new ArrayList<Archivo>();
             TransformadorXmiJava converter = new TransformadorXmiJava();
             archivos = converter.TransformarXmiToJava();
@@ -146,6 +149,13 @@ public class ControllerPrincipal implements Serializable {
             //archivos a mostrar en pantalla
             ArchivoBean.setClases(archivos);
         }
+        }catch(Exception e){
+            
+        }
+        //a sustituir por datos tomados del usuario
+    
+        
+       
 //        Model m = getModel("C:/ExtendedPO2.uml");
 //        System.out.println(m.getName());
     }
@@ -192,7 +202,9 @@ public class ControllerPrincipal implements Serializable {
     }
 
     public void generarClasesTablas() {
-        ArrayList<Clase> clasesGenerar = new ArrayList<Clase>();
+        
+        try {
+                    ArrayList<Clase> clasesGenerar = new ArrayList<Clase>();
         Funciones fun = new Funciones();
         for (DtoTabla tabla : tablasMostrar) {
             if (tabla.isElegido()) {
@@ -213,6 +225,10 @@ public class ControllerPrincipal implements Serializable {
         }
         GeneradorJava creadorJava = new GeneradorJava();
         creadorJava.CrearArchivos(clasesGenerar, 1);
+        } catch (Exception e) {
+        }
+        
+
 
     }
 

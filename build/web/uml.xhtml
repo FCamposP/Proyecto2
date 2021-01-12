@@ -49,10 +49,13 @@
                                         <div class="col-md-7">
                                                 <div class="row">
                                                     <h:form prependId="false" enctype="multipart/form-data">
-                                                        <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generarCodigo()}"
+                                                    
+                                                              <h:commandButton value="Generar codigo" actionListener="#{principalMBean.generarCodigo()}"
                                                                          class="btn btn-dark fa fa-check">
-                                                            <f:ajax execute="@form" render=":botones" />
-                                                        </h:commandButton>
+                                                                      <f:ajax execute="@form" render=":botones"/>
+                                                        </h:commandButton>    
+                                                       
+
                                                     </h:form>
                                                 </div>
                                             </div>  
@@ -71,7 +74,7 @@
                                                             <ui:repeat value="#{archivoBean.getClases()}" var="item">
                                                                 <h:commandButton  class="btn btn-secondary" value="#{item.nombre}" 
                                                                                   actionListener="#{archivoEdit.editarArchivo}" >
-                                                                    <f:ajax execute="@form" render=":result2" />
+                                                                    <f:ajax execute="@form"  render=":result2" />
                                                                 </h:commandButton>
 
                                                             </ui:repeat>   

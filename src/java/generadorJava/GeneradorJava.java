@@ -12,7 +12,8 @@ import datos.clases.Clase;
 import datos.clases.Formato;
 import gestordearchivos.Archivo;
 import java.util.ArrayList;
-
+import datos.clases.Metodos;
+import datos.clases.Parametro;
 /**
  *
  * @author fabry
@@ -20,7 +21,8 @@ import java.util.ArrayList;
 public class GeneradorJava {
 
     private static String espacios = "    ";
-    private static String paquete="package fc1;\n";
+    private static String paquete="";
+ //   private static String paquete="package fc1;\n";
     private static String mensajeArchivo = "/* \n * Codigo generado por WIFA Gencompiler\n */\n\n";
     private static ArrayList<AtributoMostrar> listaDeclaracionAtributos;
     private static ArrayList<AtributoMostrar> listaDeclaracionAtributosPrimitivos;

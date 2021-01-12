@@ -202,7 +202,8 @@ public static String getCode()
     */
     public static void generarArchivosDePrueba()
     {
-    	clases.clear();
+        try {
+                	clases.clear();
         clases.add(new Archivo("public static void main(String[] args){\n"+
                                 "\t//Please put on all your code here:\n\t}", "Main.java"));
         clases.add(new Archivo("public int getValor(){\n\treturn valor;\n\t}", "GetValor.java"));
@@ -211,6 +212,9 @@ public static String getCode()
         //Generación de 20 archivos para probar el scroll
         for (int i = 1; i <= 20; i++)
             clases.add(new Archivo("Este es el código del archivo " + i, "Archivo" + i + ".java"));
+        } catch (Exception e) {
+        }
+
     }
     
 }
