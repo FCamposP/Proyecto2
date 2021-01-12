@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+         
+< ui: composición
+        xmlns = " http://www.w3.org/1999/xhtml "
+        xmlns: ui = " http://xmlns.jcp.org/jsf/facelets "
+        xmlns: p = " http://primefaces.org/ui "
+        xmlns: pe = " http://primefaces.org/ui/extensions " >
+
+<! - EJEMPLO-FUENTE-INICIO ->
+
+< p: growl  id = " growl " showDetail = " true " />
+
+< pe: codeMirror  id = " codeMirror " mode = " # {codeMirrorController.mode} "
+    theme = " eclipse " value = " # {codeMirrorController.content} " lineNumbers = " true "
+    extraKeys = " {'Ctrl-Espacio': función (cm) {CodeMirror.showHint (cm, CodeMirror.hint.javascriptHint);}} " />
+
+< P: commandButton  actionListener = " # {} codeMirrorController.changeMode " actualización =" CodeMirror "
+                 value = " Cambiar modo con AJAX " style = " margin-top: 10px; " />
+
+<! - EXAMPLE-SOURCE-END ->
+
+</ ui: composición >
+    </body>
+</html>
