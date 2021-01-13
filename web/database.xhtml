@@ -21,95 +21,95 @@
                 <div class="breadcrumb">
 
                     <h5> Generacion de codigo por Base de Datos</h5>
-
+               
                 </div>
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-12">
-                            <div class="box-grey">
+                            <div class="">
                                 <div class="row">
                                                   <div class="col-md-6">
-                                        <div class="row">
+                                        <div class="justify-content-center">
                                             <button type="button" class="btn btn-dark btn btn-block fa fa-arrow-up col-sm-4" data-toggle='modal' data-target='#modalForm'>  Elegir DB</button>
                                         </div>
   
 
                                     </div>
-                                    <div class="col-md-6">
+                         <div class="col-sm-6 col-md-6">
+                                        <div class="card card-accent-success">
+                                            <div class="card-header">
+                                                Archivos creados
+                                            </div>
+                                            <div class="card-body">
+                                                   <div class="btn-group row" role="group" aria-label="Basic example">
+                                                <h:panelGroup id="botonesbd">
+                                                      <h:form>
+                                                            <ui:repeat value="#{archivoBean.getClases2()}" var="item">
+                                                                <h:commandButton  class="btn btn-secondary" value="#{item.nombre}" 
+                                                                                  actionListener="#{archivoEdit.editarArchivo2}" >
+                                                                    <f:ajax execute="@form"  render=":result2" />
+                                                                </h:commandButton>
 
-                                        <div class="text-center">
-                                            <h:panelGroup id="result1">
-                                                <h:outputLabel rendered="#{archivoBean.getClases().size()==0}"
-                                                               value="Aquí aparecerán los archivos generados.">
-                                                </h:outputLabel>
+                                                            </ui:repeat>   
+                                                        </h:form>
+                                                  
+                                                </h:panelGroup>
+  </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                                 <p:dataTable id="tbFiles" var="num"  scrollable="true" scrollHeight="150"
-                                                             value="#{archivoBean.getClases()}" styleClass="sCFiles"
-                                                             rendered="#{archivoBean.getClases().size()!=0}">
-                                                    <p:column headerText="Archivos"
-                                                              style="padding:6px; background-color:#e4e5e6; color:#2f353a">
-                                                        <h:form>
-                                                            <p:commandLink value="#{num.nombre}" style="color:#2f353a;"
-                                                                           actionListener="#{archivoBean.actualizaCode}">
-                                                                <f:ajax execute="@form" render="result2" />
-                                                            </p:commandLink>
-                                                        </h:form>
-                                                    </p:column>
+                                                             value="" styleClass="sCFiles"
+                                                             rendered="">
+
                                                 </p:dataTable>
-                                            </h:panelGroup>
+                                      
 
-                                        </div>
-                                    </div>
                                 </div>
-                                <!-- Shows the error or success message -->
-                                <h:outputText value="#{fileUploadMBean.message}"
-                                              rendered="#{!empty fileUploadMBean.message}"></h:outputText>
+
                            </div>
-                            <hr />
-                            <h:panelGroup id="result2">
-
-
-                                <div class="box-grey">
-                                    <div class="text-center">
-                                        Codigo
-
-                                        <br />
-                                    </div>
-
-                                    <br />
-
-                                    <h:form id="myFrm">
-                                        <h:inputTextarea id="txtCode" rows="15" cols="165"
-                                                         class="codemirror-textarea"
-                                                         value="#{archivoBean.getCode()}"
-                                                         valueChangeListener="#{archivoBean.code}" >
-                                        </h:inputTextarea>
-
-                                        <br />
-
-                                        <div class="row justify-content-center">
-                                            <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{alertBean.submit()}">
-                                                <f:ajax render="salida" />
-                                            </h:commandButton>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button id="guardar" class="btn btn-dark fa fa-play"> Ejecutar</button>
-                                        </div>
-                                    </h:form>
-                                </div>
-                            </h:panelGroup>
-
-
-                            <div class="box-grey">
+      <div class="box-green">
+                                <div class="" >
+                                <h:panelGroup id="result2">
+                                      <h:form id="myFrm"> 
                                 <div class="text-center">
-                                    Salida(temporal)
+                                        <h:commandButton styleClass="btn btn-dark fa fa-save" value="Guardar" actionListener="#{archivoEdit.guardarEdicion2()}">
+                                                <f:ajax execute="@form" render="result1" />
+                                            </h:commandButton>
 
-                                    <br />
-
-                                    <h:outputText id="salida" value="#{beanUML.archivo}" />
-
-                                    <br />
+                                    <h:commandButton styleClass="btn btn-dark fa fa-save" value="Ejecutar" actionListener="#{salidaRunBean.compilarEjecutar2()}">
+                                                <f:ajax execute="@form" render="salidaBd" />
+                                            </h:commandButton>
                                 </div>
+                                <br />
+                                        <h:inputTextarea id="txtCode" rows="20" cols="165"
+                                                         class="codemirror-textarea" 
+                                                         value="#{archivoEdit.contenidoArchivo2}" >
+                                        </h:inputTextarea>
+                              
+                                    </h:form>
+                                  </h:panelGroup>
+                                </div>
+                               
+                               <hr/>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                      <b> Salida</b>
+                                    <br />
+                                    <h:panelGroup id="salidaBd">
+                                        <div class="row"  >
+                                            <div class="col-md-12">
+                                                <h:inputTextarea disabled="true" id="txtSalida" rows="8" cols="165" style="background: #2B2D30; color: #18BC45;"
+                                                                 value="#{salidaRunBean.salida2}">
+                                                </h:inputTextarea>
 
+                                        </div>
+                                        </div>
+                                    </h:panelGroup>
+                                 <br />
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <form class="was-validated">
+                                    <h:form class="was-validated" id="myFrmbd">
                                         <label>Specify following to connect to MySQL server: </label>
                                         <div class="form-group row">
                                             <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
@@ -144,7 +144,7 @@
                                         <div class="form-group row">
                                             <label for="inputHost" class="col-sm-2 col-form-label">Host:</label>
                                             <div class="col-sm-10">
-                                                <input id="inputHost" value="#{controllerBD.serverd}" class="form-control" required=""></input>
+                                                <h:inputText id="inputHost" value="#{controllerBD.serverd}" class="form-control" required=""/>
                                                 
                                                 <div class="valid-feedback"></div>
                                                 <div class="invalid-feedback">Complete el campo.</div>
@@ -155,7 +155,7 @@
                                         <div class="form-group row">
                                             <label for="inputPort" class="col-sm-2 col-form-label">Port:</label>
                                             <div class="col-sm-10">
-                                                <input id="inputPort" value="#{controllerBD.puertod}" class="form-control" required=""></input>
+                                                <h:inputText id="inputPort" value="#{controllerBD.puertod}" class="form-control" required=""/>
                                                 
                                                 <div class="invalid-feedback">Complete el campo</div>
                                                 <div class="valid-feedback"></div> 
@@ -163,11 +163,10 @@
                                             </div>
                                         </div>
 
-
                                         <div class="form-group row">
                                             <label for="inputUser" class="col-sm-2 col-form-label">User:</label>
                                             <div class="col-sm-10">
-                                                <input id="inputUser" value="#{controllerBD.userBDd}" class="form-control" required=""></input>
+                                                <h:inputText id="inputUser" value="#{controllerBD.userBDd}" class="form-control" required=""/>
 
                                                 <div class="invalid-feedback">Complete el campo</div>
                                                 <div class="valid-feedback"></div> 
@@ -198,8 +197,8 @@
 
 
                                         <div class="modal-footer">
-
-                                            <h:commandButton value="Obtener BD" actionListener="#{principalMBean.conectarBd()}"
+                                       
+                                             <h:commandButton value="Obtener BD" actionListener="#{principalMBean.conectarBd()}"
                                                              class="btn btn-dark fa fa-check">
                                                 <f:ajax execute="@form" render="bases" />
                                             </h:commandButton>
@@ -211,19 +210,22 @@
                                                     <f:ajax execute="@form" render="tablas" />
                                                 </h:commandButton>
                                             </div>
+                                           
+
 
                                             <!--                                            <button type="submit" class="btn btn-primary col-sm-2" data-dismiss='modal' data-toggle='modal' data-target='#modalForm2'>Next</button>-->
                                             <button type="submit" class="btn btn-primary col-sm-2">Cancel</button>
                                         </div>
 
-                                    </form>
+                                    </h:form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>      
 
-                <div class="container">
+             <div class="container">
+
                     <div class="modal" tabindex="-1" id="modalForm2">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -236,7 +238,8 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <h:form>
+                                    <h:panelGroup id="check">
+                                             <h:form>
                                         <div class="form-group-row">
                                             <div class="col-md-12" >
                                                 <h:selectBooleanCheckbox  value="#{principalMBean.tablasTodas}"> Elegir todas
@@ -245,6 +248,8 @@
                                             </div>
                                         </div>
                                         </h:form>
+                                    </h:panelGroup>
+                               
                                         <hr/>
                                         <div class="form-group row">
                                             <div class="form-check col-sm-11">
@@ -271,15 +276,17 @@
                                             <div   data-dismiss='modal' data-toggle='modal' data-target='#modalForm'>
                                                 <h:commandButton value="Regresar" actionListener="#{principalMBean.limpiarTablas()}"
                                                              class="btn btn-dark fa fa-check">
-                                                <f:ajax execute="@form" render="tablas" />
+                                                <f:ajax execute="@form" render="tablas check" />
                                             </h:commandButton>
                                             </div>
-                                     
-                                            <h:commandButton value="Generar" actionListener="#{principalMBean.generarClasesTablas()}"
+                                            <div  data-dismiss="modal">
+                                                                <h:commandButton  value="Generar" actionListener="#{principalMBean.generarClasesTablas()}"
                                                              class="btn btn-dark fa fa-check">
-                                                <f:ajax execute="@form" render="result1" />
+                                                <f:ajax execute="@form" render="botonesbd check" />
                                             </h:commandButton>
-                                            <button  class="btn btn-primary col-sm-2"  data-dismiss="modal" aria-label="Close">Finalizar</button>
+                                            </div>
+                            
+                                            <button  class="btn btn-primary col-sm-2"  data-dismiss="modal" aria-label="Close">Cerrar</button>
 
                                         </div>
                                     </h:form> 
@@ -294,7 +301,6 @@
             </ui:define>
         </ui:composition>
     </body>
-    
     <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {

@@ -116,6 +116,11 @@ public static String getCode()
         String prureba="";
     }
     
+    public static void actualizaClaseEditada2(String codigo, int indice){
+        clases2.get(indice).setCodigo(codigo);
+        String prureba="";
+    }
+    
     public void actualizaCode(ActionEvent event)
     {
         String value;
@@ -216,5 +221,12 @@ public static String getCode()
         }
 
     }
+    
+    public static void limpiarClases(){
+        clases.clear();
+    }
+    public static void limpiarClases2(){
+        clases2.clear();
+    }    
     
 }

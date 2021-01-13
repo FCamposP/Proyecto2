@@ -32,16 +32,14 @@ public class CompiladorEjecutorJava {
              ubicacion="java -cp "+direccionTotal.replace("/", "\\\\")+" Main";
              //ubicacion="cd C:\\test && && "+comando+" HolaMundo";
         }
-       
-    
-            String line; 
+            String line=""; 
             Process p = Runtime.getRuntime().exec(ubicacion);
-            
             //salida estandar de la compilación
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
           //      System.out.println(line);
-                salidaEstandar += line; 
+                salidaEstandar += line;
+                salidaEstandar+="\n";
             }
             input.close();             
             
@@ -54,6 +52,7 @@ public class CompiladorEjecutorJava {
             while ((line = error.readLine()) != null) {
               //  System.out.println(line);
                 salidaError += line;
+                salidaError+="\n";
             }
             error.close(); 
             
@@ -65,6 +64,7 @@ public class CompiladorEjecutorJava {
             
 
         } catch (Exception e) {
+            String s="";
         }
         return salidaReturn;
 

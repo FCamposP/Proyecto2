@@ -227,10 +227,13 @@ public class GeneradorJava {
                 tipo="double";
                 break;
             case "BIT":
-                tipo="bit";
+                tipo="int";
                 break;
             case "EDate":
                 tipo="Date";
+                break;
+            case "bit":
+                tipo="int";
                 break;
         }
         return tipo;

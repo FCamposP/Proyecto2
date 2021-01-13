@@ -1,4 +1,4 @@
-package clasesDB;
+package entidades;
 
 /**
  *

@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
@@ -19,7 +20,7 @@ import javax.faces.view.ViewScoped;
  * @author fabry
  */
 @Named(value = "controllerBD")
-@ViewScoped
+@SessionScoped
 public class ControllerBD implements Serializable{
 
     /**
@@ -44,6 +45,7 @@ public class ControllerBD implements Serializable{
     private  List<String> basesDatosd;
     private  List<String> tablasd;
     private String baseElegidad;
+    private String prueba;
     
 
     
@@ -51,6 +53,16 @@ public class ControllerBD implements Serializable{
         basesDatosd= new ArrayList<String>();
 
     }
+
+    public String getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(String prueba) {
+        this.prueba = prueba;
+    }
+    
+    
 
     public List<BaseTablas> getTablasBd() {
         return tablasBd;
@@ -194,5 +206,8 @@ public class ControllerBD implements Serializable{
     }
 
     
-    
+        public void pruebafc(){
+        String otro= prueba;
+        String otro2= prueba;
+    }
 }

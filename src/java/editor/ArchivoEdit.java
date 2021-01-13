@@ -104,11 +104,17 @@ public class ArchivoEdit implements Serializable{
     }
     
 
-    private int ObtenerIndice( String nombreClase){
+    private int ObtenerIndice( String nombreClase, int opcion){
         int indice=-1;
+        int opo=opcion;
         try {
                     ArrayList<Archivo> archivos= new ArrayList<>();
-        archivos=ArchivoBean.getClases();
+                    if(opo==1){
+                           archivos=ArchivoBean.getClases();
+                    }else{
+                           archivos=ArchivoBean.getClases2();
+                    }
+     
      
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).getNombre().equals(nombreClase)){
@@ -131,7 +137,7 @@ public class ArchivoEdit implements Serializable{
             
         String cambios= contenidoArchivo1;
 
-        ArchivoBean.actualizaClaseEditada(contenidoArchivo1, ObtenerIndice( nombreArchivo1));
+        ArchivoBean.actualizaClaseEditada(contenidoArchivo1, ObtenerIndice( nombreArchivo1,1));
                   String otoro=text;
         String ojala=""; 
         
@@ -165,6 +171,54 @@ public class ArchivoEdit implements Serializable{
         }
         if(!found){
             contenidoArchivo1=("Archivo no encontrado");
+        }
+
+            } catch (Exception e) {
+            }
+            
+      
+    }
+        public void guardarEdicion2() throws IOException{
+        //a sustituir por datos tomados del usuario
+            try {
+                 String direccion="/user01/project01/bd/";
+            
+        String cambios= contenidoArchivo2;
+
+        ArchivoBean.actualizaClaseEditada2(contenidoArchivo2, ObtenerIndice( nombreArchivo2,2));
+                  String otoro=text;
+        String ojala=""; 
+        
+        //dirección de archivos obtenido de Principal
+            CreadorArchivosJava editorJava= new CreadorArchivosJava();
+            
+            editorJava.editarArchivoJava(direccion+nombreArchivo2, cambios);
+            } catch (Exception e) {
+            }
+       
+        
+    }
+    
+        public void editarArchivo2(ActionEvent event) {
+            try {
+                  String nombreArchivo;
+       
+        boolean found = false;
+        ArrayList<Archivo> clases = new ArrayList<Archivo>();
+        UIComponent component = event.getComponent();
+        nombreArchivo = (String) component.getAttributes().get("value");
+        
+        clases=ArchivoBean.getClases2();
+
+        for (Archivo clase : clases) {
+            if(clase.getNombre().equals(nombreArchivo)){
+                found=true;
+                contenidoArchivo2=(clase.getCodigo());
+                nombreArchivo2=(nombreArchivo);
+            }
+        }
+        if(!found){
+            contenidoArchivo2=("Archivo no encontrado");
         }
 
             } catch (Exception e) {

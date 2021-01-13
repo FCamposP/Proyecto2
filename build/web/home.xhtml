@@ -5,10 +5,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
+    	<f:metadata>
+            <f:viewAction action="#{proyectosBean.obtenerProyectos}" />
+	</f:metadata>
     <body>
 
-        <ui:composition template="./WEB-INF/templates/templateVacio.xhtml">
+        <ui:composition template="./WEB-INF/templates/templateBase.xhtml">
 
             <ui:define name="content">
                 <div class="breadcrumb">
@@ -23,9 +25,7 @@
                         <div class="col-12">
                             <div class="box-blue">
                                 <div class="row">
-                                    <button type="button" class="btn btn-brand btn-xing" style="margin-bottom: 4px">
-                                        <span>Crear nuevo Proyecto</span>
-                                    </button>
+
                                 </div>
                                 <hr/>
                                 <div class="row" >
@@ -36,6 +36,7 @@
                                                 <i class="fa fa-align-justify"></i> Mis proyectos
                                             </div>
                                             <div class="card-body text-center">
+                              
                                                 <table class="table table-responsive-sm table-striped">
                                                     <thead>
                                                         <tr>
@@ -47,29 +48,40 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>    <button type="button" class="btn btn-block btn-warning"><i class="fa fa-pencil-square fa-lg "></i></button></td>
-                                                            <td>  <button type="button" class="btn btn-block btn-youtube"> <i class="fa fa-trash fa-lg "></i></button></td>
-                                                            <td>Proyecto 02</td>
-                                                            <td>UML</td>
-                                                            <td>2012/01/01</td>
-                                                            <td>
-                                                               2012/01/01
+                                                  <h:panelGroup id="proyectosuser">
+                                                      <h:form>
+                                                          <ui:repeat value="#{proyectosBean.obtenerProyectos()}" var="item">
+      <tr>
+                                                            <td>  
+                                                                <h:commandButton styleClass="btn btn-block btn-warning" value="Editar" >
+                                                     
+                                                <f:ajax execute="@form" render="proyectosuser" />
+                                            </h:commandButton>
+                                                              
+                                                            
                                                             </td>
+                                                            <td> 
+                                          <h:commandButton styleClass="btn btn-block btn-youtube" value="Borrar" actionListener="#{proyectosBean.eliminarProyecto(item.id_proyecto)}">
+                                                     
+                                                <f:ajax execute="@form" render="proyectosuser" />
+                                            </h:commandButton>
+                                                                                                                    </td>
+                                                            <td>#{item.nombre}</td>
+                                                            <td>#{item.tipo}</td>
+                                                            <td>#{item.fechacreacion}</td>
+                                                            <td>#{item.fechaActualizacion}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>    <button type="button" class="btn btn-block btn-warning"><i class="fa fa-pencil-square fa-lg "></i></button></td>
-                                                            <td>  <button type="button" class="btn btn-block btn-youtube"> <i class="fa fa-trash fa-lg "></i></button></td>
-                                                            <td>Proyecto 01</td>
-                                                            <td>BD</td>
-                                                            <td>2012/02/01</td>
-                                                            <td>
-                                                            2012/02/01
-                                                            </td>
-                                                        </tr>
+                                                            </ui:repeat>   
+                                                        </h:form>
+                                                  
+                                                </h:panelGroup>
+                                                   
+                                              
                                        
                                                     </tbody>
                                                 </table>
+                                          
+                                        
 <!--                                                <ul class="pagination">
                                                     <li class="page-item">
                                                         <a class="page-link" href="#">Prev</a>

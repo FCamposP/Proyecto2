@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
@@ -14,7 +15,7 @@
         <h:outputStylesheet name="vendors/pace-progress/css/pace.min.css"/>  
         <h:outputStylesheet name="css/HS19011Styles.css"/>
         <h:outputStylesheet name ="plugin/codemirror/lib/codemirror.css"/>
-	<title>Proyecto2</title>
+        <title>Proyecto2</title>
     </h:head>
 
     <h:body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -50,14 +51,17 @@
                     <i class="icon-location-pin"></i>
                 </a>
             </li>-->
+                <li>    <h:outputLabel id="msg" value="#{logine.user}"></h:outputLabel></li>
                 <li>
-                    UsuarioX
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <h:graphicImage value="resources/images/avatars/1.jpg" width="30" height="30" alt="user" />
+                    <h:form prependId="false" enctype="multipart/form-data">
+                                  <h:commandButton value="Salir" class="btn btn-primary px-4 btn-block" action="#{logine.logout()}"/>
 
-                    </a>
+
+                    </h:form>
+                </li>
+
+                <li class="nav-item dropdown">
+
                     <div class="dropdown-menu dropdown-menu-right">
                         <!--
                     <div class="dropdown-header text-center">
@@ -114,7 +118,7 @@
         <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
             <span class="navbar-toggler-icon"></span>
         </button>
-        -->
+            -->
         </header>
         <div class="app-body">
 
@@ -124,16 +128,16 @@
 
                         <li class="nav-title">Opciones</li>
                         <li class="nav-item">
-                            
+
                             <h:link class="nav-link" outcome="uml">
                                 <i class="fa fa-puzzle-piece"></i>  UML
                             </h:link>
                         </li>
                         <li class="nav-item">
-                      <h:link class="nav-link" outcome="database">
+                            <h:link class="nav-link" outcome="database">
                                 <i class="fa fa-puzzle-piece"></i>  Base de datos
                             </h:link>
-<!--                            <a class="nav-link" href="database.xhtml"> <i class="fa fa-database"></i>  Base de datos</a>-->
+                            <!--                            <a class="nav-link" href="database.xhtml"> <i class="fa fa-database"></i>  Base de datos</a>-->
                         </li>
                     </ul>
                 </nav>
@@ -163,7 +167,7 @@
 
             </div>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
         <h:outputScript name="lib/jquery/dist/sweetAlert.js" />
         <h:outputScript name="lib/jquery/dist/noti.js" />
         <h:outputScript name="lib/popper.js/dist/umd/popper.min.js" />

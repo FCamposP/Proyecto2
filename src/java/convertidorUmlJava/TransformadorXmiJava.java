@@ -14,6 +14,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 import generadorJava.GeneradorJava;
 import gestordearchivos.Archivo;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +42,7 @@ public class TransformadorXmiJava {
         SAXParser saxParser = saxParserFactory.newSAXParser();
 
         // File file = new File("C:\\Users\\Irs\\Desktop\\archivo\\prueba1.xmi");
+        InputStream sfs=FileUploadMBean.getContenidoArchivo();
         saxParser.parse(FileUploadMBean.getContenidoArchivo(), handler);
 
     }

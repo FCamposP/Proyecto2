@@ -47,7 +47,8 @@ CREATE TABLE `proyecto` (
   `descripcion` text DEFAULT NULL,
   `ruta_local` varchar(120) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `estado` varchar(45) NOT NULL
+  `estado` varchar(45) NOT NULL,
+  `tipo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -128,7 +129,3 @@ ALTER TABLE `file`
 ALTER TABLE `proyecto`
   ADD CONSTRAINT `id_usuario_proyecto_fk` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -34,7 +34,7 @@
                                                             </span>
                                                         </div>
                                                         
-                                                        <h:inputText id="username" class="form-control" value="#{loginBean.username}" a:placeholder="Usuario" required="true"/>
+                                                        <h:inputText id="username" class="form-control" value="#{logine.user}" a:placeholder="Usuario" required="true"/>
                                                         <h:message for="username" id="usernameMsg"/> 
                                                     </div>
                                                 </div>
@@ -47,7 +47,7 @@
                                                             </span>
                                                         </div>
                                                         
-                                                        <h:inputText id="password" class="form-control" value="#{loginBean.password}" a:placeholder="Contraseña" required="ture"/>
+                                                        <h:inputSecret id="password"  class="form-control" value="#{logine.pwd}" a:placeholder="Contraseña" required="ture"/>
                                                         <h:message for="password" id="passwordMsg"/>
                                                     </div>
                                                 </div>
@@ -55,15 +55,10 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <f:ajax render="msg prueba usernameMsg passwordMsg" execute="username password">
-                                                            <h:commandButton value="Entrar" class="btn btn-primary px-4 btn-block" action="#{loginBean.doLogin()}"/>
+                                                            <h:commandButton value="Entrar" class="btn btn-primary px-4 btn-block" action="#{logine.validateUsernamePassword()}"/>
                                                         </f:ajax>
                                                     </div>
 
-                                                    <div class="col-6 text-right">
-                                                        <a href="faces/home.xhtml">
-                                                        <!--<button type="button" class="btn btn-link px-0">Olvidaste tu contra?</button>-->
-                                                        </a>
-                                                    </div>
                                                 </div>
                                                 
                                                 <h:panelGroup layout="block" class="alert alert-#{loginBean.msgClass}" id="prueba">
@@ -88,8 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Modal -->
+                             <!-- Modal -->
                                 <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog modal-sm">
                                         <div class="modal-content">
@@ -108,15 +102,15 @@
                                                     <h3> Ingresa tus datos </h3>
                                                     <br/><br/><br/>
 
-                                                    <form id="FrmLogin">
+                                                    <h:form id="FrmLogin">
                                                         <div class="input-group mb-3">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">
                                                                     <i class="icon-pin"></i>
                                                                 </span>
                                                             </div>
-
-                                                            <input id="regNom" name="user" type="text" class="form-control" placeholder="Nombre" />
+                                                            <h:inputText id="regNom" class="form-control" value="#{logine.nombre}" a:placeholder="Nombre" required="true"/>
+                                                            <!--<input id="regNom" name="user" type="text" class="form-control" placeholder="Nombre" />-->
                                                         </div>
 
                                                         <div class="input-group mb-3">
@@ -125,8 +119,8 @@
                                                                     <i class="icon-user"></i>
                                                                 </span>
                                                             </div>
-
-                                                            <input id="regNom" name="name" type="text" class="form-control" placeholder="Usuario" />
+                                                            <h:inputText id="regUser" class="form-control" value="#{logine.username}" a:placeholder="Username" required="true"/>
+                                                            <!--<input id="regNom" name="name" type="text" class="form-control" placeholder="Usuario" />-->
                                                         </div>
 
                                                         <div class="input-group mb-3">
@@ -135,8 +129,8 @@
                                                                     <i class="icon-envelope"></i>
                                                                 </span>
                                                             </div>
-
-                                                            <input id="regCorr" name="email" type="text" class="form-control" placeholder="Correo" />
+                                                            <h:inputText id="regCorreo" class="form-control" value="#{logine.email}" a:placeholder="Email" required="true"/>
+                                                            <!--<input id="regCorr" name="email" type="text" class="form-control" placeholder="Correo" />-->
                                                         </div>
 
                                                         <div class="input-group mb-4">
@@ -145,17 +139,24 @@
                                                                     <i class="icon-lock"></i>
                                                                 </span>
                                                             </div>
-
-                                                            <input id="regPass" name="password" type="password" class="form-control" placeholder="Contraseña" />
+                                                            <h:inputSecret id="regPass" class="form-control" value="#{logine.password}" a:placeholder="Password" required="true"/>
+                                                            <!--<input id="regPass" name="password" type="password" class="form-control" placeholder="Contraseña" />-->
                                                         </div>
-                                                    </form>    
+                                                    </h:form>    
 
                                                 </div>
                                             </div>
 
                                             <!-- Modal Footer -->
                                             <div class="modal-footer justify-content-center">
-                                                    <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Registrarse</button>
+                                                <h:form>
+                                                    <f:ajax render="" execute="">
+                                                        <div class="close" data-dismiss="modal">
+                                                        <h:commandButton value="Registrarse" class="btn btn-primary px-4 btn-block" action="#{logine.registrarse()}"/>
+                                                </div>
+                                                    </f:ajax>
+                                                </h:form>
+                                                    <!--<button type="button" class="btn btn-primary submitBtn" >Registrarse</button>-->
                                             </div>
                                         </div>
                                     </div>
@@ -169,3 +170,8 @@
         </ui:composition>
     </body>
 </html>
+
+
+
+
+

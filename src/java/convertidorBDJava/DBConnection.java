@@ -26,7 +26,7 @@ public class DBConnection {
     public DBConnection() {
     }
 
-    
+
     
     
     public void getConnection(String server,String puerto,String bd, String DB_USER, String DB_PASSWORD) throws SQLException, ClassNotFoundException{
@@ -35,8 +35,10 @@ public class DBConnection {
             final String Controlador = "com.mysql.jdbc.Driver";
             Class.forName(Controlador);
             String direccionCompleta="jdbc:mysql://";
+          //  direccionCompleta+= "localhost"+":"+"3306"+"/";
             direccionCompleta+= server+":"+puerto+"/";
-          connection = DriverManager.getConnection(direccionCompleta, DB_USER, DB_PASSWORD);
+         // connection = DriverManager.getConnection(direccionCompleta, "root", "");
+         connection = DriverManager.getConnection(direccionCompleta, DB_USER, DB_PASSWORD);
            System.out.println("Conexión iniciada con éxito");
 
 

@@ -56,11 +56,28 @@ public class ControllerPrincipal implements Serializable {
     private List<BaseTablas> tablasCompletas;
     private boolean tablasTodas;
     private String mensajet;
-
+    private boolean mostrarUml=false;
+    private boolean mostrarBD=false;
 
     
     public ControllerPrincipal() {
         String prueba = "";
+    }
+
+    public boolean isMostrarUml() {
+        return mostrarUml;
+    }
+
+    public void setMostrarUml(boolean mostrarUml) {
+        this.mostrarUml = mostrarUml;
+    }
+
+    public boolean isMostrarBD() {
+        return mostrarBD;
+    }
+
+    public void setMostrarBD(boolean mostrarBD) {
+        this.mostrarBD = mostrarBD;
     }
 
 
@@ -136,7 +153,9 @@ public class ControllerPrincipal implements Serializable {
 
     public void generarCodigo() throws ParserConfigurationException, IOException, SAXException {
     String direccion="/user01/project01/uml/";
+    
         try{
+            ArchivoBean.limpiarClases();
              if (fileUpload.getContenidoArchivo() != null) {
             ArrayList<Archivo> archivos = new ArrayList<Archivo>();
             TransformadorXmiJava converter = new TransformadorXmiJava();
@@ -204,6 +223,8 @@ public class ControllerPrincipal implements Serializable {
     public void generarClasesTablas() {
         
         try {
+                String direccion="/user01/project01/bd/";
+            ArchivoBean.limpiarClases2();
                     ArrayList<Clase> clasesGenerar = new ArrayList<Clase>();
         Funciones fun = new Funciones();
         for (DtoTabla tabla : tablasMostrar) {
@@ -224,7 +245,13 @@ public class ControllerPrincipal implements Serializable {
             }
         }
         GeneradorJava creadorJava = new GeneradorJava();
-        creadorJava.CrearArchivos(clasesGenerar, 1);
+        ArrayList<Archivo> archivos=  creadorJava.CrearArchivos(clasesGenerar, 1);
+        ArchivoBean.setClases2(archivos);
+                    //creación de los archivos fisicos
+            CreadorArchivosJava creador= new CreadorArchivosJava();
+            creador.crearArchivosJava(archivos, direccion);
+        
+        tablasTodas=false;
         } catch (Exception e) {
         }
         
@@ -252,34 +279,11 @@ public class ControllerPrincipal implements Serializable {
         //s   tablasCompletas.clear();
         this.setTablasTodas(false);
         ArchivoBean.code = "";
-        ArchivoBean.setClases(new ArrayList<Archivo>());
+        ArchivoBean.setClases2(new ArrayList<Archivo>());
+        tablasTodas=false;
     }
-
-//    private static final long serialVersionUID = 1L;	
-//	private boolean programador;
-// 
-//	public boolean isProgramador() {
-//		return programador;
-//	}
-//	public void setProgramador(boolean programador) {
-//		this.programador = programador;
-//	}
-//     	<h:form id="form">
-//   		<h:selectBooleanCheckbox id="pregunta" value="#{ejemploSelectBooleanCheckbox.programador}" /> Eres Programador?
-//   		<h:commandButton value="Clicar" action="respuesta" />
-//	</h:form>
-//    
-//    <h:selectBooleanCheckbox id="checkbox" value="#{myBean.value}"   >	
-//    <p:ajax process="@this" event="change" partialSubmit="true"
-//                listener="#{myBean.valueChanged}" />	
-//</h:selectBooleanCheckbox>
-    //PARA HABILITAR UN ELEMENTOS  
-//    <h:form>
-//    <h:selectBooleanCheckbox binding="#{checkbox}">
-//        <f:ajax render="button" />
-//    </h:selectBooleanCheckbox>
-//    <h:commandButton id="button" value="submit" 
-//        action="#{bean.submit}" 
-//        disabled="#{not checkbox.value}" />
-//</h:form>
+public String crearProyectoUml(){
+    mostrarUml=!mostrarUml;
+    return "uml.xhtml?faces-redirect=true";
+}
 }

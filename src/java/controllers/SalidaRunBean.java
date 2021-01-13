@@ -30,10 +30,29 @@ public class SalidaRunBean implements Serializable {
         private String msjEjecutando2; 
         private String msjEjecucion1;
         private String msjEjecucion2;
-        
+        private String salida1;
+        private String salida2;
     public SalidaRunBean() {
     }
 
+    public String getSalida1() {
+        return salida1;
+    }
+
+    public void setSalida1(String salida1) {
+        this.salida1 = salida1;
+    }
+
+    public String getSalida2() {
+        return salida2;
+    }
+
+    public void setSalida2(String salida2) {
+        this.salida2 = salida2;
+    }
+
+    
+    
     public String getMsjEjecutando1() {
         return msjEjecutando1;
     }
@@ -108,6 +127,10 @@ public class SalidaRunBean implements Serializable {
     {
         try 
         {  
+            mensajeCompilando1="";
+            resultadoUml="";
+            msjEjecucion1="";
+            msjEjecucion1="";
                     //a sustituir por datos tomados del usuario
         String direccion="/user01/project01/uml";
             
@@ -129,6 +152,54 @@ public class SalidaRunBean implements Serializable {
                 resultadoExec=compilerJava.ejecutarArchivos(direccion,"java");
                 msjEjecucion1=resultadoExec;
             } 
+            salida1="";
+            salida1+=mensajeCompilando1;
+            salida1+=resultadoUml+"\n";
+            salida1+=msjEjecutando1+"\n";
+            salida1+=msjEjecucion1;
+            
+        } 
+        catch (Exception e)
+        {
+            // Excepciones si hay algún problema al arrancar el ejecutable o al leer su salida.*/
+            e.printStackTrace();
+        }
+    }
+    
+    public void compilarEjecutar2() 
+    {
+        try 
+        {  
+            mensajeCompilando2="";
+            resultadoBD="";
+            msjEjecucion2="";
+            msjEjecucion2="";
+                    //a sustituir por datos tomados del usuario
+        String direccion="/user01/project01/bd";
+            
+            CompiladorEjecutorJava compilerJava = new CompiladorEjecutorJava();
+            mensajeCompilando2="Compilando ...";
+ 
+            String resultadoCompilacion="";
+            resultadoCompilacion=compilerJava.ejecutarArchivos(direccion,"javac");
+            if(resultadoCompilacion=="0"){
+                resultadoBD="\nCompilación realizada con éxito";
+            }else{
+                resultadoBD="\n"+resultadoCompilacion;
+            }
+            
+            if(resultadoCompilacion=="0"){
+             msjEjecutando2="Ejecutando ...";   
+                
+                String resultadoExec="";
+                resultadoExec=compilerJava.ejecutarArchivos(direccion,"java");
+                msjEjecucion2=resultadoExec;
+            } 
+            salida2="";
+            salida2+=mensajeCompilando2;
+            salida2+=resultadoBD+"\n";
+            salida2+=msjEjecutando2+"\n";
+            salida2+=msjEjecucion2;
             
         } 
         catch (Exception e)
