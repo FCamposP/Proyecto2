@@ -24,7 +24,7 @@ public class LoginBean {
 
     public LoginBean() {
         this.msgClass = "info";
-        this.message = "Ingrese usuario y password";
+        this.message = "Ingrese usuario y contraseña";
         
     }
     

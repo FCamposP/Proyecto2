@@ -71,7 +71,7 @@ public class UsuarioDB implements Serializable{
                 db = new DB();
             }
         
-            String sql = "SELECT id, nombre FROM usuarios WHERE username=? AND password=?";
+            String sql = "SELECT id, nombre FROM usuario WHERE username=? AND password=?";
             prepState = db.doConnect().prepareStatement(sql);
             prepState.setString(1, user);
             prepState.setString(2, pass);
