@@ -54,10 +54,7 @@ public class LoginBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    
-    
-    
+    }    
     
     public String getPwd() {
         return pwd;
@@ -109,12 +106,28 @@ public class LoginBean implements Serializable {
     }
     
     public void registrarse(){
+        System.out.println(password);
+        System.out.println(email);
+        System.out.println(username);
+        System.out.println(nombre);
+        
         DtoUser nuevoUser= new DtoUser();
         nuevoUser.setContrasena(password);
         nuevoUser.setEmail(email);
         nuevoUser.setNombre_usuario(username);
         nuevoUser.setNombres(nombre);
-        
+    
         objetosDAOBD.daobdiUser.insertar(nuevoUser);
     }
+    
+    //hs19011 metod
+    
+    public void registrar(){
+        try {
+            
+        } catch (Exception e) {
+            //mensaje
+        }
+    }
+    
 }

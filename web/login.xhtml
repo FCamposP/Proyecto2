@@ -97,7 +97,7 @@
                                             </div>
 
                                             <!-- Modal Body -->
-                                            <div class="modal-body text-white bg-primary">
+                                            <div class="modal-body bg-primary">
                                                 <div class="row justify-content-center">
                                                     <h3> Ingresa tus datos </h3>
                                                     <br/><br/><br/>
@@ -109,6 +109,7 @@
                                                                     <i class="icon-pin"></i>
                                                                 </span>
                                                             </div>
+                                                            
                                                             <h:inputText id="regNom" class="form-control" value="#{logine.nombre}" a:placeholder="Nombre" required="true"/>
                                                             <!--<input id="regNom" name="user" type="text" class="form-control" placeholder="Nombre" />-->
                                                         </div>
@@ -142,26 +143,17 @@
                                                             <h:inputSecret id="regPass" class="form-control" value="#{logine.password}" a:placeholder="Password" required="true"/>
                                                             <!--<input id="regPass" name="password" type="password" class="form-control" placeholder="Contraseña" />-->
                                                         </div>
+                                                        
+                                                        <!-- Modal "Footer" -->
+                                                        <div class="modal-footer justify-content-center">
+                                                            <h:commandButton value="Registrarse" class="btn btn-success px-4 btn-block" action="#{logine.registrarse()}"/>   
+                                                        </div>
                                                     </h:form>    
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Modal Footer -->
-                                            <div class="modal-footer justify-content-center">
-                                                <h:form>
-                                                    <f:ajax render="" execute="">
-                                                        <div class="close" data-dismiss="modal">
-                                                        <h:commandButton value="Registrarse" class="btn btn-primary px-4 btn-block" action="#{logine.registrarse()}"/>
-                                                </div>
-                                                    </f:ajax>
-                                                </h:form>
-                                                    <!--<button type="button" class="btn btn-primary submitBtn" >Registrarse</button>-->
+                                                </div>  
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
